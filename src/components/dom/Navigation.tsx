@@ -10,10 +10,10 @@ export default function Navigation() {
   const setSoundEnabled = usePortfolioStore((state) => state.setSoundEnabled);
   const setCommandMenuOpen = usePortfolioStore((state) => state.setCommandMenuOpen);
 
-  const sections = ["Home", "Works", "About", "Contact"];
+  const sections = ["Identity", "Philosophy", "Systems", "Future"];
 
   const handleScrollTo = (index: number) => {
-    const sectionIds = ["hero-section", "works-section", "about-section", "contact-section"];
+    const sectionIds = ["chapter-light", "chapter-vision", "chapter-world", "chapter-journey"];
     const element = document.getElementById(sectionIds[index]);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
