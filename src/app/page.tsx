@@ -4,6 +4,7 @@ import ScrollProvider from "@/components/dom/ScrollProvider";
 import Navigation from "@/components/dom/Navigation";
 import GridOverlay from "@/components/dom/GridOverlay";
 import CmdMenu from "@/components/dom/CmdMenu";
+import CaseStudyDrawer from "@/components/dom/CaseStudyDrawer";
 import NarrativeOverlay from "@/components/dom/NarrativeOverlay";
 import AccessibilityHelper from "@/components/dom/AccessibilityHelper";
 
@@ -25,6 +26,7 @@ export default function Home() {
       <GridOverlay />
       <Navigation />
       <CmdMenu />
+      <CaseStudyDrawer />
 
       {/* Fixed Narrative Typography Layer (Fixed Midground) */}
       <NarrativeOverlay />

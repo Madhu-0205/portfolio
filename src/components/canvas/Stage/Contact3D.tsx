@@ -13,15 +13,19 @@ function HolographicText({
   position, 
   title, 
   body, 
+  link,
   color = "#86868b" 
 }: { 
   position: [number, number, number]; 
   title: string; 
   body?: string; 
+  link?: string;
   color?: string;
 }) {
   const [hovered, setHovered] = useState(false);
   const setCursorState = usePortfolioStore((state) => state.setCursorState);
+  const setCaseStudyOpen = usePortfolioStore((state) => state.setCaseStudyOpen);
+  const setActiveCaseStudyId = usePortfolioStore((state) => state.setActiveCaseStudyId);
   const textRef = useRef<THREE.Group>(null);
 
   useFrame((state, delta) => {
@@ -33,6 +37,19 @@ function HolographicText({
     }
   });
 
+  const handleClick = (e: any) => {
+    if (link) {
+      e.stopPropagation();
+      if (link.startsWith("case-study:")) {
+        const id = link.split(":")[1];
+        setActiveCaseStudyId(id);
+        setCaseStudyOpen(true);
+      } else {
+        window.open(link, "_blank");
+      }
+    }
+  };
+
   return (
     <group 
       ref={textRef} 
@@ -40,12 +57,13 @@ function HolographicText({
       onPointerOver={(e) => {
         e.stopPropagation();
         setHovered(true);
-        setCursorState("hover");
+        setCursorState(link ? "drag" : "hover");
       }}
       onPointerOut={() => {
         setHovered(false);
         setCursorState("default");
       }}
+      onClick={handleClick}
     >
       <Text
         fontSize={0.09}
@@ -226,6 +244,12 @@ export default function Contact3D() {
             position={[1.2, 0.1, -0.5]} 
             title="MADHU//OS" 
             body="THE CRAFT // Beautiful, clean code is not a vanity metric. It forms a direct, functional connection with the user." 
+          />
+
+          <HolographicText 
+            position={[-0.6, -1.0, 0.0]} 
+            title="[ CASE_STUDY ]" 
+            link="case-study:madhu-os"
           />
         </group>
       )}

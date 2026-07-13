@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
-import { Search, CornerDownLeft, Volume2, Move } from "lucide-react";
+import { Search, CornerDownLeft, Volume2, Move, Terminal } from "lucide-react";
 
 export default function CmdMenu() {
   const isOpen = usePortfolioStore((state) => state.commandMenuOpen);
   const setIsOpen = usePortfolioStore((state) => state.setCommandMenuOpen);
   const soundEnabled = usePortfolioStore((state) => state.soundEnabled);
   const setSoundEnabled = usePortfolioStore((state) => state.setSoundEnabled);
+  const setCaseStudyOpen = usePortfolioStore((state) => state.setCaseStudyOpen);
+  const setActiveCaseStudyId = usePortfolioStore((state) => state.setActiveCaseStudyId);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -51,6 +53,46 @@ export default function CmdMenu() {
       subtitle: "Access contact nodes and future roadmap details",
       icon: <Move size={16} />,
       action: () => scrollToSection("chapter-journey"),
+    },
+    {
+      id: "case-study-cc",
+      title: "Case Study: CampusConnect Graph",
+      subtitle: "Open matching and recommendation schema details",
+      icon: <Terminal size={16} />,
+      action: () => {
+        setActiveCaseStudyId("campusconnect");
+        setCaseStudyOpen(true);
+      }
+    },
+    {
+      id: "case-study-railway",
+      title: "Case Study: Railway AI Optimizer",
+      subtitle: "Open A* search and decision safety logic details",
+      icon: <Terminal size={16} />,
+      action: () => {
+        setActiveCaseStudyId("railway-ai");
+        setCaseStudyOpen(true);
+      }
+    },
+    {
+      id: "case-study-jobnest",
+      title: "Case Study: JobNest Proximity Index",
+      subtitle: "Open PostGIS geo-query and matching schemas",
+      icon: <Terminal size={16} />,
+      action: () => {
+        setActiveCaseStudyId("jobnest");
+        setCaseStudyOpen(true);
+      }
+    },
+    {
+      id: "case-study-os",
+      title: "Case Study: MADHU//OS Engine",
+      subtitle: "Open WebGL camera rendering state pipeline",
+      icon: <Terminal size={16} />,
+      action: () => {
+        setActiveCaseStudyId("madhu-os");
+        setCaseStudyOpen(true);
+      }
     },
     {
       id: "audio-toggle",

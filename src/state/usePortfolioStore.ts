@@ -26,6 +26,12 @@ interface PortfolioState {
   // GitHub Data
   githubData: any[] | null;
   setGithubData: (data: any[]) => void;
+
+  // Case Study Overlay Drawer
+  caseStudyOpen: boolean;
+  activeCaseStudyId: string;
+  setCaseStudyOpen: (open: boolean) => void;
+  setActiveCaseStudyId: (id: string) => void;
 }
 
 export const usePortfolioStore = create<PortfolioState>((set) => ({
@@ -38,6 +44,8 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
   commandMenuOpen: false,
   cursorState: "default",
   githubData: null,
+  caseStudyOpen: false,
+  activeCaseStudyId: "",
 
   // Actions
   setLoadingProgress: (progress) => set({ loadingProgress: progress }),
@@ -48,4 +56,6 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
   setCommandMenuOpen: (open) => set({ commandMenuOpen: open }),
   setCursorState: (state) => set({ cursorState: state }),
   setGithubData: (data) => set({ githubData: data }),
+  setCaseStudyOpen: (open) => set({ caseStudyOpen: open }),
+  setActiveCaseStudyId: (id) => set({ activeCaseStudyId: id }),
 }));

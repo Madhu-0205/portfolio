@@ -24,6 +24,8 @@ function HolographicText({
 }) {
   const [hovered, setHovered] = useState(false);
   const setCursorState = usePortfolioStore((state) => state.setCursorState);
+  const setCaseStudyOpen = usePortfolioStore((state) => state.setCaseStudyOpen);
+  const setActiveCaseStudyId = usePortfolioStore((state) => state.setActiveCaseStudyId);
   const textRef = useRef<THREE.Group>(null);
 
   useFrame((state, delta) => {
@@ -38,7 +40,13 @@ function HolographicText({
   const handleClick = (e: any) => {
     if (link) {
       e.stopPropagation();
-      window.open(link, "_blank");
+      if (link.startsWith("case-study:")) {
+        const id = link.split(":")[1];
+        setActiveCaseStudyId(id);
+        setCaseStudyOpen(true);
+      } else {
+        window.open(link, "_blank");
+      }
     }
   };
 
@@ -256,6 +264,11 @@ export default function Works3D() {
             body="HUMAN IN THE LOOP // AI runs spatial search routing to suggest deadlock resolutions, assisting (never replacing) the human controller's authority." 
           />
 
+          <HolographicText 
+            position={[-1.9, -1.1, 1.4]} 
+            title="[ CASE_STUDY ]" 
+            link="case-study:railway-ai"
+          />
           <HolographicText 
             position={[-0.8, -1.1, 1.4]} 
             title="[ RESEARCH_PAPER ]" 

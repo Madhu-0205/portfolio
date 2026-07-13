@@ -24,6 +24,8 @@ function HolographicText({
 }) {
   const [hovered, setHovered] = useState(false);
   const setCursorState = usePortfolioStore((state) => state.setCursorState);
+  const setCaseStudyOpen = usePortfolioStore((state) => state.setCaseStudyOpen);
+  const setActiveCaseStudyId = usePortfolioStore((state) => state.setActiveCaseStudyId);
   const textRef = useRef<THREE.Group>(null);
 
   useFrame((state, delta) => {
@@ -38,7 +40,13 @@ function HolographicText({
   const handleClick = (e: any) => {
     if (link) {
       e.stopPropagation();
-      window.open(link, "_blank");
+      if (link.startsWith("case-study:")) {
+        const id = link.split(":")[1];
+        setActiveCaseStudyId(id);
+        setCaseStudyOpen(true);
+      } else {
+        window.open(link, "_blank");
+      }
     }
   };
 
@@ -222,6 +230,11 @@ export default function Hero3D() {
             body="THE SOLUTION // A skill-matching recommendation graph connecting students directly to gigs, events, hackathons, and networks." 
           />
 
+          <HolographicText 
+            position={[-2.0, -1.3, 0.5]} 
+            title="[ CASE_STUDY ]" 
+            link="case-study:campusconnect"
+          />
           <HolographicText 
             position={[-0.9, -1.3, 0.5]} 
             title="[ GITHUB_CODE ]" 
