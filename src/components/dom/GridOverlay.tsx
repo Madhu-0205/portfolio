@@ -40,11 +40,21 @@ export default function GridOverlay() {
       {/* Grid Border Lines */}
       <div style={{
         position: "absolute",
-        top: "40px",
-        bottom: "40px",
-        left: "40px",
-        right: "40px",
+        top: "44px",
+        bottom: "44px",
+        left: "44px",
+        right: "44px",
         border: "1px solid rgba(255, 255, 255, 0.03)",
+      }} />
+
+      {/* Telemetry Scanning Laser Line */}
+      <div style={{
+        position: "absolute",
+        left: "44px",
+        right: "44px",
+        height: "1px",
+        background: "linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.18), transparent)",
+        animation: "scanline 10s linear infinite",
       }} />
 
       {/* Dynamic Telemetry Accents */}

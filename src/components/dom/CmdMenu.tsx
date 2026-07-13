@@ -166,6 +166,7 @@ export default function CmdMenu() {
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
+          animation: "modal-spring 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         }}
       >
         {/* Search Input Box */}
