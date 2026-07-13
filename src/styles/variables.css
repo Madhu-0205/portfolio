@@ -1,17 +1,24 @@
 /* Design Tokens & CSS Variables */
 
 :root {
-  /* Color Palette - Premium Dark Mode (Default) */
-  --bg-primary: #050505;
-  --bg-secondary: #0c0c0e;
-  --bg-card: rgba(18, 18, 22, 0.45);
+  /* Color Palette - Premium OS Dark Mode */
+  --bg-primary: #030304;
+  --bg-secondary: #0a0a0c;
+  --bg-card: rgba(10, 10, 12, 0.5);
   
-  --text-primary: #f5f5f7;
-  --text-secondary: #86868b;
-  --text-tertiary: #515154;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #52525b;
   
   --accent-glow: #ffffff;
   --accent-dot: #ff3b30; /* Nothing Dot-Matrix Red */
+  
+  /* Luxury OS Accents */
+  --color-cyan: #06b6d4;
+  --color-blue: #2563eb;
+  --color-purple: #8b5cf6;
+  --color-green: #10b981;
+  --color-gold: #facc15;
   
   /* Glassmorphism settings */
   --glass-bg: rgba(255, 255, 255, 0.03);
@@ -30,6 +37,7 @@
   /* Typography Scale */
   --font-family-display: "Outfit", system-ui, -apple-system, sans-serif;
   --font-family-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-family-serif: "Cormorant Garamond", Georgia, serif;
   --font-family-mono: "Geist Mono", monospace;
   
   /* Z-Index Hierarchy */

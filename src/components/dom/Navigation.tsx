@@ -49,7 +49,7 @@ export default function Navigation() {
           fontSize: "0.75rem",
           fontWeight: 700,
           letterSpacing: "0.1em",
-        }}>ANTIGRAVITY</span>
+        }}>MADHU//OS</span>
       </div>
 
       <div style={{

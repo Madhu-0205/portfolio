@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit, Geist_Mono } from "next/font/google";
+import { Inter, Outfit, Geist_Mono, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 // Load Google Fonts using optimized next/font loaders
@@ -18,6 +18,14 @@ const outfit = Outfit({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant-garamond",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -70,11 +78,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${outfit.variable} ${geistMono.variable}`}
+      className={`${inter.variable} ${outfit.variable} ${geistMono.variable} ${cormorantGaramond.variable}`}
       style={{
         // Set fonts variables dynamically mapping back to variables.css definitions
         "--font-family-body": "var(--font-inter)",
         "--font-family-display": "var(--font-outfit)",
+        "--font-family-serif": "var(--font-cormorant-garamond)",
         "--font-family-mono": "var(--font-geist-mono)",
       } as React.CSSProperties}
     >
