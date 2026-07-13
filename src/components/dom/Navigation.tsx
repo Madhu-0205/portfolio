@@ -2,7 +2,7 @@
 
 import React from "react";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
-import { Volume2, VolumeX, Terminal } from "lucide-react";
+import { Volume2, VolumeX, Terminal, FileText } from "lucide-react";
 
 export default function Navigation() {
   const activeStage = usePortfolioStore((state) => state.activeStage);
@@ -103,6 +103,32 @@ export default function Navigation() {
         alignItems: "center",
         gap: "12px",
       }}>
+        {/* Resume shortcut download */}
+        <a
+          href="https://github.com/Madhu-0205/portfolio/raw/main/resume.pdf"
+          target="_blank"
+          style={{
+            color: "var(--text-secondary)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+            padding: "4px 8px",
+            borderRadius: "4px",
+            fontSize: "0.6rem",
+            fontFamily: "var(--font-family-mono)",
+            textDecoration: "none",
+            border: "1px solid rgba(255, 255, 255, 0.05)",
+            backgroundColor: "rgba(255, 255, 255, 0.02)",
+            transition: "all 0.2s ease",
+          }}
+          title="Download Founder Resume"
+          className="interactive"
+        >
+          <FileText size={12} />
+          <span>RESUME</span>
+        </a>
+
         {/* Command Menu button */}
         <button
           onClick={() => setCommandMenuOpen(true)}

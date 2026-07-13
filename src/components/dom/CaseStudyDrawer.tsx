@@ -46,7 +46,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       role: "Lead Systems Architect & Developer. Designed database schema, graph query pipelines, and frontend layouts.",
       tech: ["React.js", "TypeScript", "PostgreSQL", "GraphQL", "Next.js"],
       github: "https://github.com/Madhu-0205/portfolio",
-      demo: "https://campusconnect-demo.vercel.app",
+      demo: "https://github.com/Madhu-0205/portfolio",
     },
     founder: {
       why: "Observed that while my peers had immense talent, they spent hours daily checking WhatsApp groups, LinkedIn, and bulletins just to find hackathons or projects.",
@@ -55,14 +55,14 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       architectureFlow: [
         "Student Profile Input (Skills, Interests) -> Graph Node Schema",
         "Opportunity Fetch (API/Scraper Gateways) -> Matching Classifier",
-        "Skill-Match Matrix (Graph Weight Mapping) -> Relevance Paths",
+        "Skill-Match Matrix (Cosine Similarity on Vector Embeddings) -> Relevance Paths",
         "User Feed Assembly (Dynamic Client Render) -> Direct Application Pipeline"
       ],
       techChoice: "PostgreSQL for strongly-typed relational data, combined with JSON-LD metadata for graph recommendations. TypeScript ensures end-to-end type safety.",
       tradeoffs: "Opted for a relational DB with customized graph query views instead of a dedicated Neo4j instance to reduce deployment complexity in the MVP phase.",
       myContribution: "Architected the matching pipeline, PostgreSQL indexing strategies to minimize join latencies, and unified UI overlays.",
       lessons: "Consolidation is the first step, but personalization drives retention. Community features outperform generic listings.",
-      schema: `CREATE TABLE student (\n  id UUID PRIMARY KEY,\n  email VARCHAR(255) UNIQUE,\n  skills TEXT[],\n  created_at TIMESTAMP DEFAULT NOW()\n);\n\nCREATE TABLE opportunity (\n  id UUID PRIMARY KEY,\n  title VARCHAR(255),\n  type VARCHAR(50), -- gig, hackathon, event\n  required_skills TEXT[]\n);`,
+      schema: `CREATE TABLE student (\n  id UUID PRIMARY KEY,\n  email VARCHAR(255) UNIQUE,\n  skills TEXT[],\n  created_at TIMESTAMP DEFAULT NOW()\n);\n\nCREATE TABLE opportunity (\n  id UUID PRIMARY KEY,\n  title VARCHAR(255),\n  type VARCHAR(50), -- gig, hackathon, event\n  required_skills TEXT[]\n);\n\n-- Skill Match Vector Representation:\n-- Cosine Similarity formula:\n-- Similarity = (A • B) / (||A|| * ||B||)`,
       folder: `src/\n├── app/api/opportunity/     # Graph query endpoint\n├── components/dom/          # Frosted recommendation feeds\n└── state/                   # Opportunity matching store`,
       api: `GET /api/opportunity/recommend\nHeaders: Authorization: Bearer <token>\nQuery: ?limit=10\nResponse: { recommendations: [{ id, score, type }] }`,
       perf: "Implemented PostgreSQL composite indices on skills arrays and cached recommendations in-memory to keep response latencies under 45ms.",
@@ -80,7 +80,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       role: "Core Algorithm Developer. Designed pathing algorithms, conflict-resolution grids, and simulator control loops.",
       tech: ["Python", "A* Algorithm", "React", "PostgreSQL", "FastAPI"],
       github: "https://github.com/Madhu-0205/portfolio",
-      demo: "https://railway-ai-demo.vercel.app",
+      demo: "https://github.com/Madhu-0205/portfolio",
     },
     founder: {
       why: "Chosen as our problem statement for the Smart India Hackathon. Visited regional transit hubs and saw controllers using physical clipboards to resolve gridlocks.",
@@ -89,14 +89,14 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       architectureFlow: [
         "Live Grid Coordinates Input -> Matrix Layout Parser",
         "A* Spatial Search Solver -> Path Optimization Loop",
-        "Deadlock Conflict Predictor -> Conflict Suggestion Matrix",
+        "Deadlock Conflict Predictor (Conflict Formula) -> Suggestion Matrix",
         "Controller HUD HUD -> Suggested Path Reveal -> Dispatcher Confirmation"
       ],
       techChoice: "Python was chosen for mathematical calculation and fast path solving; FastAPI provides a low-latency gateway to sync calculations with the React dashboard.",
       tradeoffs: "Used A* heuristics over heavy Reinforcement Learning to guarantee path safety, explainability, and predictable real-time execution speeds.",
       myContribution: "Architected the path solver loops, the state tracking matrices, and integrated safety checks preventing illegal signal patterns.",
       lessons: "Safety-critical systems require clear explanations. A dispatcher will ignore any optimizer recommendation if they cannot see the reason behind it.",
-      schema: `CREATE TABLE signal_node (\n  id UUID PRIMARY KEY,\n  grid_x INT, grid_y INT,\n  status VARCHAR(20) -- green, yellow, red\n);\n\nCREATE TABLE train_route (\n  train_id UUID,\n  path_points POINT[]\n);`,
+      schema: `CREATE TABLE signal_node (\n  id UUID PRIMARY KEY,\n  grid_x INT, grid_y INT,\n  status VARCHAR(20) -- green, yellow, red\n);\n\n-- Signal Conflict Formulation:\n-- Collision Set C = { t_i, t_j | P(t_i) ∩ P(t_j) ≠ Ø }\n-- Where P(t) represents the path vector of train t over time interval T.`,
       folder: `backend/\n├── main.py                  # Path solver entry\n├── core/routing.py          # A* Search Heuristics\n└── schemas/                 # Track coordinate definitions`,
       api: `POST /api/routing/solve\nBody: { train_positions, active_signals }\nResponse: { suggested_routes: [{ train_id, path: [] }], deadlocks_prevented: 3 }`,
       perf: "Optimized heuristic functions in python using list comprehensions and coordinate caching, reducing solver runtime to under 8ms.",
@@ -114,7 +114,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       role: "Solo Developer. Programmed location pipelines, PostGIS coordinates lookup, and core dashboard.",
       tech: ["Python", "PostgreSQL", "React.js", "PostGIS", "CSS Variables"],
       github: "https://github.com/Madhu-0205/portfolio",
-      demo: "https://jobnest-demo.vercel.app",
+      demo: "https://github.com/Madhu-0205/portfolio",
     },
     founder: {
       why: "Struggled to find flexible freelance work nearby that fits around a college timetable. Realized local businesses had short-term tasks but no way to reach students.",
@@ -130,7 +130,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       tradeoffs: "Sacrificed global scalability features in the first build to prioritize highly optimized local queries and spatial accuracy.",
       myContribution: "Created the location indexes, mapped PostGIS spatial functions, and designed the local business dashboard.",
       lessons: "Building proximity matching is technically simple; building local business trust is the real friction.",
-      schema: `CREATE TABLE gig_listing (\n  id UUID PRIMARY KEY,\n  employer_id UUID,\n  location GEOGRAPHY(Point, 4326),\n  reward DECIMAL(10,2),\n  required_skills VARCHAR[]\n);`,
+      schema: `CREATE TABLE gig_listing (\n  id UUID PRIMARY KEY,\n  employer_id UUID,\n  location GEOGRAPHY(Point, 4326),\n  reward DECIMAL(10,2),\n  required_skills VARCHAR[]\n);\n\n-- Hyperlocal PostGIS Query:\n-- SELECT * FROM gig_listing \n-- WHERE ST_DWithin(location, ST_MakePoint(lng, lat)::geography, radius_meters);`,
       folder: `src/\n├── server/db/               # PostGIS queries\n├── components/map/          # Leaflet matching map\n└── styles/                  # Operating system variables`,
       api: `GET /api/gigs/radius\nQuery: ?lat=17.0&lng=82.0&radius_meters=5000\nResponse: { gigs: [{ id, distance_meters, reward }] }`,
       perf: "Used spatial indexes (GIST) on geography columns, reducing query times for 10,000+ local points to under 12ms.",
@@ -456,6 +456,46 @@ export default function CaseStudyDrawer() {
               }}>
                 <ExternalLink size={14} /> Live System
               </a>
+            </div>
+
+            {/* Direct Recruiter CTA */}
+            <div style={{
+              backgroundColor: "rgba(6, 182, 212, 0.04)",
+              border: "1px solid rgba(6, 182, 212, 0.15)",
+              borderRadius: "8px",
+              padding: "16px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "12px",
+              marginTop: "8px"
+            }}>
+              <div>
+                <div style={{ fontSize: "0.7rem", fontFamily: "var(--font-family-mono)", color: "var(--color-cyan)" }}>RECRUITER QUICK CHANNEL</div>
+                <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)", marginTop: "2px" }}>Download resume or start direct email.</div>
+              </div>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <a href="https://github.com/Madhu-0205/portfolio/raw/main/resume.pdf" target="_blank" style={{
+                  padding: "6px 12px",
+                  borderRadius: "4px",
+                  backgroundColor: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  fontSize: "0.6rem",
+                  fontFamily: "var(--font-family-mono)",
+                  color: "#ffffff",
+                  textDecoration: "none"
+                }}>RESUME</a>
+                <a href="mailto:madhuvalurouthu@gmail.com" style={{
+                  padding: "6px 12px",
+                  borderRadius: "4px",
+                  backgroundColor: "var(--color-cyan)",
+                  fontSize: "0.6rem",
+                  fontFamily: "var(--font-family-mono)",
+                  color: "#000000",
+                  fontWeight: 600,
+                  textDecoration: "none"
+                }}>EMAIL</a>
+              </div>
             </div>
           </div>
         ) : (
