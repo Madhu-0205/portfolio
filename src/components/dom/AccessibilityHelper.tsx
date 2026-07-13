@@ -47,24 +47,24 @@ interface RepoStats {
 
     return [
       {
+        id: "jobnest",
+        title: "Chapter 3: JobNest",
+        description: "Case Study: JobNest. WHY: Bridging the gap in local gig economies. PROBLEM: Proximity micro-jobs are hard to discover. SOLUTION: Local gig discovery network. ARCHITECTURE: Hyperlocal geo-indexing pipeline matching skills with gigs. LESSONS: Finding that students need peers, hackathons, and mentorship, not just jobs.",
+        stats: jobNest,
+        scroll: 0.20
+      },
+      {
         id: "campusconnect",
         title: "Chapter 4: CampusConnect",
         description: "Case Study: CampusConnect. WHY: Talent is everywhere, but access is fragmented. PROBLEM: Students miss milestones because opportunities are scattered. SOLUTION: A unified recommendation engine. ARCHITECTURE: Graph-based skill aligning platform. TECHNOLOGY: React, TypeScript, GraphQL. LESSONS: User friction is solved by directory consolidation.",
         stats: campusConnect,
-        scroll: 0.20
+        scroll: 0.40
       },
       {
         id: "railway-ai",
         title: "Chapter 5: Railway Traffic Optimizer",
         description: "Case Study: Railway AI. WHY: High-density rail congestion causes national delays. PROBLEM: Grid routing deadlocks are computationally hard to resolve. SOLUTION: Simulator suggesting deadlock solutions to human controllers. ARCHITECTURE: Spatial A* routing conflict matrices. SAFETY: AI assists; the human controller retains final operational decision. TECHNOLOGY: Python, A* Search.",
         stats: railwayAi,
-        scroll: 0.40
-      },
-      {
-        id: "jobnest",
-        title: "Chapter 3: JobNest",
-        description: "Case Study: JobNest. WHY: Bridging the gap in local gig economies. PROBLEM: Proximity micro-jobs are hard to discover. SOLUTION: Local gig discovery network. ARCHITECTURE: Hyperlocal geo-indexing pipeline matching skills with gigs. LESSONS: Finding that students need peers, hackathons, and mentorship, not just jobs.",
-        stats: jobNest,
         scroll: 0.60
       },
       {
@@ -101,7 +101,7 @@ interface RepoStats {
     <>
       {/* 1. Visually Hidden (Focusable) Screen-Reader Navigation Menu */}
       <div 
-        aria-label="Engineering Observatory & Portfolio monuments"
+        aria-label="My Work & Portfolio monuments"
         style={{
           position: "absolute",
           width: "1px",
@@ -120,7 +120,7 @@ interface RepoStats {
             {repos.map((repo, idx) => (
               <li key={repo.id}>
                 <a 
-                  href={`#chapter-${repo.id === "campusconnect" ? "light" : repo.id === "railway-ai" ? "vision" : repo.id === "jobnest" ? "world" : repo.id === "madhu-os" ? "journey" : "manifesto"}`}
+                  href={`#chapter-${repo.id === "jobnest" ? "light" : repo.id === "campusconnect" ? "vision" : repo.id === "railway-ai" ? "world" : repo.id === "madhu-os" ? "journey" : "manifesto"}`}
                   onFocus={() => handleFocus(idx, repo.scroll)}
                   onBlur={() => setFocusedIndex(null)}
                 >

@@ -158,38 +158,38 @@ export default function CrystallineArchive() {
 
   const fragments = useMemo(() => [
     {
-      label: "Education",
-      description: "B.Tech in Computer Science Engineering (Data Science), Pragati Engineering College. Class of 2027.",
+      label: "Journey",
+      description: "Undergraduate Builder // CSE & Data Science Student // Founder of CampusConnect & JobNest",
       angle: (0 / 6) * Math.PI * 2,
-      color: "#00ffff"
-    },
-    {
-      label: "Curiosity",
-      description: "Where it all started. Building tech that improves lives and solves hard problems.",
-      angle: (1 / 6) * Math.PI * 2,
       color: "#34c759"
     },
     {
-      label: "JobNest",
-      description: "The first idea. Helping students find local gigs, part-time jobs, and internships.",
+      label: "Education",
+      description: "B.Tech in Computer Science & Engineering (Data Science) // Pragati Engineering College // Class of 2027",
+      angle: (1 / 6) * Math.PI * 2,
+      color: "#00ffff"
+    },
+    {
+      label: "Achievements",
+      description: "Runner-Up: Smart India Hackathon 2025 Grand Finale // Spatial routing engine deployed to 20 peers",
       angle: (2 / 6) * Math.PI * 2,
-      color: "#ffcc00"
-    },
-    {
-      label: "CampusConnect",
-      description: "The student ecosystem. Unifying opportunities, hackathons, and networks across India.",
-      angle: (3 / 6) * Math.PI * 2,
-      color: "#ff9500"
-    },
-    {
-      label: "SIH Hackathon",
-      description: "Smart India Hackathon 2025 Runner-Up. Optimizing national railway throughput.",
-      angle: (4 / 6) * Math.PI * 2,
       color: "#ff3b30"
     },
     {
-      label: "How I Build",
-      description: "Philosophy. Scalable systems, clean code, user focus, and AI-enabled workflows.",
+      label: "Leadership",
+      description: "SIH 2025 Team Lead & Algorithm Architect // Solo Founder of JobNest & CampusConnect opportunity graphs",
+      angle: (3 / 6) * Math.PI * 2,
+      color: "#ffcc00"
+    },
+    {
+      label: "Featured Projects",
+      description: "CampusConnect (Live opportunity graph) // Railway AI Optimizer (SIH runner-up) // JobNest (Proximity matching)",
+      angle: (4 / 6) * Math.PI * 2,
+      color: "#af52de"
+    },
+    {
+      label: "Engineering Philosophy",
+      description: "Relational database constraints over bloated stores // Solve local problems first // Math-proven collision safety",
       angle: (5 / 6) * Math.PI * 2,
       color: "#ffffff"
     }
@@ -200,13 +200,15 @@ export default function CrystallineArchive() {
     const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const animTime = prefersReducedMotion ? time * 0.05 : time;
 
+    const motionScale = scrollProgress >= 0.95 ? Math.max(0, 1.0 - (scrollProgress - 0.95) / 0.05) : 1.0;
+
     if (crystalRef.current) {
-      crystalRef.current.rotation.y = animTime * 0.22;
-      crystalRef.current.rotation.z = Math.sin(animTime * 0.4) * 0.1;
+      crystalRef.current.rotation.y = animTime * 0.22 * motionScale;
+      crystalRef.current.rotation.z = Math.sin(animTime * 0.4) * 0.1 * motionScale;
       
       const mat = crystalRef.current.material as THREE.MeshPhysicalMaterial;
       if (mat) {
-        mat.emissiveIntensity = 0.5 + Math.sin(animTime * 1.5) * 0.18;
+        mat.emissiveIntensity = (0.5 + Math.sin(animTime * 1.5) * 0.18) * motionScale;
       }
     }
   });

@@ -149,6 +149,17 @@ export default function About3D() {
   const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
   const [beaconColor, setBeaconColor] = useState("#ffcc00");
 
+  const PLATFORMS = useMemo(() => [
+    { name: "LinkedIn", color: "#0077b5", angle: 0 },
+    { name: "WhatsApp", color: "#25d366", angle: (Math.PI * 2) / 6 },
+    { name: "Telegram", color: "#0088cc", angle: (Math.PI * 4) / 6 },
+    { name: "College Portal", color: "#ffcc00", angle: Math.PI },
+    { name: "Unstop", color: "#ff3b30", angle: (Math.PI * 8) / 6 },
+    { name: "Internshala", color: "#00ffff", angle: (Math.PI * 10) / 6 },
+  ], []);
+
+  const platformRefs = useRef<(THREE.Group | null)[]>([]);
+
   const count = 32;
   const separation = 0.22;
 
@@ -219,8 +230,8 @@ export default function About3D() {
       scaffoldRef.current.rotation.y = time * 0.05;
     }
 
-    // 6. Proximity-based lighting crack glow (centered around scroll progress 0.60)
-    const proximity = Math.max(0, 1.0 - Math.abs(scrollProgress - 0.60) * 5.0);
+    // 6. Proximity-based lighting crack glow (centered around scroll progress 0.20)
+    const proximity = Math.max(0, 1.0 - Math.abs(scrollProgress - 0.20) * 5.0);
 
     // Warm up concrete fault line crack glow and spot lighting
     if (crackGlowMaterialRef.current) {
@@ -229,10 +240,36 @@ export default function About3D() {
     if (reactorPointLightRef.current) {
       reactorPointLightRef.current.intensity = THREE.MathUtils.lerp(0.8, 3.5, proximity);
     }
+
+    // 7. Dynamic merging platforms animation (visual storytelling for JobNest)
+    // Merges from distance = 3.8 to 0.0 as scroll progress moves towards 0.20
+    const mergeFactor = Math.min(1.0, Math.max(0.0, (scrollProgress - 0.05) / 0.15)); // merge from 0.05 to 0.20
+    const distance = THREE.MathUtils.lerp(3.8, 0.0, mergeFactor);
+    const opacityVal = Math.min(0.8, (1.0 - mergeFactor) * 1.5);
+
+    PLATFORMS.forEach((platform, idx) => {
+      const ref = platformRefs.current[idx];
+      if (ref) {
+        const angle = platform.angle + time * 0.15 * (1.0 - mergeFactor); // spin when spread out
+        const x = Math.cos(angle) * distance;
+        const z = Math.sin(angle) * distance;
+        const y = Math.sin(time * 1.5 + idx) * 0.15 + 0.5;
+        ref.position.set(x, y, z);
+        
+        // Face camera
+        ref.quaternion.copy(state.camera.quaternion);
+
+        // Adjust text opacity
+        const textMesh = ref.children[0];
+        if (textMesh) {
+          (textMesh as any).fillOpacity = opacityVal;
+        }
+      }
+    });
   });
 
-  // Reveal texts only within narrow, earned scroll window (0.57 to 0.63)
-  const showText = scrollProgress >= 0.57 && scrollProgress <= 0.63;
+  // Reveal texts only within narrow, earned scroll window (0.17 to 0.23)
+  const showText = scrollProgress >= 0.17 && scrollProgress <= 0.23;
 
   return (
     <group position={[0, -0.2, 0]}>
@@ -351,6 +388,21 @@ export default function About3D() {
       <AssemblingModule position={[-1.3, 1.3, -1.3]} index={0} />
       <AssemblingModule position={[1.3, 0.8, 1.3]} index={1} />
 
+      {/* Merging fragmented platforms representing the wrong assumption */}
+      {scrollProgress < 0.22 && PLATFORMS.map((platform, idx) => (
+        <group key={idx} ref={(el) => { platformRefs.current[idx] = el; }}>
+          <Text
+            fontSize={0.095}
+            color={platform.color}
+            font="var(--font-family-mono)"
+            anchorX="center"
+            anchorY="middle"
+          >
+            {platform.name.toUpperCase()}
+          </Text>
+        </group>
+      ))}
+
       {/* ────────────────── HOLOGRAPHIC NARRATIVE TEXT ────────────────── */}
       {showText && (
         <group>
@@ -383,14 +435,14 @@ export default function About3D() {
           size: 18400,
           language: "Python",
           commits: 112,
-          description: "AI-powered proximity matching network connecting local gig workers with micro-opportunities.",
-          topics: ["python", "postgresql", "ai-matching", "gig-economy", "react"],
-          url: "https://github.com/madhu/jobnest",
-          homepageUrl: "https://jobnest-demo.vercel.app"
+          description: "PROBLEM SOLVED: Local businesses failing to reach campus students for short-term work. | STATUS: Prototype testing complete, pivot base. | TECH: Python, PostgreSQL, PostGIS, React, Leaflet.",
+          topics: ["python", "postgresql", "postgis", "gig-economy", "react"],
+          url: "https://github.com/Madhu-0205/jobnest",
+          homepageUrl: "coming-soon"
         }}
         position={[2.2, 0.8, 1.2]}
         targetCenter={[0, 0.2, 0]}
-        targetScroll={0.60}
+        targetScroll={0.20}
       />
     </group>
   );

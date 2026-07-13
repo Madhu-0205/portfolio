@@ -132,10 +132,10 @@ function ObservedUniverseStreams() {
 
   // Exact absolute coordinates of repository satellites in world space
   const repoPositions = useMemo(() => [
-    new THREE.Vector3(1.8, 2.6, -0.6),    // CampusConnect (Hero3D)
-    new THREE.Vector3(6.6, 1.8, -7.2),    // Railway AI (Works3D)
-    new THREE.Vector3(18.2, 1.3, -2.8),   // AI SaaS (About3D)
-    new THREE.Vector3(22.4, 2.0, 4.0),    // MADHU//OS (Contact3D)
+    new THREE.Vector3(2.2, 1.3, -2.8),    // JobNest (About3D at X=0)
+    new THREE.Vector3(9.8, 2.6, -8.6),    // CampusConnect (Hero3D at X=8)
+    new THREE.Vector3(14.6, 1.8, -7.2),   // Railway AI (Works3D at X=16)
+    new THREE.Vector3(22.4, 2.0, 4.0),    // MADHU//OS (Contact3D at X=24)
   ], []);
 
   return (
@@ -209,19 +209,20 @@ export default function Experience() {
       const stageCenterX = nearestStage * 6.5; // adjusted for 6 stages
       
       const stationaryFactor = Math.max(0, 1.0 - velocityRef.current * 4.0);
+      const motionScale = scrollProgress >= 0.95 ? Math.max(0, 1.0 - (scrollProgress - 0.95) / 0.05) : 1.0;
 
       for (let i = 0; i < array.length; i += 3) {
-        array[i + 1] += Math.sin(state.clock.getElapsedTime() * 0.5 + i) * 0.0015;
+        array[i + 1] += Math.sin(state.clock.getElapsedTime() * 0.5 + i) * 0.0015 * motionScale;
         
-        if (velocityRef.current > 0.05) {
+        if (velocityRef.current > 0.05 && motionScale > 0.01) {
           const streamDirection = currentScroll > prevScrollRef.current ? -1 : 1;
-          array[i] += streamDirection * velocityRef.current * delta * 0.8;
+          array[i] += streamDirection * velocityRef.current * delta * 0.8 * motionScale;
           
           if (array[i] < -10) array[i] = 35;
           if (array[i] > 35) array[i] = -10;
         }
 
-        if (stationaryFactor > 0.5) {
+        if (stationaryFactor > 0.5 && motionScale > 0.01) {
           const origX = initialPositions[i];
           const distToStageX = Math.abs(origX - stageCenterX);
           
@@ -231,6 +232,13 @@ export default function Experience() {
         }
       }
       posAttr.needsUpdate = true;
+
+      // 2.1 Modulate particle opacity for clean Act 1 boot
+      const mat = dustRef.current.material as THREE.PointsMaterial;
+      if (mat) {
+        const particleOpacity = scrollProgress < 0.09 ? 0.0 : Math.min(0.35, ((scrollProgress - 0.09) / 0.06) * 0.35);
+        mat.opacity = particleOpacity;
+      }
     }
 
     // 3. Modulate Engineering Philosophy Wall Text Opacities (aligned with 6-stage transitions)
@@ -369,16 +377,16 @@ export default function Experience() {
       <Constellations />
 
       {/* 7. Focal Stages coordinates */}
-      <group position={[0, 1.8, 0]}>
+      <group position={[0, 0.5, -4]}>
+        <About3D />
+      </group>
+
+      <group position={[8, 1.8, -8]}>
         <Hero3D />
       </group>
 
-      <group position={[8, 1.0, -8]}>
+      <group position={[16, 1.0, -8]}>
         <Works3D />
-      </group>
-
-      <group position={[16, 0.5, -4]}>
-        <About3D />
       </group>
 
       <group position={[24, 1.2, 5]}>

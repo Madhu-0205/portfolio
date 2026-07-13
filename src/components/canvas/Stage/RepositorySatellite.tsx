@@ -296,7 +296,7 @@ export default function RepositorySatellite({
               anchorY="middle"
               textAlign="center"
             >
-              [ CONNECTING_OBSERVATORY_STREAM... ]
+              [ CONNECTING_TELEMETRY_STREAM... ]
             </Text>
           </Billboard>
         </group>
@@ -441,7 +441,7 @@ export default function RepositorySatellite({
                 anchorY="top"
                 maxWidth={1.72}
               >
-                {`LINK           : ${stats.homepageUrl || stats.url || "github.com/madhu"}`}
+                {`LINK           : ${stats.homepageUrl && stats.homepageUrl !== "coming-soon" && stats.homepageUrl !== "research-prototype" ? stats.homepageUrl : (stats.url || "github.com/Madhu-0205")}`}
               </Text>
             </group>
           </Billboard>

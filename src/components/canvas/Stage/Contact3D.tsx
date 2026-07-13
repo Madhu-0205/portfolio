@@ -263,10 +263,10 @@ export default function Contact3D() {
           size: 11800,
           language: "TypeScript",
           commits: 165,
-          description: "Handcrafted 3D operating system environment and founder observatory.",
+          description: "PROBLEM SOLVED: Generic portfolios failing to convey engineering depth and visual craft. | STATUS: Deployed production. | TECH: Next.js, React Three Fiber, Three.js, GSAP, Zustand.",
           topics: ["threejs", "react-three-fiber", "gsap", "webgl"],
-          url: "https://github.com/madhu/madhu-os",
-          homepageUrl: "https://madhu-os-portfolio.vercel.app"
+          url: "https://github.com/Madhu-0205/portfolio",
+          homepageUrl: "https://github.com/Madhu-0205/portfolio"
         }}
         position={[-1.6, 0.8, -1.0]}
         targetCenter={[0, 0.6, 0]}

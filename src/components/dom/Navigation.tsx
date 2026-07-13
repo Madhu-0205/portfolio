@@ -11,8 +11,9 @@ export default function Navigation() {
   const setCommandMenuOpen = usePortfolioStore((state) => state.setCommandMenuOpen);
   const hqLedgerOpen = usePortfolioStore((state) => state.hqLedgerOpen);
   const setHqLedgerOpen = usePortfolioStore((state) => state.setHqLedgerOpen);
+  const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
 
-  const sections = ["Identity", "Philosophy", "Systems", "Future"];
+  const sections = ["JobNest", "CampusConnect", "Railway AI", "MADHU//OS"];
 
   const handleScrollTo = (index: number) => {
     const sectionIds = ["chapter-light", "chapter-vision", "chapter-world", "chapter-journey"];
@@ -21,6 +22,8 @@ export default function Navigation() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const visible = scrollProgress >= 0.09;
 
   return (
     <nav className="glass-card interactive" style={{
@@ -33,6 +36,9 @@ export default function Navigation() {
       gap: "24px",
       padding: "10px 24px",
       zIndex: "var(--z-overlay-ui)",
+      opacity: visible ? 1 : 0,
+      pointerEvents: visible ? "auto" : "none",
+      transition: "opacity 1.2s ease-in-out, transform 0.3s ease",
     }}>
       {/* Brand logo/dot */}
       <div style={{

@@ -37,15 +37,15 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://github.com/madhu"),
+  metadataBase: new URL("https://github.com/Madhu-0205"),
   title: "Madhu Valurouthu // MADHU//OS",
   description: "A handcrafted 3D interactive cinematic operating system environment and founder engineering observatory.",
   keywords: ["Madhu Valurouthu", "Founder", "Full Stack Engineer", "AI Product Builder", "Three.js", "React Three Fiber", "WebGL Portfolio"],
-  authors: [{ name: "Madhu Valurouthu", url: "https://github.com/madhu" }],
+  authors: [{ name: "Madhu Valurouthu", url: "https://github.com/Madhu-0205" }],
   openGraph: {
     title: "Madhu Valurouthu // MADHU//OS",
     description: "A handcrafted 3D interactive cinematic operating system environment and founder engineering observatory.",
-    url: "https://github.com/madhu",
+    url: "https://github.com/Madhu-0205",
     siteName: "MADHU//OS",
     locale: "en_US",
     type: "profile",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     creator: "@madhu",
   },
   alternates: {
-    canonical: "https://github.com/madhu"
+    canonical: "https://github.com/Madhu-0205"
   }
 };
 
@@ -100,9 +100,9 @@ export default function RootLayout({
                 "name": "Madhu Valurouthu",
                 "alternateName": "madhu",
                 "jobTitle": ["Founder", "Full Stack Engineer", "AI Product Builder", "Entrepreneur"],
-                "url": "https://github.com/madhu",
+                "url": "https://github.com/Madhu-0205",
                 "sameAs": [
-                  "https://github.com/madhu",
+                  "https://github.com/Madhu-0205",
                   "https://linkedin.com/in/madhu-valurouthu"
                 ],
                 "knowsAbout": [

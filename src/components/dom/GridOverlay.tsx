@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePortfolioStore } from "@/state/usePortfolioStore";
 
 export default function GridOverlay() {
   const [coords, setCoords] = useState({ x: 0.0, y: 0.0 });
+  const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -17,6 +19,8 @@ export default function GridOverlay() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  const visible = scrollProgress >= 0.09;
+
   return (
     <div style={{
       position: "fixed",
@@ -26,6 +30,8 @@ export default function GridOverlay() {
       height: "100%",
       pointerEvents: "none", // Let interaction pass through
       zIndex: "var(--z-overlay-ui)",
+      opacity: visible ? 1 : 0,
+      transition: "opacity 1.2s ease-in-out",
     }}>
       {/* Background Dot-Matrix Overlay */}
       <div className="dot-grid" style={{
@@ -91,7 +97,7 @@ export default function GridOverlay() {
         color: "var(--text-secondary)",
         letterSpacing: "0.15em",
       }}>
-        STORY_OBSERVATORY // INDEX_2026
+        SELECTED_WORK // INDEX_2026
       </div>
 
       {/* Bottom Left: Mouse coordinates */}

@@ -80,15 +80,23 @@ export default function ArchitecturalPortal() {
     return (scrollProgress - 0.94) / 0.04;
   }, [scrollProgress]);
 
+  // Reveal links only after the final overlay text is displayed (0.992 to 1.00)
+  const linksOpacity = useMemo(() => {
+    if (scrollProgress < 0.992) return 0;
+    return (scrollProgress - 0.992) / 0.008;
+  }, [scrollProgress]);
+
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const animTime = prefersReducedMotion ? time * 0.05 : time;
 
+    const motionScale = scrollProgress >= 0.95 ? Math.max(0, 1.0 - (scrollProgress - 0.95) / 0.05) : 1.0;
+
     if (lightFieldRef.current) {
       const mat = lightFieldRef.current.material as THREE.MeshPhysicalMaterial;
       if (mat) {
-        mat.emissiveIntensity = 0.12 + Math.sin(animTime * 1.8) * 0.06;
+        mat.emissiveIntensity = 0.12 + Math.sin(animTime * 1.8 * motionScale) * 0.06 * motionScale;
       }
     }
   });
@@ -148,18 +156,18 @@ export default function ArchitecturalPortal() {
           color="#ffffff"
           textAlign="center"
           maxWidth={3.8}
-          fillOpacity={portalOpacity}
+          fillOpacity={linksOpacity}
         >
-          {"If you're building something meaningful... let's build it together."}
+          {"Let's build it together."}
         </Text>
       </Billboard>
 
       {/* Subtle interactive contact nodes */}
       <group position={[0, 0.9, 0.5]}>
-        <InteractivePortalLink label="[ COLLABORATE ]" url="mailto:madhu.valurouthu@gmail.com" position={[-1.6, 0, 0]} opacity={portalOpacity} />
-        <InteractivePortalLink label="[ CORE_SOURCE ]" url="https://github.com/madhu" position={[-0.5, 0, 0]} opacity={portalOpacity} />
-        <InteractivePortalLink label="[ IDENTITY_NODE ]" url="https://linkedin.com/in/madhu-valurouthu" position={[0.6, 0, 0]} opacity={portalOpacity} />
-        <InteractivePortalLink label="[ TELEMETRY_PDF ]" url="/resume.pdf" position={[1.7, 0, 0]} opacity={portalOpacity} />
+        <InteractivePortalLink label="[ EMAIL ]" url="mailto:madhuvalurouthu@gmail.com" position={[-1.6, 0, 0]} opacity={linksOpacity} />
+        <InteractivePortalLink label="[ GITHUB ]" url="https://github.com/Madhu-0205" position={[-0.5, 0, 0]} opacity={linksOpacity} />
+        <InteractivePortalLink label="[ LINKEDIN ]" url="https://linkedin.com/in/madhu-valurouthu" position={[0.6, 0, 0]} opacity={linksOpacity} />
+        <InteractivePortalLink label="[ RESUME ]" url="https://github.com/Madhu-0205/portfolio/raw/main/resume.pdf" position={[1.7, 0, 0]} opacity={linksOpacity} />
       </group>
     </group>
   );

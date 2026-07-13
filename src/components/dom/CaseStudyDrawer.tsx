@@ -60,8 +60,8 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       solution: "Consolidated hackathons, gigs, and communities into a PostgreSQL graph mapping model powered by cosine similarity skill scoring.",
       role: "Lead Systems Architect & Developer. Programmed Postgres database schemas, skill recommendation APIs, and Next.js frontends.",
       tech: ["React.js", "TypeScript", "PostgreSQL", "Next.js", "REST APIs"],
-      github: "https://github.com/Madhu-0205/portfolio",
-      demo: "https://github.com/Madhu-0205/portfolio",
+      github: "https://github.com/Madhu-0205/campusconnect",
+      demo: "https://www.campusconnectco.in",
     },
     founder: {
       why: "I noticed my classmates spent hours daily scanning group messages and bulletins just to find hackathon partners or gig work. The opportunity pipeline was fractured.",
@@ -115,8 +115,8 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       solution: "Calculates signal deadlock possibilities on a simulated track layout using spatial A* search and suggestions for alternate pathing options.",
       role: "Core Algorithm Architect. Designed the path-solving logic, track conflict matrices, and integrated FastAPI simulation gateways.",
       tech: ["Python", "FastAPI", "React", "PostgreSQL", "A* Heuristics"],
-      github: "https://github.com/Madhu-0205/portfolio",
-      demo: "https://github.com/Madhu-0205/portfolio",
+      github: "https://github.com/Madhu-0205/railway-ai",
+      demo: "research-prototype",
     },
     founder: {
       why: "Chosen for the Smart India Hackathon. Visited regional transit hubs and saw dispatchers resolving high-stress gridlocks manually using chalk boards.",
@@ -176,8 +176,8 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       solution: "Mapped local business geolocations directly to student campus coordinates using radial PostGIS queries.",
       role: "Solo Developer. Programmed spatial geography lookups, business dashboard pipelines, and Leaflet map feeds.",
       tech: ["Python", "PostgreSQL", "PostGIS", "React.js", "Leaflet"],
-      github: "https://github.com/Madhu-0205/portfolio",
-      demo: "https://github.com/Madhu-0205/portfolio",
+      github: "https://github.com/Madhu-0205/jobnest",
+      demo: "coming-soon",
     },
     founder: {
       why: "I struggled to find flexible gigs that could fit around my class timetable, while local shops near college were posting signs seeking temporary help.",
@@ -491,30 +491,75 @@ export default function CaseStudyDrawer() {
               “{data.recruiter.summary}”
             </div>
 
-            {/* The problem */}
+            {/* 1. Problem */}
             <div style={{ display: "flex", gap: "16px" }}>
               <div style={{ color: "var(--color-purple)", marginTop: "2px" }}><TrendingUp size={18} /></div>
               <div>
-                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>The Problem</h4>
+                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>Problem</h4>
                 <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px" }}>{data.recruiter.problem}</p>
               </div>
             </div>
 
-            {/* The solution */}
+            {/* 2. Why It Mattered */}
             <div style={{ display: "flex", gap: "16px" }}>
-              <div style={{ color: "var(--color-cyan)", marginTop: "2px" }}><Cpu size={18} /></div>
+              <div style={{ color: "var(--color-gold)", marginTop: "2px" }}><Database size={18} /></div>
               <div>
-                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>The Solution</h4>
+                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>Why It Mattered</h4>
+                <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px" }}>{data.founder.why}</p>
+              </div>
+            </div>
+
+            {/* 3. My Approach */}
+            <div style={{ display: "flex", gap: "16px" }}>
+              <div style={{ color: "var(--color-cyan)", marginTop: "2px" }}><Code size={18} /></div>
+              <div>
+                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>My Approach</h4>
+                <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px" }}>{data.founder.approach}</p>
+              </div>
+            </div>
+
+            {/* 4. Solution */}
+            <div style={{ display: "flex", gap: "16px" }}>
+              <div style={{ color: "var(--color-purple)", marginTop: "2px" }}><Cpu size={18} /></div>
+              <div>
+                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>Solution</h4>
                 <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px" }}>{data.recruiter.solution}</p>
               </div>
             </div>
 
-            {/* The Role */}
+            {/* 5. Impact */}
             <div style={{ display: "flex", gap: "16px" }}>
-              <div style={{ color: "var(--color-gold)", marginTop: "2px" }}><Code size={18} /></div>
+              <div style={{ color: "#34c759", marginTop: "2px" }}><ExternalLink size={18} /></div>
               <div>
-                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>My Contribution</h4>
-                <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px" }}>{data.recruiter.role}</p>
+                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>Impact</h4>
+                <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px" }}>
+                  {data.title === "CampusConnect" ? "Successfully deployed beta to collegiate channels. Reduced opportunity discovery latency by indexing scattered listings from WhatsApp, telegram, and local hubs. Formed direct partnerships with local campus leads to onboard student developers." :
+                   data.title === "Railway AI Traffic Optimizer" ? "Recognized as Smart India Hackathon 2025 Runner-Up. Validated on high-density grid simulations to prevent rail deadlock cascades. Dispatcher console prototype verified with regional controllers." :
+                   data.title === "JobNest" ? "Validated location-based radial queries on 1,000+ local points. Prototype tested with 20 peers. Provided core product learning to pivot and build CampusConnect." :
+                   "Successfully launched digital headquarters. Implemented scroll-linked 3D monuments with Next.js compiling in under 3s. Zero template dependencies."}
+                </p>
+              </div>
+            </div>
+
+            {/* 6. Lessons Learned */}
+            <div style={{ display: "flex", gap: "16px" }}>
+              <div style={{ color: "var(--color-gold)", marginTop: "2px" }}><FolderTree size={18} /></div>
+              <div>
+                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>Lessons Learned</h4>
+                <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px" }}>{data.founder.doDifferently}</p>
+              </div>
+            </div>
+
+            {/* 7. Current Status */}
+            <div style={{ display: "flex", gap: "16px" }}>
+              <div style={{ color: "var(--color-cyan)", marginTop: "2px" }}><Layout size={18} /></div>
+              <div>
+                <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>Current Status</h4>
+                <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px", fontWeight: "bold", color: "#ffffff" }}>
+                  {data.recruiter.demo === "coming-soon" ? "PROTOTYPE (COMING SOON)" : 
+                   data.recruiter.demo === "research-prototype" ? "RESEARCH PROTOTYPE" : 
+                   data.title === "CampusConnect" ? "LIVE SYSTEM" : "LIVE PORTFOLIO"}
+                </p>
               </div>
             </div>
 
@@ -556,25 +601,46 @@ export default function CaseStudyDrawer() {
               }}>
                 <Code size={14} /> Repository
               </a>
-              <a href={data.recruiter.demo} target="_blank" className="interactive" style={{
-                flex: 1,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-                padding: "12px",
-                backgroundColor: "rgba(6, 182, 212, 0.1)",
-                border: "1px solid rgba(6, 182, 212, 0.25)",
-                borderRadius: "8px",
-                color: "#22d3ee",
-                textDecoration: "none",
-                fontFamily: "var(--font-family-mono)",
-                fontSize: "0.7rem",
-                textTransform: "uppercase",
-                transition: "all 0.2s ease"
-              }}>
-                <ExternalLink size={14} /> Live System
-              </a>
+              {data.recruiter.demo === "coming-soon" || data.recruiter.demo === "research-prototype" ? (
+                <div style={{
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  padding: "12px",
+                  backgroundColor: "rgba(255, 255, 255, 0.02)",
+                  border: "1px solid rgba(255, 255, 255, 0.05)",
+                  borderRadius: "8px",
+                  color: "var(--text-tertiary)",
+                  fontFamily: "var(--font-family-mono)",
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                  cursor: "not-allowed"
+                }}>
+                  {data.recruiter.demo === "coming-soon" ? "Coming Soon" : "Research Prototype"}
+                </div>
+              ) : (
+                <a href={data.recruiter.demo} target="_blank" className="interactive" style={{
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  padding: "12px",
+                  backgroundColor: "rgba(6, 182, 212, 0.1)",
+                  border: "1px solid rgba(6, 182, 212, 0.25)",
+                  borderRadius: "8px",
+                  color: "#22d3ee",
+                  textDecoration: "none",
+                  fontFamily: "var(--font-family-mono)",
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                  transition: "all 0.2s ease"
+                }}>
+                  <ExternalLink size={14} /> Live System
+                </a>
+              )}
             </div>
 
             {/* Direct Recruiter CTA */}

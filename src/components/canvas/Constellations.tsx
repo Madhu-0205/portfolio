@@ -42,6 +42,8 @@ function SingleConstellation({
   
   const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
 
+  if (scrollProgress < 0.09) return null;
+
   // Convert points relative to center
   const stars = useMemo(() => {
     return pointsData.map((pt) => new THREE.Vector3(centerX + pt[0], centerY + pt[1], centerZ + pt[2]));

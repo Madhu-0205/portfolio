@@ -158,13 +158,22 @@ export function useAmbientAudio() {
       let targetO3Volume = 0;
       let targetO4Volume = 0;
 
-      if (scrollProgress < 0.15) {
-        // Boot: deep sub-bass wind only (Unknown)
-        targetFreq = 90;
+      if (scrollProgress < 0.09) {
+        // Act 1: Absolute silence during initial question overlays
+        targetFreq = 20;
         targetO3Volume = 0;
         targetO4Volume = 0;
+        if (gainNodeRef.current) {
+          gainNodeRef.current.gain.setTargetAtTime(0, ctx.currentTime, 0.15);
+        }
+      } else if (scrollProgress < 0.15) {
+        // Boot illumination and identity reveal: gradually sweep up low drone
+        const t = (scrollProgress - 0.09) / 0.06;
+        targetFreq = THREE.MathUtils.lerp(20, 90, t);
+        targetO3Volume = 0;
+        targetO4Volume = 0.05 * t;
         if (gainNodeRef.current && soundEnabled) {
-          gainNodeRef.current.gain.setTargetAtTime(0.35, ctx.currentTime, 0.3);
+          gainNodeRef.current.gain.setTargetAtTime(0.35 * t, ctx.currentTime, 0.3);
         }
       } else if (scrollProgress < 0.35) {
         // CampusConnect: filter opens, structural drone emerges (Wonder)

@@ -99,6 +99,17 @@ export default function Hero3D() {
   
   const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
 
+  const PLATFORMS = useMemo(() => [
+    { name: "LinkedIn", color: "#0077b5", angle: 0 },
+    { name: "WhatsApp", color: "#25d366", angle: (Math.PI * 2) / 6 },
+    { name: "Telegram", color: "#0088cc", angle: (Math.PI * 4) / 6 },
+    { name: "College Portal", color: "#ffcc00", angle: Math.PI },
+    { name: "Unstop", color: "#ff3b30", angle: (Math.PI * 8) / 6 },
+    { name: "Internshala", color: "#00ffff", angle: (Math.PI * 10) / 6 },
+  ], []);
+
+  const platformRefs = useRef<(THREE.Group | null)[]>([]);
+
   const nodes = useMemo(() => [
     new THREE.Vector3(-0.4, 0.4, -0.2),
     new THREE.Vector3(0.5, 0.2, 0.1),
@@ -125,9 +136,9 @@ export default function Hero3D() {
       );
     }
 
-    // 2. Proximity calculation (centered around scroll progress 0.20)
+    // 2. Proximity calculation (centered around scroll progress 0.40)
     // Ramps to 1.0 when arrived at CampusConnect stage
-    const proximity = Math.max(0, 1.0 - Math.abs(scrollProgress - 0.20) * 5.0);
+    const proximity = Math.max(0, 1.0 - Math.abs(scrollProgress - 0.40) * 5.0);
 
     // 3. Modulate frosted glass refraction and transparency based on proximity
     if (glassMaterialRef.current) {
@@ -140,11 +151,11 @@ export default function Hero3D() {
       let targetScale = 0.05;
       let targetEmissive = 2.0;
 
-      if (scrollProgress < 0.12) {
+      if (scrollProgress < 0.32) {
         targetScale = 0.05;
         targetEmissive = 1.5;
-      } else if (scrollProgress < 0.30) {
-        const t = (scrollProgress - 0.12) / 0.18;
+      } else if (scrollProgress < 0.50) {
+        const t = (scrollProgress - 0.32) / 0.18;
         targetScale = THREE.MathUtils.lerp(0.05, 1.25, t);
         targetEmissive = THREE.MathUtils.lerp(1.5, 12.0, t);
       } else {
@@ -172,10 +183,18 @@ export default function Hero3D() {
       prismRef.current.position.y = Math.sin(time * 0.7) * 0.08;
       prismRef.current.rotation.z = Math.sin(time * 0.3) * 0.02;
     }
+
+    // 6. Orient integrated platform labels to face the camera
+    PLATFORMS.forEach((platform, idx) => {
+      const ref = platformRefs.current[idx];
+      if (ref) {
+        ref.quaternion.copy(state.camera.quaternion);
+      }
+    });
   });
 
-  // Reveal texts only within a narrow, earned scroll window (0.17 to 0.23)
-  const showText = scrollProgress >= 0.17 && scrollProgress <= 0.23;
+  // Reveal texts only within a narrow, earned scroll window (0.37 to 0.43)
+  const showText = scrollProgress >= 0.37 && scrollProgress <= 0.43;
 
   return (
     <group ref={groupRef}>
@@ -215,6 +234,36 @@ export default function Hero3D() {
         </group>
       </group>
 
+      {/* Unified ecosystem platforms */}
+      {PLATFORMS.map((platform, idx) => {
+        const radius = 1.95;
+        const x = Math.cos(platform.angle) * radius;
+        const z = -0.8 + Math.sin(platform.angle) * radius;
+        const y = 0.5 + Math.sin(idx) * 0.15;
+        
+        return (
+          <group key={idx} ref={(el) => { platformRefs.current[idx] = el; }} position={[x, y, z]}>
+            <Text
+              fontSize={0.065}
+              color={platform.color}
+              font="var(--font-family-mono)"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {platform.name.toUpperCase()}
+            </Text>
+            {/* Connection line showing unification to core */}
+            <Line
+              points={[new THREE.Vector3(0, 0, 0), new THREE.Vector3(-x, -y, -0.8 - z)]}
+              color="#00ffff"
+              lineWidth={0.5}
+              transparent
+              opacity={0.15}
+            />
+          </group>
+        );
+      })}
+
       {/* ────────────────── HOLOGRAPHIC NARRATIVE TEXT ────────────────── */}
       {showText && (
         <group>
@@ -238,12 +287,12 @@ export default function Hero3D() {
           <HolographicText 
             position={[-0.9, -1.3, 0.5]} 
             title="[ GITHUB_CODE ]" 
-            link="https://github.com/madhu/campusconnect"
+            link="https://github.com/Madhu-0205/campusconnect"
           />
           <HolographicText 
             position={[0.2, -1.3, 0.5]} 
             title="[ LIVE_DEMO ]" 
-            link="https://campusconnect-demo.vercel.app"
+            link="https://www.campusconnectco.in"
           />
         </group>
       )}
@@ -259,12 +308,12 @@ export default function Hero3D() {
           commits: 142,
           description: "Decentralized collegiate opportunity and professional resource alignment graph.",
           topics: ["react", "graphql", "collaboration", "networking"],
-          url: "https://github.com/madhu/campusconnect",
-          homepageUrl: "https://campusconnect-demo.vercel.app"
+          url: "https://github.com/Madhu-0205/campusconnect",
+          homepageUrl: "https://www.campusconnectco.in"
         }}
         position={[1.8, 0.8, -0.6]}
         targetCenter={[0, 0, -0.8]}
-        targetScroll={0.20}
+        targetScroll={0.40}
       />
     </group>
   );
