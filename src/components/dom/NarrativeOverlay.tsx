@@ -44,7 +44,7 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.0, 0.02, 0.04),
       }}>
-        “Every great product begins with a problem.”
+        “Every product I build starts with a problem I’ve lived.”
       </div>
 
       <div style={{
@@ -60,7 +60,7 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.04, 0.06, 0.08),
       }}>
-        “Mine began with a simple question.”
+        “For me, it began with a simple question.”
       </div>
 
       <div style={{
@@ -76,7 +76,7 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.08, 0.11, 0.13),
       }}>
-        “Why should students search across ten different platforms just to discover one opportunity?”
+        “Why are student opportunities scattered across ten different platforms, while talent goes unnoticed?”
       </div>
 
       <div style={{
@@ -103,7 +103,7 @@ export default function NarrativeOverlay() {
           marginTop: "12px",
           fontWeight: 300
         }}>
-          I build products that solve real problems.
+          I build tools to connect ambition with opportunity.
         </p>
       </div>
 
@@ -124,7 +124,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “It started with curiosity: how can technology improve people's lives?”
+          “I’ve always been driven by a restless curiosity to understand how things work under the surface.”
         </h2>
       </div>
 
@@ -143,7 +143,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “I build because I enjoy solving difficult problems and creating real impact, not just writing software.”
+          “Writing code is just a means. My goal is translating complex friction into simple, useful tools that improve lives.”
         </h2>
       </div>
 
@@ -164,7 +164,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “JobNest was my first idea. I wanted to help students find local gigs and internships near proximity.”
+          “JobNest was my first attempt. It started as a proximity network to help students find local gigs and internships.”
         </h2>
       </div>
 
@@ -183,7 +183,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “But jobs are only one part of the journey. Students also need communities, hackathons, and mentorship.”
+          “But as I watched peers use it, I realized jobs are only a fraction of their journey. They needed peers, events, and mentorship.”
         </h2>
       </div>
 
@@ -202,7 +202,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “Sometimes building the right product means letting go of your first idea.”
+          “It was a hard lesson: sometimes the best product decision is knowing when to let go of your initial idea.”
         </h2>
       </div>
 
@@ -223,7 +223,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “That turning point led to CampusConnect: a single ecosystem combining internships, hackathons, and founder networks.”
+          “That turning point became the blueprint for CampusConnect: a single ecosystem integrating opportunities, events, and networks.”
         </h2>
       </div>
 
@@ -242,7 +242,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “I built it to connect student ambition directly with resources, ensuring talented students never miss life-changing paths.”
+          “I architected it to align student ambition directly with resources, preventing talent from slipping through the cracks.”
         </h2>
       </div>
 
@@ -261,7 +261,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “Our vision is to become the core digital ecosystem for students across India, and eventually globally.”
+          “Our goal is to build the default digital ecosystem for student communities across India—and eventually, globally.”
         </h2>
       </div>
 
@@ -282,7 +282,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “The hackathon was not about the medal. It was a national-scale engineering challenge to optimize railway throughput.”
+          “At the hackathon Grand Finale, we were handed a national-scale problem: optimizing railway throughput on congested grids.”
         </h2>
       </div>
 
@@ -301,7 +301,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “Coordinating routing logic under intense pressure taught me how to scale systems and build collaboratively with a team.”
+          “I coded the spatial A* routing and deadlock prediction matrices. Working under pressure taught me how to scale systems with a team.”
         </h2>
       </div>
 
@@ -322,7 +322,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “How I build: I design scalable full-stack platforms from the user's perspective, using data to make decisions.”
+          “I don’t believe in coding for the sake of technology. I build systems that scale, starting from user friction back to the database.”
         </h2>
       </div>
 
@@ -343,7 +343,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.25,
           color: "var(--text-primary)"
         }}>
-          “Next: expanding CampusConnect, building local AI products, and launching companies that create long-term impact.”
+          “Right now, I am expanding CampusConnect's graph, exploring local AI matching networks, and building companies that solve human problems.”
         </h2>
       </div>
 

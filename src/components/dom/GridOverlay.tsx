@@ -64,10 +64,11 @@ export default function GridOverlay() {
         <span style={{
           width: "4px",
           height: "4px",
-          backgroundColor: "#34c759", // Active green
+          backgroundColor: "#10b981", // Active green
           borderRadius: "50%",
+          boxShadow: "0 0 8px #10b981",
         }} />
-        SYSTEM_ACTIVE // VER_1.0
+        MADHU//OS // ACTIVE
       </div>
 
       {/* Top Right: Render pipeline */}
@@ -80,7 +81,7 @@ export default function GridOverlay() {
         color: "var(--text-secondary)",
         letterSpacing: "0.15em",
       }}>
-        RENDER_PIPELINE // WEBGL_AGX
+        STORY_OBSERVATORY // INDEX_2026
       </div>
 
       {/* Bottom Left: Mouse coordinates */}
@@ -93,7 +94,7 @@ export default function GridOverlay() {
         color: "var(--text-secondary)",
         letterSpacing: "0.15em",
       }}>
-        CUR_COORD: X_{coords.x.toFixed(2)} Y_{coords.y.toFixed(2)}
+        COORD_INDEX: X_{coords.x.toFixed(2)} Y_{coords.y.toFixed(2)}
       </div>
 
       {/* Bottom Right: Frame metrics */}
@@ -106,7 +107,7 @@ export default function GridOverlay() {
         color: "var(--text-secondary)",
         letterSpacing: "0.15em",
       }}>
-        FPS // 60_LOCKED
+        CHAPTER_FLOW // SMOOTH_LENIS
       </div>
     </div>
   );

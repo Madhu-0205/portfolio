@@ -143,3 +143,12 @@ p.body-text {
   background-color: var(--accent-dot);
   border-radius: 50%;
 }
+
+@keyframes wave-bounce {
+  0% {
+    height: 20%;
+  }
+  100% {
+    height: 100%;
+  }
+}

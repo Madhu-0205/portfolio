@@ -79,9 +79,13 @@ export default function Navigation() {
                 letterSpacing: "0.05em",
                 cursor: "pointer",
                 transition: "color var(--duration-default) var(--transition-smooth)",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
               }}
             >
-              {label}
+              <span style={{ fontSize: "0.55rem", opacity: 0.4 }}>0{index + 1}</span>
+              <span>{label}</span>
             </button>
           );
         })}
@@ -128,6 +132,7 @@ export default function Navigation() {
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
+            gap: "6px",
             padding: "4px",
             borderRadius: "4px",
             transition: "color 0.2s ease",
@@ -135,6 +140,39 @@ export default function Navigation() {
           title={soundEnabled ? "Mute Ambient Sounds" : "Enable Ambient Sounds"}
         >
           {soundEnabled ? <Volume2 size={14} /> : <VolumeX size={14} />}
+          
+          {/* Custom Animated Sound wave bars */}
+          <div style={{
+            display: "flex",
+            alignItems: "flex-end",
+            gap: "2px",
+            height: "9px",
+            width: "10px",
+          }}>
+            <span style={{
+              width: "2px",
+              height: soundEnabled ? "100%" : "30%",
+              backgroundColor: "currentColor",
+              borderRadius: "1px",
+              animation: soundEnabled ? "wave-bounce 0.8s ease-in-out infinite alternate" : "none",
+            }} />
+            <span style={{
+              width: "2px",
+              height: soundEnabled ? "100%" : "40%",
+              backgroundColor: "currentColor",
+              borderRadius: "1px",
+              animation: soundEnabled ? "wave-bounce 0.6s ease-in-out infinite alternate" : "none",
+              animationDelay: "0.15s",
+            }} />
+            <span style={{
+              width: "2px",
+              height: soundEnabled ? "100%" : "20%",
+              backgroundColor: "currentColor",
+              borderRadius: "1px",
+              animation: soundEnabled ? "wave-bounce 0.7s ease-in-out infinite alternate" : "none",
+              animationDelay: "0.3s",
+            }} />
+          </div>
         </button>
       </div>
     </nav>
