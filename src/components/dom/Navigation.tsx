@@ -2,13 +2,15 @@
 
 import React from "react";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
-import { Volume2, VolumeX, Terminal, FileText } from "lucide-react";
+import { Volume2, VolumeX, Terminal, FileText, Activity } from "lucide-react";
 
 export default function Navigation() {
   const activeStage = usePortfolioStore((state) => state.activeStage);
   const soundEnabled = usePortfolioStore((state) => state.soundEnabled);
   const setSoundEnabled = usePortfolioStore((state) => state.setSoundEnabled);
   const setCommandMenuOpen = usePortfolioStore((state) => state.setCommandMenuOpen);
+  const hqLedgerOpen = usePortfolioStore((state) => state.hqLedgerOpen);
+  const setHqLedgerOpen = usePortfolioStore((state) => state.setHqLedgerOpen);
 
   const sections = ["Identity", "Philosophy", "Systems", "Future"];
 
@@ -128,6 +130,31 @@ export default function Navigation() {
           <FileText size={12} />
           <span>RESUME</span>
         </a>
+
+        {/* HQ Ledger Console shortcut */}
+        <button
+          onClick={() => setHqLedgerOpen(!hqLedgerOpen)}
+          style={{
+            color: hqLedgerOpen ? "var(--color-cyan)" : "var(--text-secondary)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+            padding: "4px 8px",
+            borderRadius: "4px",
+            fontSize: "0.6rem",
+            fontFamily: "var(--font-family-mono)",
+            background: "none",
+            border: hqLedgerOpen ? "1px solid rgba(6, 182, 212, 0.3)" : "1px solid rgba(255, 255, 255, 0.05)",
+            backgroundColor: hqLedgerOpen ? "rgba(6, 182, 212, 0.05)" : "rgba(255, 255, 255, 0.02)",
+            transition: "all 0.2s ease",
+          }}
+          title="Open HQ Logbook"
+          className="interactive"
+        >
+          <Activity size={12} />
+          <span>HQ_LOG</span>
+        </button>
 
         {/* Command Menu button */}
         <button

@@ -32,6 +32,10 @@ interface PortfolioState {
   activeCaseStudyId: string;
   setCaseStudyOpen: (open: boolean) => void;
   setActiveCaseStudyId: (id: string) => void;
+
+  // Digital HQ Ledger console
+  hqLedgerOpen: boolean;
+  setHqLedgerOpen: (open: boolean) => void;
 }
 
 export const usePortfolioStore = create<PortfolioState>((set) => ({
@@ -46,6 +50,7 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
   githubData: null,
   caseStudyOpen: false,
   activeCaseStudyId: "",
+  hqLedgerOpen: false,
 
   // Actions
   setLoadingProgress: (progress) => set({ loadingProgress: progress }),
@@ -58,4 +63,5 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
   setGithubData: (data) => set({ githubData: data }),
   setCaseStudyOpen: (open) => set({ caseStudyOpen: open }),
   setActiveCaseStudyId: (id) => set({ activeCaseStudyId: id }),
+  setHqLedgerOpen: (open) => set({ hqLedgerOpen: open }),
 }));

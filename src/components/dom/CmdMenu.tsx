@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
-import { Search, CornerDownLeft, Volume2, Move, Terminal } from "lucide-react";
+import { Search, CornerDownLeft, Volume2, Move, Terminal, Activity } from "lucide-react";
 
 export default function CmdMenu() {
   const isOpen = usePortfolioStore((state) => state.commandMenuOpen);
@@ -11,6 +11,7 @@ export default function CmdMenu() {
   const setSoundEnabled = usePortfolioStore((state) => state.setSoundEnabled);
   const setCaseStudyOpen = usePortfolioStore((state) => state.setCaseStudyOpen);
   const setActiveCaseStudyId = usePortfolioStore((state) => state.setActiveCaseStudyId);
+  const setHqLedgerOpen = usePortfolioStore((state) => state.setHqLedgerOpen);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -92,6 +93,15 @@ export default function CmdMenu() {
       action: () => {
         setActiveCaseStudyId("madhu-os");
         setCaseStudyOpen(true);
+      }
+    },
+    {
+      id: "hq-ledger-toggle",
+      title: "Open HQ Logbook",
+      subtitle: "Open the digital headquarters engineering ledger console",
+      icon: <Activity size={16} />,
+      action: () => {
+        setHqLedgerOpen(true);
       }
     },
     {
