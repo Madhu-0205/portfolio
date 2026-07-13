@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable react-hooks/refs */
+
 import React, { useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Line, Text, Billboard } from "@react-three/drei";
@@ -54,12 +56,12 @@ export default function RepositorySatellite({
   // Extract or fallback
   const stats = useMemo(() => {
     if (!data) return defaultStats;
-    const repo = data.find((r: any) => r.name.toLowerCase() === repoName.toLowerCase());
+    const repo = data.find((r: Record<string, unknown>) => typeof r.name === "string" && r.name.toLowerCase() === repoName.toLowerCase());
     return repo ? {
       ...defaultStats,
       ...repo,
-      topics: repo.topics || defaultStats.topics || []
-    } : { ...defaultStats, ...repo };
+      topics: (repo.topics as string[]) || defaultStats.topics || []
+    } : defaultStats;
   }, [data, repoName, defaultStats]);
 
   // Derive "Energy Level" from updatedAt
@@ -75,7 +77,7 @@ export default function RepositorySatellite({
       // Decays from 100% (today) to 10% (1 year ago)
       const energy = Math.max(10, Math.min(100, Math.round(100 - (diffDays / 365) * 90)));
       return energy;
-    } catch (e) {
+    } catch {
       return 50;
     }
   }, [stats.updatedAt, defaultStats.updatedAt]);
@@ -353,7 +355,7 @@ export default function RepositorySatellite({
                 anchorX="left"
                 anchorY="top"
               >
-                {`// REPO : ${stats.name.toUpperCase()}`}
+                {`// REPO : ${repoName.toUpperCase()}`}
               </Text>
 
               {/* Description */}

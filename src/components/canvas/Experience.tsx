@@ -1,11 +1,13 @@
 "use client";
 
+/* eslint-disable react-hooks/purity */
+
 import React, { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { MeshReflectorMaterial, Text, Line } from "@react-three/drei";
 import * as THREE from "three";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
-import { ConcreteProps, TitaniumProps } from "./materials";
+import { ConcreteProps } from "./materials";
 import Hero3D from "./Stage/Hero3D";
 import Works3D from "./Stage/Works3D";
 import About3D from "./Stage/About3D";
@@ -150,15 +152,19 @@ function ObservedUniverseStreams() {
   );
 }
 
+interface TextMesh extends THREE.Mesh {
+  fillOpacity: number;
+}
+
 export default function Experience() {
   const dustRef = useRef<THREE.Points>(null);
   const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
   
   // Refs for philosophy wall texts
-  const philText1Ref = useRef<any>(null);
-  const philText2Ref = useRef<any>(null);
-  const philText3Ref = useRef<any>(null);
-  const philText4Ref = useRef<any>(null);
+  const philText1Ref = useRef<TextMesh>(null);
+  const philText2Ref = useRef<TextMesh>(null);
+  const philText3Ref = useRef<TextMesh>(null);
+  const philText4Ref = useRef<TextMesh>(null);
 
   // Track scroll velocity across frames
   const prevScrollRef = useRef(0);

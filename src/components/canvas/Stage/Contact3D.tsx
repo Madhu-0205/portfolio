@@ -37,7 +37,7 @@ function HolographicText({
     }
   });
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: import("@react-three/fiber").ThreeEvent<MouseEvent>) => {
     if (link) {
       e.stopPropagation();
       if (link.startsWith("case-study:")) {

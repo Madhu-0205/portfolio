@@ -37,7 +37,7 @@ function HolographicText({
     }
   });
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: import("@react-three/fiber").ThreeEvent<MouseEvent>) => {
     if (link) {
       e.stopPropagation();
       if (link.startsWith("case-study:")) {
@@ -166,7 +166,7 @@ export default function About3D() {
     return [pos];
   }, [count, separation]);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const time = state.clock.getElapsedTime();
     const pointer = state.pointer;
 

@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
-import { X, ExternalLink, Database, Code, Cpu, TrendingUp, Shield, FolderTree, Layout, ArrowRight } from "lucide-react";
+import { X, ExternalLink, Database, Code, Cpu, TrendingUp, FolderTree, Layout, ArrowRight } from "lucide-react";
 
 interface CaseStudyData {
   title: string;

@@ -130,9 +130,12 @@ export default function CmdMenu() {
   useEffect(() => {
     if (isOpen) {
       inputRef.current?.focus();
-      setSelectedIndex(0);
-      setSearchQuery("");
+      const timer = setTimeout(() => {
+        setSelectedIndex(0);
+        setSearchQuery("");
+      }, 0);
       document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+      return () => clearTimeout(timer);
     } else {
       document.body.style.overflow = "";
     }

@@ -24,8 +24,8 @@ interface PortfolioState {
   setCursorState: (state: "default" | "hover" | "drag") => void;
 
   // GitHub Data
-  githubData: any[] | null;
-  setGithubData: (data: any[]) => void;
+  githubData: Record<string, unknown>[] | null;
+  setGithubData: (data: Record<string, unknown>[]) => void;
 
   // Case Study Overlay Drawer
   caseStudyOpen: boolean;

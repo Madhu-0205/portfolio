@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // Fallback curated mock data representing Madhu Valurouthu's real portfolio projects
 const MOCK_GITHUB_DATA = [
   {

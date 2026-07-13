@@ -6,6 +6,11 @@ import { Line, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
 
+interface TextMesh extends THREE.Mesh {
+  isText?: boolean;
+  fillOpacity?: number;
+}
+
 interface ConstellationProps {
   centerX: number;
   centerY: number;
@@ -42,7 +47,7 @@ function SingleConstellation({
     return pointsData.map((pt) => new THREE.Vector3(centerX + pt[0], centerY + pt[1], centerZ + pt[2]));
   }, [pointsData, centerX, centerY, centerZ]);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const time = state.clock.getElapsedTime();
 
     // 1. Slow rotation float
@@ -69,9 +74,11 @@ function SingleConstellation({
       
       // Update text opacities programmatically
       textGroupRef.current.traverse((child) => {
-        if (child instanceof THREE.Mesh && (child as any).isText) {
-          const textMesh = child as any;
-          textMesh.fillOpacity = THREE.MathUtils.lerp(0.0, 1.0, proximity);
+        if (child instanceof THREE.Mesh) {
+          const textMesh = child as TextMesh;
+          if (textMesh.isText) {
+            textMesh.fillOpacity = THREE.MathUtils.lerp(0.0, 1.0, proximity);
+          }
         }
       });
     }
@@ -96,9 +103,10 @@ function SingleConstellation({
           lineWidth={0.8}
           transparent
           opacity={0} // modulated inside useFrame ref loop
-          ref={(el: any) => {
-            if (el && el.material) {
-              lineMaterialsRef.current[idx] = el.material;
+          ref={(el: unknown) => {
+            const line = el as { material?: THREE.Material } | null;
+            if (line && line.material) {
+              lineMaterialsRef.current[idx] = line.material as THREE.LineBasicMaterial;
             }
           }}
         />

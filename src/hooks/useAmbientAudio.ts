@@ -22,7 +22,7 @@ export function useAmbientAudio() {
 
   useEffect(() => {
     if (soundEnabled && !audioCtxRef.current) {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       const ctx = new AudioContextClass();
       audioCtxRef.current = ctx;
 
@@ -232,7 +232,7 @@ export function useAmbientAudio() {
         o4Gain.gain.setTargetAtTime(targetO4Volume, ctx.currentTime, 0.4);
       }
     }
-  }, [scrollProgress]);
+  }, [scrollProgress, soundEnabled]);
 
   useEffect(() => {
     return () => {

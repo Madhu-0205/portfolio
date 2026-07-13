@@ -1,23 +1,16 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
+import React, { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
 
 export default function Atmosphere() {
-  const { scene } = useThree();
   const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
   
   const ambientLightRef = useRef<THREE.AmbientLight>(null);
   const dirLightRef = useRef<THREE.DirectionalLight>(null);
-
-  useEffect(() => {
-    scene.fog = new THREE.FogExp2("#050505", 0.8);
-    return () => {
-      scene.fog = null;
-    };
-  }, [scene]);
+  const fogRef = useRef<THREE.FogExp2>(null);
 
   useFrame((state, delta) => {
     // 1. Calculate proximity to the nearest stage milestone (6 keyframes: 0.0, 0.20, 0.40, 0.60, 0.80, 1.00)
@@ -100,13 +93,18 @@ export default function Atmosphere() {
       );
     }
 
-    if (scene.fog && scene.fog instanceof THREE.FogExp2) {
-      scene.fog.density = THREE.MathUtils.lerp(scene.fog.density, targetFogDensity, delta * 2.0);
+    if (fogRef.current) {
+      fogRef.current.density = THREE.MathUtils.lerp(
+        fogRef.current.density,
+        targetFogDensity,
+        delta * 2.0
+      );
     }
   });
 
   return (
     <group>
+      <fogExp2 ref={fogRef} attach="fog" args={["#050505", 0.8]} />
       <ambientLight ref={ambientLightRef} intensity={0} />
       <directionalLight
         ref={dirLightRef}

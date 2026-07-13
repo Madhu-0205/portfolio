@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import { usePortfolioStore } from "@/state/usePortfolioStore";
+import React, { useMemo, useState, useCallback } from "react";
 import { useGitHubData } from "@/hooks/useGitHubData";
 
 export default function AccessibilityHelper() {
@@ -22,12 +21,23 @@ export default function AccessibilityHelper() {
     });
   };
 
+interface RepoStats {
+  stars: number;
+  forks: number;
+  size: number;
+  language: string;
+  commits: number;
+  updatedAt: string;
+}
+
   // Helper to extract repo data or use fallbacks
-  const getRepoStats = (repoName: string, defaultStats: any) => {
+  const getRepoStats = useCallback((repoName: string, defaultStats: RepoStats): RepoStats => {
     if (!githubData) return defaultStats;
-    const repo = githubData.find((r: any) => r.name.toLowerCase() === repoName.toLowerCase());
-    return repo ? repo : { ...defaultStats, ...repo };
-  };
+    const repo = (githubData as Record<string, unknown>[]).find(
+      (r) => typeof r.name === "string" && r.name.toLowerCase() === repoName.toLowerCase()
+    );
+    return repo ? (repo as unknown as RepoStats) : defaultStats;
+  }, [githubData]);
 
   const repos = useMemo(() => {
     const campusConnect = getRepoStats("campusconnect", { stars: 38, forks: 7, size: 14200, language: "TypeScript", commits: 142, updatedAt: "2026-07-11T12:00:00Z" });
@@ -72,7 +82,7 @@ export default function AccessibilityHelper() {
         scroll: 1.00
       }
     ];
-  }, [githubData]);
+  }, [getRepoStats]);
 
   // Derive energy level helper
   const getEnergy = (updatedAt: string) => {
@@ -82,7 +92,7 @@ export default function AccessibilityHelper() {
       const diffMs = now - lastUpdate;
       const diffDays = diffMs / (1000 * 60 * 60 * 24);
       return Math.max(10, Math.min(100, Math.round(100 - (diffDays / 365) * 90)));
-    } catch (e) {
+    } catch {
       return 50;
     }
   };
@@ -128,7 +138,7 @@ export default function AccessibilityHelper() {
           <h3>Engineering Philosophy Statements</h3>
           <p>1. The most resilient systems are those shaped by quiet, intentional simplicity.</p>
           <p>2. Software should not demand attention; it should clear paths for human progress.</p>
-          <p>3. A product's elegance is measured by the complexity it prevents.</p>
+          <p>{"3. A product's elegance is measured by the complexity it prevents."}</p>
           <p>4. We build for decades, not for demos. Durability is the ultimate design.</p>
         </section>
       </div>

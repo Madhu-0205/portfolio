@@ -25,7 +25,7 @@ function InteractivePortalLink({ label, url, position, opacity }: InteractiveLin
     }
   });
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: import("@react-three/fiber").ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
     window.open(url, "_blank");
   };
@@ -80,7 +80,7 @@ export default function ArchitecturalPortal() {
     return (scrollProgress - 0.94) / 0.04;
   }, [scrollProgress]);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const time = state.clock.getElapsedTime();
     const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const animTime = prefersReducedMotion ? time * 0.05 : time;
@@ -150,7 +150,7 @@ export default function ArchitecturalPortal() {
           maxWidth={3.8}
           fillOpacity={portalOpacity}
         >
-          If you're building something meaningful... let's build it together.
+          {"If you're building something meaningful... let's build it together."}
         </Text>
       </Billboard>
 

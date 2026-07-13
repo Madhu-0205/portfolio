@@ -94,7 +94,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.0,
           letterSpacing: "-0.03em"
         }}>
-          I'm Madhu Valurouthu.
+          {"I'm Madhu Valurouthu."}
         </h1>
         <p style={{
           fontFamily: "var(--font-family-serif)",
@@ -158,7 +158,7 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.35, 0.39, 0.43),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "16px" }}>04 // SYSTEMS I'VE BUILT // JOBNEST</div>
+        <div className="mono-tag" style={{ marginBottom: "16px" }}>{"04 // SYSTEMS I'VE BUILT // JOBNEST"}</div>
         <h2 style={{
           fontFamily: "var(--font-family-serif)",
           fontStyle: "italic",
@@ -197,7 +197,7 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.53, 0.57, 0.61),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "16px" }}>04 // SYSTEMS I'VE BUILT // CAMPUSCONNECT</div>
+        <div className="mono-tag" style={{ marginBottom: "16px" }}>{"04 // SYSTEMS I'VE BUILT // CAMPUSCONNECT"}</div>
         <h2 style={{
           fontFamily: "var(--font-family-serif)",
           fontStyle: "italic",
@@ -306,7 +306,7 @@ export default function NarrativeOverlay() {
           lineHeight: 1.2,
           color: "var(--text-primary)"
         }}>
-          “I'm just getting started.”
+          {"“I'm just getting started.”"}
         </h2>
       </div>
 
@@ -325,8 +325,8 @@ export default function NarrativeOverlay() {
           lineHeight: 1.2,
           color: "var(--text-primary)"
         }}>
-          “If you're building something meaningful... <br />
-          I'd love to build it with you.”
+          {"“If you're building something meaningful..."} <br />
+          {"I'd love to build it with you.”"}
         </h2>
       </div>
     </div>

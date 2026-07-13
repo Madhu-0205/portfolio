@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable react-hooks/refs */
+
 import React, { useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Text, Line, Billboard } from "@react-three/drei";
@@ -12,6 +14,11 @@ interface FragmentProps {
   angle: number;
   color: string;
   scrollProgress: number;
+}
+
+interface TextMesh extends THREE.Mesh {
+  isText?: boolean;
+  fillOpacity?: number;
 }
 
 function ArchiveFragment({ label, description, angle, color, scrollProgress }: FragmentProps) {
@@ -62,8 +69,11 @@ function ArchiveFragment({ label, description, angle, color, scrollProgress }: F
       const textGroup = meshRef.current.parent?.getObjectByName(`${label}-text`);
       if (textGroup) {
         textGroup.traverse((child) => {
-          if (child instanceof THREE.Mesh && (child as any).isText) {
-            (child as any).fillOpacity = textOpacityRef.current;
+          if (child instanceof THREE.Mesh) {
+            const textMesh = child as TextMesh;
+            if (textMesh.isText) {
+              textMesh.fillOpacity = textOpacityRef.current;
+            }
           }
         });
       }
@@ -111,7 +121,7 @@ function ArchiveFragment({ label, description, angle, color, scrollProgress }: F
       <Billboard
         name={`${label}-text`}
         follow={true}
-        ref={(el: any) => {
+        ref={(el: THREE.Group | null) => {
           if (el && meshRef.current) {
             el.position.copy(meshRef.current.position).add(new THREE.Vector3(0, 0.45, 0));
           }
@@ -185,10 +195,9 @@ export default function CrystallineArchive() {
     }
   ], []);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const time = state.clock.getElapsedTime();
     const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const animDelta = prefersReducedMotion ? delta * 0.05 : delta;
     const animTime = prefersReducedMotion ? time * 0.05 : time;
 
     if (crystalRef.current) {
@@ -224,7 +233,7 @@ export default function CrystallineArchive() {
       </mesh>
 
       {/* Orbiting fragments */}
-      {fragments.map((frag, i) => (
+      {fragments.map((frag) => (
         <ArchiveFragment
           key={frag.label}
           label={frag.label}

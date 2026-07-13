@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { Line, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
-import { ConcreteProps, TitaniumProps, BasaltProps, FrostedGlassProps } from "../materials";
+import { ConcreteProps, TitaniumProps } from "../materials";
 import RepositorySatellite from "./RepositorySatellite";
 
 // Hover-interactive 3D Text Card component
@@ -37,7 +37,7 @@ function HolographicText({
     }
   });
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: import("@react-three/fiber").ThreeEvent<MouseEvent>) => {
     if (link) {
       e.stopPropagation();
       if (link.startsWith("case-study:")) {

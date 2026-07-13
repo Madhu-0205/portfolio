@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { usePortfolioStore } from "@/state/usePortfolioStore";
-import { X, BookOpen, Calendar, Cpu, Layers, Landmark, Code, ArrowRight } from "lucide-react";
+import { X, BookOpen, Cpu } from "lucide-react";
 
 interface LogEntry {
   date: string;
@@ -223,7 +223,7 @@ export default function HQLedger() {
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <span style={{ fontSize: "0.65rem", fontFamily: "var(--font-family-mono)", color: "var(--color-cyan)" }}>
-                    {entry.category} // {entry.date}
+                    {entry.category} {"//"} {entry.date}
                   </span>
                   <span style={{ color: "var(--text-secondary)" }}><BookOpen size={14} /></span>
                 </div>
