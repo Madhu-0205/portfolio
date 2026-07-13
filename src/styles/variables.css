@@ -1,0 +1,45 @@
+/* Design Tokens & CSS Variables */
+
+:root {
+  /* Color Palette - Premium Dark Mode (Default) */
+  --bg-primary: #050505;
+  --bg-secondary: #0c0c0e;
+  --bg-card: rgba(18, 18, 22, 0.45);
+  
+  --text-primary: #f5f5f7;
+  --text-secondary: #86868b;
+  --text-tertiary: #515154;
+  
+  --accent-glow: #ffffff;
+  --accent-dot: #ff3b30; /* Nothing Dot-Matrix Red */
+  
+  /* Glassmorphism settings */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur: 20px;
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  
+  /* Layout and Spacing */
+  --space-unit: 8px;
+  --space-xs: calc(var(--space-unit) * 1);   /* 8px */
+  --space-sm: calc(var(--space-unit) * 2);   /* 16px */
+  --space-md: calc(var(--space-unit) * 4);   /* 32px */
+  --space-lg: calc(var(--space-unit) * 6);   /* 48px */
+  --space-xl: calc(var(--space-unit) * 10);  /* 80px */
+  
+  /* Typography Scale */
+  --font-family-display: "Outfit", system-ui, -apple-system, sans-serif;
+  --font-family-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-family-mono: "Geist Mono", monospace;
+  
+  /* Z-Index Hierarchy */
+  --z-canvas: 1;
+  --z-dom-scroll: 2;
+  --z-overlay-ui: 10;
+  --z-cmd-menu: 100;
+  --z-preloader: 1000;
+  
+  /* Transitions */
+  --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-default: 0.6s;
+}
