@@ -218,14 +218,14 @@ export default function Contact3D() {
         <group>
           <HolographicText 
             position={[-2.5, 0.3, 0.6]} 
-            title="MADHU//OS" 
-            body="THE PROBLEM // Traditional developer portfolios feel flat and generic. They hide the real story of the builder." 
+            title="CHAPTER 6" 
+            body="HOW I BUILD // I design scalable full-stack systems from the user's perspective, using data to make key decisions." 
           />
 
           <HolographicText 
             position={[1.2, 0.1, -0.5]} 
-            title="THE INTENT" 
-            body="MY APPROACH // I handcrafted this 3D gallery to let visitors step inside my mind and explore my work naturally." 
+            title="MADHU//OS" 
+            body="THE CRAFT // Beautiful, clean code is not a vanity metric. It forms a direct, functional connection with the user." 
           />
         </group>
       )}

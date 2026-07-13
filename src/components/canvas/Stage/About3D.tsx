@@ -338,14 +338,14 @@ export default function About3D() {
         <group>
           <HolographicText 
             position={[-2.5, 0.3, 0.7]} 
-            title="JOBNEST" 
-            body="THE PROBLEM // Local gig work is heavily fragmented. Micro-opportunities are hard to discover." 
+            title="CHAPTER 3" 
+            body="THE FIRST IDEA // Built to help students find local gigs and internships. It was our starting point." 
           />
 
           <HolographicText 
             position={[1.2, 0.1, -0.7]} 
-            title="THE MECHANISM" 
-            body="MY APPROACH // I am building a geolocation pipeline to match local skills with micro-jobs in real time." 
+            title="JOBNEST" 
+            body="THE TURNING POINT // Building JobNest taught me that jobs are only one part of the journey. Students also need events, skills, and mentorship." 
           />
         </group>
       )}

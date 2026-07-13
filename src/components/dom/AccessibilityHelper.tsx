@@ -38,36 +38,36 @@ export default function AccessibilityHelper() {
     return [
       {
         id: "campusconnect",
-        title: "Exhibition 01: CampusConnect Monolith",
-        description: "A network node grid floating inside a frosted glass monument. Built to unify student directories and opportunity.",
+        title: "Chapter 4: CampusConnect",
+        description: "A student opportunity directory unifying internships, gigs, hackathons, and communities into one ecosystem.",
         stats: campusConnect,
         scroll: 0.20
       },
       {
         id: "railway-ai",
-        title: "Exhibition 02: Railway AI Monument",
-        description: "Spinning titanium rings representing autonomous spatial deadlock resolution. Built as a living railway flow system.",
+        title: "Chapter 5: Railway Traffic Optimizer",
+        description: "A decision optimization system preventing train routing conflicts and deadlocks on national rail grids.",
         stats: railwayAi,
         scroll: 0.40
       },
       {
         id: "jobnest",
-        title: "Exhibition 03: JobNest Monument",
-        description: "An active concrete reactor cage representing modular proximity gig matchmaking. Geometry slowly assembles itself.",
+        title: "Chapter 3: JobNest",
+        description: "The first idea, designed to discover local internships and gigs before transitioning to CampusConnect.",
         stats: jobNest,
         scroll: 0.60
       },
       {
         id: "madhu-os",
-        title: "Exhibition 04: MADHU//OS Shrine",
-        description: "A basalt shrine with a mirrored titanium core, symbolizing continuous operating system design.",
+        title: "Chapter 6: How I Build",
+        description: "A handcrafted 3D gallery representing data-driven development, scalable architecture, and user-centric craftsmanship.",
         stats: madhuOs,
         scroll: 0.80
       },
       {
         id: "manifesto",
-        title: "Exhibition 05: The Founder's Vision",
-        description: "Rising above all monuments into an open horizon, where the core life chapters unfold as floating crystal fragments.",
+        title: "Chapters 7 & 8: The Future & Collaboration",
+        description: "The horizon where floating crystal milestones and contact coordinates unfold.",
         stats: { language: "Ecosystems", size: 0, commits: 0, stars: 999, forks: 0, updatedAt: new Date().toISOString() },
         scroll: 1.00
       }

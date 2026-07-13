@@ -212,14 +212,14 @@ export default function Hero3D() {
         <group>
           <HolographicText 
             position={[-2.4, 0.2, 0.4]} 
-            title="CAMPUSCONNECT" 
-            body="THE PROBLEM // Opportunities are fragmented. Talent is everywhere, but access is not." 
+            title="CHAPTER 4" 
+            body="THE PROBLEM // Scattered directories. Talent is everywhere, but access is not. Opportunities pass unnoticed." 
           />
 
           <HolographicText 
             position={[1.1, 0.0, 0.0]} 
-            title="THE SOLUTION" 
-            body="MY APPROACH // I built a directory platform to connect student ambition directly with employers." 
+            title="CAMPUSCONNECT" 
+            body="THE SOLUTION // I built CampusConnect to unify internships, gigs, hackathons, and founder networks into one recommendation engine." 
           />
 
           <HolographicText 

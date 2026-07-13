@@ -246,14 +246,14 @@ export default function Works3D() {
         <group>
           <HolographicText 
             position={[-2.4, 0.1, 1.0]} 
-            title="RAILWAY TRAFFIC OPTIMIZER" 
-            body="THE CHALLENGE // Smart India Hackathon 2025. Preventing high-density routing deadlocks on national grids." 
+            title="CHAPTER 5" 
+            body="THE CHALLENGE // Preventing high-density routing deadlocks on national rail grids by predicting conflict matrices." 
           />
 
           <HolographicText 
             position={[1.1, -0.1, -0.8]} 
-            title="THE LESSON" 
-            body="MY LEARNING // Implementing spatial algorithms taught me that real-world constraints are the parameters that define the solution." 
+            title="RAILWAY OPTIMIZER" 
+            body="MY LEARNING // Teamwork and algorithms under pressure taught me how to scale systems and solve national-scale problems." 
           />
 
           <HolographicText 

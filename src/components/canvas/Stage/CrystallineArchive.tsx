@@ -149,37 +149,37 @@ export default function CrystallineArchive() {
   const fragments = useMemo(() => [
     {
       label: "Education",
-      description: "B.Tech in Computer Science Engineering (Data Science), Pragati Engineering College. Graduating 2027.",
+      description: "B.Tech in Computer Science Engineering (Data Science), Pragati Engineering College. Class of 2027.",
       angle: (0 / 6) * Math.PI * 2,
       color: "#00ffff"
     },
     {
-      label: "Core Skills",
-      description: "Python, SQL, React.js, PostgreSQL, Power BI, AWS Cloud, Data Analysis, Business Intelligence.",
+      label: "Curiosity",
+      description: "Where it all started. Building tech that improves lives and solves hard problems.",
       angle: (1 / 6) * Math.PI * 2,
       color: "#34c759"
     },
     {
-      label: "SIH Runner-Up",
-      description: "Smart India Hackathon 2025 Grand Finale Runner-Up for national-level railway traffic optimization.",
+      label: "JobNest",
+      description: "The first idea. Helping students find local gigs, part-time jobs, and internships.",
       angle: (2 / 6) * Math.PI * 2,
       color: "#ffcc00"
     },
     {
-      label: "Leadership",
-      description: "Coordinating technical development teams to translate data pipelines into elegant products.",
+      label: "CampusConnect",
+      description: "The student ecosystem. Unifying opportunities, hackathons, and networks across India.",
       angle: (3 / 6) * Math.PI * 2,
       color: "#ff9500"
     },
     {
-      label: "Featured Work",
-      description: "Architecting JobNest proximity network, CampusConnect opportunities, and Railway AI routing.",
+      label: "SIH Hackathon",
+      description: "Smart India Hackathon 2025 Runner-Up. Optimizing national railway throughput.",
       angle: (4 / 6) * Math.PI * 2,
       color: "#ff3b30"
     },
     {
-      label: "Founder Mind",
-      description: "Designing practical, data-driven software that solves real-world human access problems.",
+      label: "How I Build",
+      description: "Philosophy. Scalable systems, clean code, user focus, and AI-enabled workflows.",
       angle: (5 / 6) * Math.PI * 2,
       color: "#ffffff"
     }

@@ -30,7 +30,7 @@ export default function NarrativeOverlay() {
       alignItems: "center",
       padding: "var(--space-md)",
     }}>
-      {/* ────────────────── ACT 1: A BEGINNING ────────────────── */}
+      {/* ────────────────── CHAPTER 1: THE PROBLEM ────────────────── */}
       <div style={{
         position: "absolute",
         fontFamily: "var(--font-family-display), sans-serif",
@@ -39,9 +39,9 @@ export default function NarrativeOverlay() {
         color: "var(--text-primary)",
         letterSpacing: "-0.01em",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.0, 0.03, 0.06),
+        opacity: getOpacity(scrollProgress, 0.0, 0.02, 0.04),
       }}>
-        My name is Madhu.
+        Every great product begins with a problem.
       </div>
 
       <div style={{
@@ -52,117 +52,204 @@ export default function NarrativeOverlay() {
         color: "var(--text-primary)",
         letterSpacing: "-0.01em",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.06, 0.09, 0.12),
+        opacity: getOpacity(scrollProgress, 0.04, 0.06, 0.08),
       }}>
-        I believe technology should create opportunity.
+        Mine began with a simple question.
       </div>
 
       <div style={{
         position: "absolute",
         fontFamily: "var(--font-family-display), sans-serif",
-        fontSize: "clamp(1.4rem, 4vw, 2.5rem)",
+        fontSize: "clamp(1.4rem, 4vw, 2.3rem)",
         fontWeight: 300,
         color: "var(--text-primary)",
         letterSpacing: "-0.01em",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.12, 0.14, 0.17),
-      }}>
-        I build products that solve real problems.
-      </div>
-
-      {/* ────────────────── ACT 2: WHY I BUILD ────────────────── */}
-      <div style={{
-        position: "absolute",
         maxWidth: "800px",
+        padding: "0 24px",
+        opacity: getOpacity(scrollProgress, 0.08, 0.11, 0.13),
+      }}>
+        Why should students search across ten different platforms just to discover one opportunity?
+      </div>
+
+      <div style={{
+        position: "absolute",
+        fontFamily: "var(--font-family-display), sans-serif",
+        fontSize: "clamp(1.5rem, 5vw, 2.8rem)",
+        fontWeight: 300,
+        color: "var(--text-primary)",
+        letterSpacing: "-0.01em",
+        textAlign: "center",
+        opacity: getOpacity(scrollProgress, 0.13, 0.16, 0.18),
+      }}>
+        <div className="mono-tag" style={{ marginBottom: "12px", letterSpacing: "0.15em" }}>CHAPTER 1 // INTRODUCTION</div>
+        I'm Madhu Valurouthu. <br />
+        <span style={{ fontSize: "0.75em", color: "var(--text-secondary)" }}>I build products that solve real problems.</span>
+      </div>
+
+      {/* ────────────────── CHAPTER 2: WHERE IT ALL STARTED ────────────────── */}
+      <div style={{
+        position: "absolute",
+        maxWidth: "850px",
+        textAlign: "center",
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.19, 0.22, 0.25),
+      }}>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>CHAPTER 2 // THE ORIGIN</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          It started with curiosity: how can technology improve people's lives?
+        </h2>
+      </div>
+
+      <div style={{
+        position: "absolute",
+        maxWidth: "850px",
+        textAlign: "center",
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.25, 0.28, 0.31),
+      }}>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          I build because I enjoy solving difficult problems and creating real impact, not just writing software.
+        </h2>
+      </div>
+
+      {/* ────────────────── CHAPTER 3: JOBNEST ────────────────── */}
+      <div style={{
+        position: "absolute",
+        maxWidth: "850px",
         textAlign: "center",
         padding: "0 20px",
         opacity: getOpacity(scrollProgress, 0.32, 0.35, 0.38),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.8rem)", fontWeight: 300 }}>
-          I build because I love solving difficult problems.
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>CHAPTER 3 // JOBNEST</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          JobNest was my first idea. I wanted to help students find local gigs and internships near proximity.
         </h2>
       </div>
 
       <div style={{
         position: "absolute",
-        maxWidth: "800px",
+        maxWidth: "850px",
         textAlign: "center",
         padding: "0 20px",
         opacity: getOpacity(scrollProgress, 0.38, 0.41, 0.44),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.8rem)", fontWeight: 300 }}>
-          I build because AI lets us scale human impact.
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          But jobs are only one part of the journey. Students also need communities, hackathons, and mentorship.
         </h2>
       </div>
 
       <div style={{
         position: "absolute",
-        maxWidth: "800px",
+        maxWidth: "850px",
         textAlign: "center",
         padding: "0 20px",
-        opacity: getOpacity(scrollProgress, 0.44, 0.47, 0.50),
+        opacity: getOpacity(scrollProgress, 0.44, 0.47, 0.49),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.8rem)", fontWeight: 300 }}>
-          I build because I want to create companies, not just write code.
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300, color: "var(--text-primary)" }}>
+          Sometimes building the right product means letting go of your first idea.
         </h2>
       </div>
 
-      {/* Identity Reveal (Stage Transition) */}
+      {/* ────────────────── CHAPTER 4: CAMPUSCONNECT ────────────────── */}
       <div style={{
         position: "absolute",
+        maxWidth: "850px",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.50, 0.54, 0.58),
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.50, 0.53, 0.56),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "16px", letterSpacing: "0.15em" }}>FOUNDER // BUILDER</div>
-        <h1 className="title-display" style={{ fontSize: "clamp(2.2rem, 7vw, 4.5rem)" }}>
-          Madhu Valurouthu
-        </h1>
-      </div>
-
-      {/* ────────────────── ACT 3: MY JOURNEY ────────────────── */}
-      <div style={{
-        position: "absolute",
-        textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.70, 0.73, 0.75),
-      }}>
-        <div className="mono-tag" style={{ marginBottom: "12px" }}>MOMENT_01</div>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)", fontWeight: 300 }}>LEARNING TO BUILD</h2>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>CHAPTER 4 // CAMPUSCONNECT</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          That turning point led to CampusConnect: a single ecosystem combining internships, hackathons, and founder networks.
+        </h2>
       </div>
 
       <div style={{
         position: "absolute",
+        maxWidth: "850px",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.75, 0.78, 0.80),
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.56, 0.59, 0.62),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "12px" }}>MOMENT_02</div>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)", fontWeight: 300 }}>SMART INDIA HACKATHON</h2>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          I built it to connect student ambition directly with resources, ensuring talented students never miss life-changing paths.
+        </h2>
       </div>
 
       <div style={{
         position: "absolute",
+        maxWidth: "850px",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.80, 0.82, 0.84),
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.62, 0.65, 0.68),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "12px" }}>MOMENT_03</div>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)", fontWeight: 300 }}>CAMPUSCONNECT</h2>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          Our vision is to become the core digital ecosystem for students across India, and eventually globally.
+        </h2>
+      </div>
+
+      {/* ────────────────── CHAPTER 5: SMART INDIA HACKATHON ────────────────── */}
+      <div style={{
+        position: "absolute",
+        maxWidth: "850px",
+        textAlign: "center",
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.70, 0.73, 0.76),
+      }}>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>CHAPTER 5 // SMART INDIA HACKATHON</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          The hackathon was not about the medal. It was a national-scale engineering challenge to optimize railway throughput.
+        </h2>
       </div>
 
       <div style={{
         position: "absolute",
+        maxWidth: "850px",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.84, 0.86, 0.88),
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.76, 0.79, 0.82),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "12px" }}>MOMENT_04</div>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)", fontWeight: 300 }}>THE FUTURE</h2>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          Coordinating routing logic under intense pressure taught me how to scale systems and build collaboratively with a team.
+        </h2>
       </div>
 
-      {/* ────────────────── ACT 4: THE ENDING ────────────────── */}
+      {/* ────────────────── CHAPTER 6: HOW I BUILD ────────────────── */}
+      <div style={{
+        position: "absolute",
+        maxWidth: "850px",
+        textAlign: "center",
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.83, 0.86, 0.89),
+      }}>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>CHAPTER 6 // PHILOSOPHY</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          How I build: I design scalable full-stack platforms from the user's perspective, using data to make decisions.
+        </h2>
+      </div>
+
+      {/* ────────────────── CHAPTER 7: THE FUTURE ────────────────── */}
+      <div style={{
+        position: "absolute",
+        maxWidth: "850px",
+        textAlign: "center",
+        padding: "0 20px",
+        opacity: getOpacity(scrollProgress, 0.89, 0.92, 0.95),
+      }}>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>CHAPTER 7 // THE FUTURE</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.4rem, 4vw, 2.4rem)", fontWeight: 300 }}>
+          Next: expanding CampusConnect, building local AI products, and launching companies that create long-term impact.
+        </h2>
+      </div>
+
+      {/* ────────────────── CHAPTER 8: LET'S BUILD TOGETHER ────────────────── */}
       <div style={{
         position: "absolute",
         maxWidth: "900px",
         textAlign: "center",
         padding: "0 24px",
-        opacity: getOpacity(scrollProgress, 0.88, 0.90, 0.92),
+        opacity: getOpacity(scrollProgress, 0.95, 0.97, 0.985),
       }}>
         <h2 className="title-display" style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
           I'm just getting started.
@@ -174,22 +261,11 @@ export default function NarrativeOverlay() {
         maxWidth: "900px",
         textAlign: "center",
         padding: "0 24px",
-        opacity: getOpacity(scrollProgress, 0.92, 0.94, 0.96),
+        opacity: getOpacity(scrollProgress, 0.985, 0.995, 1.0),
       }}>
         <h2 className="title-display" style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
-          If you're building something meaningful...
-        </h2>
-      </div>
-
-      <div style={{
-        position: "absolute",
-        maxWidth: "900px",
-        textAlign: "center",
-        padding: "0 24px",
-        opacity: getOpacity(scrollProgress, 0.96, 0.98, 1.0),
-      }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
-          Let's build it together.
+          If you're building something meaningful... <br />
+          <span style={{ fontSize: "0.8em", color: "var(--text-secondary)" }}>I'd love to build it with you.</span>
         </h2>
       </div>
     </div>
