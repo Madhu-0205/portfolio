@@ -30,41 +30,47 @@ export default function NarrativeOverlay() {
       alignItems: "center",
       padding: "var(--space-md)",
     }}>
-      {/* ────────────────── CHAPTER 1: BOOT ────────────────── */}
+      {/* ────────────────── ACT 1: A BEGINNING ────────────────── */}
       <div style={{
         position: "absolute",
-        fontFamily: "var(--font-family-mono)",
-        fontSize: "clamp(0.85rem, 2.5vw, 1.15rem)",
-        color: "var(--text-secondary)",
-        letterSpacing: "0.2em",
-        textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.0, 0.05, 0.10),
-      }}>
-        INITIALIZING_SYSTEM...
-      </div>
-
-      <div style={{
-        position: "absolute",
-        fontFamily: "var(--font-family-mono)",
-        fontSize: "clamp(0.9rem, 2.8vw, 1.25rem)",
+        fontFamily: "var(--font-family-display), sans-serif",
+        fontSize: "clamp(1.4rem, 4vw, 2.5rem)",
+        fontWeight: 300,
         color: "var(--text-primary)",
-        letterSpacing: "0.25em",
+        letterSpacing: "-0.01em",
         textAlign: "center",
-        display: "flex",
-        alignItems: "center",
-        gap: "12px",
-        opacity: getOpacity(scrollProgress, 0.10, 0.14, 0.18),
+        opacity: getOpacity(scrollProgress, 0.0, 0.03, 0.06),
       }}>
-        <span style={{
-          width: "6px",
-          height: "6px",
-          backgroundColor: "#34c759",
-          borderRadius: "50%",
-        }} />
-        SYSTEM_READY.
+        My name is Madhu.
       </div>
 
-      {/* ────────────────── CHAPTER 3: VISION ────────────────── */}
+      <div style={{
+        position: "absolute",
+        fontFamily: "var(--font-family-display), sans-serif",
+        fontSize: "clamp(1.4rem, 4vw, 2.5rem)",
+        fontWeight: 300,
+        color: "var(--text-primary)",
+        letterSpacing: "-0.01em",
+        textAlign: "center",
+        opacity: getOpacity(scrollProgress, 0.06, 0.09, 0.12),
+      }}>
+        I believe technology should create opportunity.
+      </div>
+
+      <div style={{
+        position: "absolute",
+        fontFamily: "var(--font-family-display), sans-serif",
+        fontSize: "clamp(1.4rem, 4vw, 2.5rem)",
+        fontWeight: 300,
+        color: "var(--text-primary)",
+        letterSpacing: "-0.01em",
+        textAlign: "center",
+        opacity: getOpacity(scrollProgress, 0.12, 0.14, 0.17),
+      }}>
+        I build products that solve real problems.
+      </div>
+
+      {/* ────────────────── ACT 2: WHY I BUILD ────────────────── */}
       <div style={{
         position: "absolute",
         maxWidth: "800px",
@@ -72,8 +78,8 @@ export default function NarrativeOverlay() {
         padding: "0 20px",
         opacity: getOpacity(scrollProgress, 0.32, 0.35, 0.38),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.5rem)" }}>
-          Design is the start of alignment.
+        <h2 className="title-display" style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.8rem)", fontWeight: 300 }}>
+          I build because I love solving difficult problems.
         </h2>
       </div>
 
@@ -84,8 +90,8 @@ export default function NarrativeOverlay() {
         padding: "0 20px",
         opacity: getOpacity(scrollProgress, 0.38, 0.41, 0.44),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.5rem)" }}>
-          Engineering is the execution of utility.
+        <h2 className="title-display" style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.8rem)", fontWeight: 300 }}>
+          I build because AI lets us scale human impact.
         </h2>
       </div>
 
@@ -96,8 +102,8 @@ export default function NarrativeOverlay() {
         padding: "0 20px",
         opacity: getOpacity(scrollProgress, 0.44, 0.47, 0.50),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.5rem)" }}>
-          Ecosystems are the space where they meet.
+        <h2 className="title-display" style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.8rem)", fontWeight: 300 }}>
+          I build because I want to create companies, not just write code.
         </h2>
       </div>
 
@@ -107,21 +113,20 @@ export default function NarrativeOverlay() {
         textAlign: "center",
         opacity: getOpacity(scrollProgress, 0.50, 0.54, 0.58),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "16px" }}>FOUNDER // BUILDER // ENGINEER</div>
-        <h1 className="title-display" style={{ fontSize: "clamp(2.2rem, 7vw, 5.0rem)" }}>
+        <div className="mono-tag" style={{ marginBottom: "16px", letterSpacing: "0.15em" }}>FOUNDER // BUILDER</div>
+        <h1 className="title-display" style={{ fontSize: "clamp(2.2rem, 7vw, 4.5rem)" }}>
           Madhu Valurouthu
         </h1>
       </div>
 
-      {/* ────────────────── CHAPTER 5: THE OBSERVED PORTFOLIO ────────────────── */}
-      {/* Monument Indicators Fading Into History */}
+      {/* ────────────────── ACT 3: MY JOURNEY ────────────────── */}
       <div style={{
         position: "absolute",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.70, 0.73, 0.76),
+        opacity: getOpacity(scrollProgress, 0.70, 0.73, 0.75),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "12px" }}>MONUMENT_01</div>
-        <h2 className="title-display" style={{ fontSize: "clamp(2.0rem, 5.5vw, 4.0rem)" }}>THE GRID</h2>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>MOMENT_01</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)", fontWeight: 300 }}>LEARNING TO BUILD</h2>
       </div>
 
       <div style={{
@@ -129,30 +134,29 @@ export default function NarrativeOverlay() {
         textAlign: "center",
         opacity: getOpacity(scrollProgress, 0.75, 0.78, 0.80),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "12px" }}>MONUMENT_02</div>
-        <h2 className="title-display" style={{ fontSize: "clamp(2.0rem, 5.5vw, 4.0rem)" }}>THE REACTOR</h2>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>MOMENT_02</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)", fontWeight: 300 }}>SMART INDIA HACKATHON</h2>
       </div>
 
       <div style={{
         position: "absolute",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.79, 0.81, 0.83),
+        opacity: getOpacity(scrollProgress, 0.80, 0.82, 0.84),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "12px" }}>MONUMENT_03</div>
-        <h2 className="title-display" style={{ fontSize: "clamp(2.0rem, 5.5vw, 4.0rem)" }}>THE SCAFFOLD</h2>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>MOMENT_03</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)", fontWeight: 300 }}>CAMPUSCONNECT</h2>
       </div>
 
       <div style={{
         position: "absolute",
         textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.82, 0.85, 0.88),
+        opacity: getOpacity(scrollProgress, 0.84, 0.86, 0.88),
       }}>
-        <div className="mono-tag" style={{ marginBottom: "12px" }}>MONUMENT_04</div>
-        <h2 className="title-display" style={{ fontSize: "clamp(2.0rem, 5.5vw, 4.0rem)" }}>THE SHRINE</h2>
+        <div className="mono-tag" style={{ marginBottom: "12px" }}>MOMENT_04</div>
+        <h2 className="title-display" style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)", fontWeight: 300 }}>THE FUTURE</h2>
       </div>
 
-      {/* ────────────────── CHAPTER 6: THE FOUNDER'S VISION ────────────────── */}
-      {/* Principle 1: Technology leverage */}
+      {/* ────────────────── ACT 4: THE ENDING ────────────────── */}
       <div style={{
         position: "absolute",
         maxWidth: "900px",
@@ -160,12 +164,11 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.88, 0.90, 0.92),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(2.0rem, 6vw, 4.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
-          Technology is leverage, not the destination.
+        <h2 className="title-display" style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
+          I'm just getting started.
         </h2>
       </div>
 
-      {/* Principle 2: Empathy and product impact */}
       <div style={{
         position: "absolute",
         maxWidth: "900px",
@@ -173,12 +176,11 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.92, 0.94, 0.96),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(2.0rem, 6vw, 4.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
-          Products should speak through the lives they improve.
+        <h2 className="title-display" style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
+          If you're building something meaningful...
         </h2>
       </div>
 
-      {/* Principle 3: Long-term thinking / Systems */}
       <div style={{
         position: "absolute",
         maxWidth: "900px",
@@ -186,8 +188,8 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.96, 0.98, 1.0),
       }}>
-        <h2 className="title-display" style={{ fontSize: "clamp(2.0rem, 6vw, 4.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
-          We owe the future systems that endure.
+        <h2 className="title-display" style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)", fontWeight: 300, lineHeight: 1.2 }}>
+          Let's build it together.
         </h2>
       </div>
     </div>

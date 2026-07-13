@@ -217,25 +217,15 @@ export default function Contact3D() {
       {showText && (
         <group>
           <HolographicText 
-            position={[-2.5, 0.7, 0.5]} 
-            title="MADHU//OS EXHIBIT" 
-            body="THE ARCHITECTURE // The ecosystem acts as its own gallery space." 
-          />
-          <HolographicText 
-            position={[-2.5, -0.1, 0.7]} 
-            title="THE PHILOSOPHY" 
-            body="CRAFT // Removing boilerplate boundaries to blend engineering and visual art." 
+            position={[-2.5, 0.3, 0.6]} 
+            title="MADHU//OS" 
+            body="THE PROBLEM // Traditional developer portfolios feel flat and generic. They hide the real story of the builder." 
           />
 
           <HolographicText 
-            position={[1.2, 0.5, -0.6]} 
-            title="THE IMPACT" 
-            body="BELIEF // Beautiful code is not a vanity metric; it creates a direct emotional bond with the user." 
-          />
-          <HolographicText 
-            position={[1.2, -0.3, -0.4]} 
-            title="THE SYSTEM" 
-            body="TELEMETRY // Next.js AppRouter // React Three Fiber // GSAP smooth timelines." 
+            position={[1.2, 0.1, -0.5]} 
+            title="THE INTENT" 
+            body="MY APPROACH // I handcrafted this 3D gallery to let visitors step inside my mind and explore my work naturally." 
           />
         </group>
       )}

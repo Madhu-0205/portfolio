@@ -301,7 +301,7 @@ export default function Experience() {
           lineHeight={1.45}
           fillOpacity={0}
         >
-          The most resilient systems are those shaped by quiet, intentional simplicity.
+          Technology is only useful if it opens doors for people.
         </Text>
         <Text
           ref={philText2Ref}
@@ -313,7 +313,7 @@ export default function Experience() {
           lineHeight={1.45}
           fillOpacity={0}
         >
-          Software should not demand attention; it should clear paths for human progress.
+          The best products are built to solve real local problems.
         </Text>
         <Text
           ref={philText3Ref}
@@ -325,7 +325,7 @@ export default function Experience() {
           lineHeight={1.45}
           fillOpacity={0}
         >
-          A product's elegance is measured by the complexity it prevents.
+          We optimize systems not for prizes, but for throughput.
         </Text>
         <Text
           ref={philText4Ref}
@@ -337,7 +337,7 @@ export default function Experience() {
           lineHeight={1.45}
           fillOpacity={0}
         >
-          We build for decades, not for demos. Durability is the ultimate design.
+          I write code to build companies that last.
         </Text>
       </group>
 

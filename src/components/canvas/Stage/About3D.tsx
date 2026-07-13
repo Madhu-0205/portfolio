@@ -337,25 +337,15 @@ export default function About3D() {
       {showText && (
         <group>
           <HolographicText 
-            position={[-2.5, 0.7, 0.6]} 
-            title="JOBNEST MONUMENT" 
-            body="POSSIBILITY // An AI-powered local job/gig matching platform in active development." 
-          />
-          <HolographicText 
-            position={[-2.5, -0.1, 0.8]} 
-            title="THE CONVICTION" 
-            body="BELIEF // Designing micro-opportunity maps to bridge the gap in local gig economies." 
+            position={[-2.5, 0.3, 0.7]} 
+            title="JOBNEST" 
+            body="THE PROBLEM // Local gig work is heavily fragmented. Micro-opportunities are hard to discover." 
           />
 
           <HolographicText 
-            position={[1.2, 0.5, -0.8]} 
-            title="THE INTENT" 
-            body="INTENT // Dynamic proximity geo-indexing and semantic matching to align local skills." 
-          />
-          <HolographicText 
-            position={[1.2, -0.3, -0.6]} 
-            title="THE STATUS" 
-            body="ONGOING // Scaffolding geolocation pipeline and matching logic." 
+            position={[1.2, 0.1, -0.7]} 
+            title="THE MECHANISM" 
+            body="MY APPROACH // I am building a geolocation pipeline to match local skills with micro-jobs in real time." 
           />
         </group>
       )}

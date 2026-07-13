@@ -245,25 +245,15 @@ export default function Works3D() {
       {showText && (
         <group>
           <HolographicText 
-            position={[-2.4, 0.5, 0.8]} 
+            position={[-2.4, 0.1, 1.0]} 
             title="RAILWAY TRAFFIC OPTIMIZER" 
-            body="THE LAB // Smart India Hackathon 2025 Runner-Up. A national-level throughput optimization system." 
-          />
-          <HolographicText 
-            position={[-2.4, -0.3, 1.2]} 
-            title="THE LESSON" 
-            body="LESSON // Real-world constraints are not barriers; they are the parameters that define the solution." 
+            body="THE CHALLENGE // Smart India Hackathon 2025. Preventing high-density routing deadlocks on national grids." 
           />
 
           <HolographicText 
-            position={[1.1, 0.3, -1.0]} 
-            title="THE MECHANISM" 
-            body="ENGINEERING // Spatial A* search pathing and deadlock prediction routing conflict matrices." 
-          />
-          <HolographicText 
-            position={[1.1, -0.5, -0.6]} 
-            title="THE CONVICTION" 
-            body="BELIEF // Proving that even the most congested real-world routing grids can be optimized systematically." 
+            position={[1.1, -0.1, -0.8]} 
+            title="THE LESSON" 
+            body="MY LEARNING // Implementing spatial algorithms taught me that real-world constraints are the parameters that define the solution." 
           />
 
           <HolographicText 

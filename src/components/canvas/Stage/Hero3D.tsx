@@ -211,25 +211,15 @@ export default function Hero3D() {
       {showText && (
         <group>
           <HolographicText 
-            position={[-2.4, 0.6, 0.3]} 
+            position={[-2.4, 0.2, 0.4]} 
             title="CAMPUSCONNECT" 
-            body="MISSION // Democratizing access. Aligning student ambition with opportunity." 
-          />
-          <HolographicText 
-            position={[-2.4, -0.2, 0.5]} 
-            title="THE CONVICTION" 
-            body="BELIEF // Every builder deserves an open pathway to discover their potential." 
+            body="THE PROBLEM // Opportunities are fragmented. Talent is everywhere, but access is not." 
           />
 
           <HolographicText 
-            position={[1.1, 0.4, -0.2]} 
-            title="THE CHALLENGE" 
-            body="PROBLEM // Talent is distributed evenly, but access to opportunity is not." 
-          />
-          <HolographicText 
-            position={[1.1, -0.4, 0.1]} 
-            title="THE NETWORK" 
-            body="THEORY // Building decentralized bridges connecting campus ambition directly with resources." 
+            position={[1.1, 0.0, 0.0]} 
+            title="THE SOLUTION" 
+            body="MY APPROACH // I built a directory platform to connect student ambition directly with employers." 
           />
 
           <HolographicText 

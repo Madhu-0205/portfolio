@@ -193,7 +193,7 @@ export default function Constellations() {
         targetScroll={0.125}
         name="[ JAVASCRIPT / TYPESCRIPT ]"
         purpose="PURPOSE // UI state layers, async query nodes, and modular library modules."
-        projects="USED_IN // CampusConnect, MADHU//OS, AI SaaS"
+        projects="USED_IN // CampusConnect, MADHU//OS, JobNest"
         pointsData={jsPoints}
         connections={jsConnections}
         color="#00ffff"
@@ -207,7 +207,7 @@ export default function Constellations() {
         targetScroll={0.375}
         name="[ PYTHON ]"
         purpose="PURPOSE // Real-time conflict grid matrixing and neural pattern matching."
-        projects="USED_IN // Railway AI, AI SaaS Core"
+        projects="USED_IN // Railway AI, JobNest Core"
         pointsData={pyPoints}
         connections={pyConnections}
         color="#34c759" // Emerald green tint
@@ -221,7 +221,7 @@ export default function Constellations() {
         targetScroll={0.625}
         name="[ GO / RUST ]"
         purpose="PURPOSE // Thread-safe socket routing and low-latency storage engines."
-        projects="USED_IN // AI SaaS Pipeline, Railway Core"
+        projects="USED_IN // JobNest Pipeline, Railway Core"
         pointsData={goPoints}
         connections={goConnections}
         color="#ffcc00" // Amber gold tint

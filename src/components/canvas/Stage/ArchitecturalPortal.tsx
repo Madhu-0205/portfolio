@@ -144,13 +144,13 @@ export default function ArchitecturalPortal() {
       {/* Telemetry invitation title */}
       <Billboard follow={true} position={[0, 2.3, 0.5]}>
         <Text
-          fontSize={0.13}
+          fontSize={0.12}
           color="#ffffff"
           textAlign="center"
           maxWidth={3.8}
           fillOpacity={portalOpacity}
         >
-          Let us build things that outlast us.
+          If you're building something meaningful... let's build it together.
         </Text>
       </Billboard>
 
