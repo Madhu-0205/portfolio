@@ -246,14 +246,14 @@ export default function Works3D() {
         <group>
           <HolographicText 
             position={[-2.4, 0.1, 1.0]} 
-            title="CHAPTER 5" 
-            body="THE CHALLENGE // Preventing high-density routing deadlocks on national rail grids by predicting conflict matrices." 
+            title="CHAPTER 5 // RAILWAY AI" 
+            body="THE CHALLENGE // Preventing signal deadlocks and traffic bottlenecks on high-density national grids." 
           />
 
           <HolographicText 
             position={[1.1, -0.1, -0.8]} 
-            title="RAILWAY OPTIMIZER" 
-            body="MY LEARNING // Teamwork and algorithms under pressure taught me how to scale systems and solve national-scale problems." 
+            title="THE DECISION SYSTEM" 
+            body="HUMAN IN THE LOOP // AI runs spatial search routing to suggest deadlock resolutions, assisting (never replacing) the human controller's authority." 
           />
 
           <HolographicText 

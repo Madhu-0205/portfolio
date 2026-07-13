@@ -338,14 +338,14 @@ export default function About3D() {
         <group>
           <HolographicText 
             position={[-2.5, 0.3, 0.7]} 
-            title="CHAPTER 3" 
-            body="THE FIRST IDEA // Built to help students find local gigs and internships. It was our starting point." 
+            title="CHAPTER 3 // JOBNEST" 
+            body="THE FIRST IDEA // A hyperlocal proximity index matching students to nearby gigs and part-time internships." 
           />
 
           <HolographicText 
             position={[1.2, 0.1, -0.7]} 
-            title="JOBNEST" 
-            body="THE TURNING POINT // Building JobNest taught me that jobs are only one part of the journey. Students also need events, skills, and mentorship." 
+            title="THE TURNING POINT" 
+            body="THE ITERATION // Observed that students need peer networks, hackathons, and skills—shifting our core blueprint to CampusConnect." 
           />
         </group>
       )}

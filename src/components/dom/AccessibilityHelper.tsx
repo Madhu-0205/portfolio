@@ -39,28 +39,28 @@ export default function AccessibilityHelper() {
       {
         id: "campusconnect",
         title: "Chapter 4: CampusConnect",
-        description: "A student opportunity directory unifying internships, gigs, hackathons, and communities into one ecosystem.",
+        description: "Case Study: CampusConnect. WHY: Talent is everywhere, but access is fragmented. PROBLEM: Students miss milestones because opportunities are scattered. SOLUTION: A unified recommendation engine. ARCHITECTURE: Graph-based skill aligning platform. TECHNOLOGY: React, TypeScript, GraphQL. LESSONS: User friction is solved by directory consolidation.",
         stats: campusConnect,
         scroll: 0.20
       },
       {
         id: "railway-ai",
         title: "Chapter 5: Railway Traffic Optimizer",
-        description: "A decision optimization system preventing train routing conflicts and deadlocks on national rail grids.",
+        description: "Case Study: Railway AI. WHY: High-density rail congestion causes national delays. PROBLEM: Grid routing deadlocks are computationally hard to resolve. SOLUTION: Simulator suggesting deadlock solutions to human controllers. ARCHITECTURE: Spatial A* routing conflict matrices. SAFETY: AI assists; the human controller retains final operational decision. TECHNOLOGY: Python, A* Search.",
         stats: railwayAi,
         scroll: 0.40
       },
       {
         id: "jobnest",
         title: "Chapter 3: JobNest",
-        description: "The first idea, designed to discover local internships and gigs before transitioning to CampusConnect.",
+        description: "Case Study: JobNest. WHY: Bridging the gap in local gig economies. PROBLEM: Proximity micro-jobs are hard to discover. SOLUTION: Local gig discovery network. ARCHITECTURE: Hyperlocal geo-indexing pipeline matching skills with gigs. LESSONS: Finding that students need peers, hackathons, and mentorship, not just jobs.",
         stats: jobNest,
         scroll: 0.60
       },
       {
         id: "madhu-os",
         title: "Chapter 6: How I Build",
-        description: "A handcrafted 3D gallery representing data-driven development, scalable architecture, and user-centric craftsmanship.",
+        description: "Case Study: MADHU//OS. WHY: Traditional portfolios fail to tell the builder's story. PROBLEM: Resume cards hide engineering passion. SOLUTION: Immersive 3D gallery. ARCHITECTURE: WebGL canvas, smooth GSAP camera paths, and ambient Web Audio synths. TECHNOLOGY: Next.js, React Three Fiber, Three.js, GSAP, Zustand.",
         stats: madhuOs,
         scroll: 0.80
       },
