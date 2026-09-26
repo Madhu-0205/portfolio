@@ -246,7 +246,6 @@ export default function Hero3D() {
             <Text
               fontSize={0.065}
               color={platform.color}
-              font="var(--font-family-mono)"
               anchorX="center"
               anchorY="middle"
             >
@@ -301,13 +300,13 @@ export default function Hero3D() {
       <RepositorySatellite
         repoName="campusconnect"
         defaultStats={{
-          stars: 38,
-          forks: 7,
-          size: 14200,
+          stars: 0,
+          forks: 0,
+          size: 0,
           language: "TypeScript",
-          commits: 142,
-          description: "Decentralized collegiate opportunity and professional resource alignment graph.",
-          topics: ["react", "graphql", "collaboration", "networking"],
+          commits: 0,
+          description: "Unified collegiate opportunity graph connecting students to hackathons, gigs, and peer projects.",
+          topics: ["react", "postgresql", "collaboration", "networking"],
           url: "https://github.com/Madhu-0205/campusconnect",
           homepageUrl: "https://www.campusconnectco.in"
         }}

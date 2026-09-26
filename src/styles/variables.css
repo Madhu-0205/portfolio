@@ -1,53 +1,86 @@
-/* Design Tokens & CSS Variables */
+/* Design Tokens & CSS Variables — design system v3 */
 
 :root {
-  /* Color Palette - Premium OS Dark Mode */
-  --bg-primary: #030304;
+  /* ── Canvas & Surfaces ─────────────────────────────── */
+  --bg-primary: #050507;
   --bg-secondary: #0a0a0c;
   --bg-card: rgba(10, 10, 12, 0.5);
-  
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-tertiary: #52525b;
-  
-  --accent-glow: #ffffff;
-  --accent-dot: #ff3b30; /* Nothing Dot-Matrix Red */
-  
-  /* Luxury OS Accents */
-  --color-cyan: #06b6d4;
-  --color-blue: #2563eb;
-  --color-purple: #8b5cf6;
+
+  /* ── Text hierarchy (warm neutrals) ────────────────── */
+  --text-primary: #f5f4f0;
+  --text-secondary: #a8a8ad;
+  --text-tertiary: #56565c;
+
+  /* ── Accent system (one signal hue) ────────────────── */
+  /* Signal: precise cyan for interactive/technical moments */
+  --accent: #22d3ee;
+  --accent-cyan: #22d3ee;   /* legacy alias */
+  --color-cyan: #22d3ee;    /* legacy alias */
+  --accent-soft: rgba(34, 211, 238, 0.14);
+
+  /* Brand dot: warm signal red — used sparingly, identity moments only */
+  --accent-dot: #ff4d2e;
+
+  /* Status hues (contextual, not decorative) */
   --color-green: #10b981;
   --color-gold: #facc15;
-  
-  /* Glassmorphism settings */
+  --color-purple: #8b5cf6;  /* legacy alias, case-study drawer */
+
+  /* ── Glassmorphism ─────────────────────────────────── */
   --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.07);
   --glass-blur: 20px;
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-  
-  /* Layout and Spacing */
+
+  /* ── Layout & spacing ──────────────────────────────── */
   --space-unit: 8px;
-  --space-xs: calc(var(--space-unit) * 1);   /* 8px */
-  --space-sm: calc(var(--space-unit) * 2);   /* 16px */
-  --space-md: calc(var(--space-unit) * 4);   /* 32px */
-  --space-lg: calc(var(--space-unit) * 6);   /* 48px */
-  --space-xl: calc(var(--space-unit) * 10);  /* 80px */
-  
-  /* Typography Scale */
-  --font-family-display: "Outfit", system-ui, -apple-system, sans-serif;
-  --font-family-body: "Inter", system-ui, -apple-system, sans-serif;
-  --font-family-serif: "Cormorant Garamond", Georgia, serif;
-  --font-family-mono: "Geist Mono", monospace;
-  
-  /* Z-Index Hierarchy */
+  --space-xs: calc(var(--space-unit) * 1);
+  --space-sm: calc(var(--space-unit) * 2);
+  --space-md: calc(var(--space-unit) * 4);
+  --space-lg: calc(var(--space-unit) * 6);
+  --space-xl: calc(var(--space-unit) * 10);
+
+  /* Content measure: keeps line lengths readable */
+  --measure-narrow: 34ch;
+  --measure-wide: 62ch;
+
+  /* ── Typography ────────────────────────────────────── */
+  /* Loaded in layout.tsx via next/font: */
+  /*   --font-display   → Space Grotesk  */
+  /*   --font-editorial → Fraunces       */
+  /*   --font-mono      → Geist Mono     */
+  --font-family-display: var(--font-display), "Space Grotesk", system-ui, sans-serif;
+  --font-family-body: var(--font-display), "Space Grotesk", system-ui, sans-serif;
+  --font-family-serif: var(--font-editorial), "Fraunces", Georgia, serif;
+  --font-family-mono: var(--font-mono), "Geist Mono", ui-monospace, monospace;
+
+  /* Fluid editorial scale */
+  --text-display: clamp(2.6rem, 8vw, 6.2rem);
+  --text-headline: clamp(1.6rem, 4.5vw, 2.8rem);
+  --text-narrative: clamp(1.35rem, 4vw, 2.3rem);
+  --text-body: clamp(1rem, 1.4vw, 1.2rem);
+  --text-label: 0.72rem;
+
+  /* ── Z-Index hierarchy ─────────────────────────────── */
   --z-canvas: 1;
   --z-dom-scroll: 2;
   --z-overlay-ui: 10;
   --z-cmd-menu: 100;
   --z-preloader: 1000;
-  
-  /* Transitions */
+
+  /* ── Motion ────────────────────────────────────────── */
   --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-default: 0.6s;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

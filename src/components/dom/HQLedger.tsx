@@ -34,7 +34,7 @@ const JOURNAL_ENTRIES: LogEntry[] = [
     date: "Apr 02, 2026",
     title: "Optimizing PostgreSQL Spatial Geography Queries",
     category: "JOURNAL",
-    body: "Added composite indices on PostGIS geography columns in JobNest. Used GIST indexing to optimize radius lookup queries (ST_DWithin), reducing coordinate search response latencies for 10,000+ points to under 12ms."
+    body: "Added composite indices on PostGIS geography columns in JobNest. Used GIST indexing to optimize radius lookup queries (ST_DWithin) so coordinate searches stayed fast on large local datasets."
   }
 ];
 

@@ -164,10 +164,10 @@ export default function ArchitecturalPortal() {
 
       {/* Subtle interactive contact nodes */}
       <group position={[0, 0.9, 0.5]}>
-        <InteractivePortalLink label="[ EMAIL ]" url="mailto:madhuvalurouthu@gmail.com" position={[-1.6, 0, 0]} opacity={linksOpacity} />
+        <InteractivePortalLink label="[ EMAIL ]" url="mailto:madhu.valurouthu@gmail.com" position={[-1.6, 0, 0]} opacity={linksOpacity} />
         <InteractivePortalLink label="[ GITHUB ]" url="https://github.com/Madhu-0205" position={[-0.5, 0, 0]} opacity={linksOpacity} />
         <InteractivePortalLink label="[ LINKEDIN ]" url="https://linkedin.com/in/madhu-valurouthu" position={[0.6, 0, 0]} opacity={linksOpacity} />
-        <InteractivePortalLink label="[ RESUME ]" url="https://github.com/Madhu-0205/portfolio/raw/main/resume.pdf" position={[1.7, 0, 0]} opacity={linksOpacity} />
+        <InteractivePortalLink label="[ GITHUB ]" url="https://github.com/Madhu-0205" position={[1.7, 0, 0]} opacity={linksOpacity} />
       </group>
     </group>
   );

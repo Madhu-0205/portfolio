@@ -1,72 +1,98 @@
 # MADHU//OS
-### Cinematic Web Observatory & Interactive Stage
+### The Engineering Logbook of Madhu Valurouthu
 
 [![MIT License](https://img.shields.io/badge/License-MIT-00ffff.svg)](LICENSE)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.2.10-black.svg)](https://nextjs.org)
 [![React 19](https://img.shields.io/badge/React-19.2.4-blue.svg)](https://react.dev)
 [![Three.js](https://img.shields.io/badge/Three.js-r185-lightgrey.svg)](https://threejs.org)
 
-MADHU//OS is a handcrafted, immersive 3D web experience that functions as an interactive observatory of a founder's journey. Abandoning traditional 2D cards, grids, and resume layouts, it translates software projects and telemetry into dynamic, reactive architectural monuments floating in a reflective spatial gallery.
+MADHU//OS is a handcrafted, immersive 3D web experience — a cinematic engineering
+logbook. Instead of static cards and resume layouts, projects are presented as
+reactive monuments floating in a reflective spatial gallery, narrated by a
+scroll-driven story.
+
+The first viewport is a **server-rendered hero** (name, positioning, and calls to
+action) so the site communicates instantly — with or before JavaScript. Scrolling
+hands off to the interactive 3D narrative: a scroll-progress value from `0 → 1`
+drives camera choreography, lighting, monuments, and typography in sync.
+
+> **Design system:** warm near-black canvas (`#050507`), off-white typography,
+> a single cyan signal accent, and three typefaces — Space Grotesk (display),
+> Fraunces (editorial serif), Geist Mono (telemetry/labels).
 
 ---
 
 ## 🌌 Storytelling Philosophy
-Built on the premise of **"discover, do not navigate,"** visitors do not click generic buttons. Instead, approaching an engineering monument causes it to awaken—triggering localized spot lighting, opening frosted glass materials, spinning metallic cores, and streaming commit particles from repository satellites. 
 
-As the journey completes, the camera rises above the columns into a wide sky, revealing the **Crystalline Archive** (defining life chapters: Education, Core Skills, Hackathons, Leadership) and the **Architectural Portal** (contact coordinates and canonical resume).
+Built on the premise of **"discover, do not navigate."** Approaching an
+engineering monument causes it to awaken — localized spot lighting, frosted glass
+materials, spinning metallic cores, and commit particles streaming from repository
+satellites. As the journey completes, the camera rises above the columns to reveal
+the **Crystalline Archive** (principles and chapters) and the **Architectural
+Portal** (contact coordinates).
+
+Key structural pieces:
+
+*   **StaticHero (`src/app/page.tsx`)** — server-rendered first viewport; sticky
+    within the boot chapter so the scroll→progress mapping is unchanged.
+*   **NarrativeOverlay** — scroll-progress-keyed typographic acts over the canvas.
+*   **Camera choreography (`src/components/canvas/Camera.tsx`)** — 6-keyframe
+    trajectory blended against scroll progress with mouse parallax.
+*   **Repository satellites** — live GitHub data wakes them: size → scale,
+    language → color, commits/energy → particle urgency.
 
 ---
 
 ## 🛠️ Technology Stack
-*   **Core Framework:** Next.js 16.2 (App Router) & React 19.2
-*   **3D Rendering:** Three.js (r185), React Three Fiber (R3F), and `@react-three/drei`
-*   **Motion & Easing:** GSAP (GreenSock) & Lenis smooth scroll
-*   **State Management:** Zustand
-*   **Audio Synthesis:** Web Audio API (real-time lowpass LFOs and ambient sine oscillators)
-*   **Styling:** Vanilla CSS (custom variables and layout grids)
+
+*   **Core Framework:** Next.js 16.2 (App Router, Turbopack) & React 19.2
+*   **3D Rendering:** Three.js (r185), React Three Fiber, `@react-three/drei`
+*   **Post-processing:** `@react-three/postprocessing` (Bloom, Vignette, film grain)
+*   **Motion & Easing:** GSAP & Lenis smooth scroll
+*   **State Management:** Zustand (single `scrollProgress` store drives everything)
+*   **Audio Synthesis:** Web Audio API (ambient drones, opt-in)
+*   **Fonts:** `next/font` self-hosting — Space Grotesk, Fraunces, Geist Mono
+*   **Styling:** Vanilla CSS design tokens (`src/styles/variables.css`)
 
 ---
 
 ## 🏛️ Featured Monuments & Projects
 
-### 1. Monument 01: CampusConnect (`THE GRID`)
-*   **Concept:** Represents opportunity.
-*   **Visuals:** An organic network of student and opportunity node splines floating inside a high-transmission frosted glass prism.
-*   **Narrative:** *"Talent is distributed evenly, but access to opportunity is not."*
+| Monument | Project | Concept |
+| --- | --- | --- |
+| `THE GRID` | **CampusConnect** | Collegiate opportunity graph unifying hackathons, gigs, and peers |
+| `THE REACTOR` | **Railway Traffic Optimizer** | Smart India Hackathon 2025 Grand Finale Runner-Up — A* deadlock decision support |
+| `THE SCAFFOLD` | **JobNest** | Hyperlocal gig matching with PostGIS proximity queries (foundation of CampusConnect) |
+| `THE SHRINE` | **MADHU//OS** | This site — the portfolio as a product case study |
 
-### 2. Monument 02: Railway Traffic Optimizer (`THE REACTOR`)
-*   **Concept:** Smart India Hackathon 2025 Grand Finale Runner-Up.
-*   **Visuals:** Spinning titanium rings representing autonomous spatial deadlock resolution, intersecting spline tracks, and synchronized flashing green/cyan signals.
-*   **Narrative:** *"Real-world constraints are not barriers; they are the parameters that define the solution."*
-
-### 3. Monument 03: JobNest (`THE SCAFFOLD`)
-*   **Concept:** Proximity-based local job/gig matching platform.
-*   **Visuals:** An unfinished concrete and wireframe scaffolding cage surrounded by flying construction drones and assembling modules.
-*   **Narrative:** *"Software is never finished; it is a living organism in continuous assembly."*
-
-### 4. Monument 04: MADHU//OS (`THE SHRINE`)
-*   **Concept:** Handcrafted cinematic operating system environment.
-*   **Visuals:** Symmetrical basalt columns, light pillars, and a floating mirror-like titanium core reflecting environment light.
-*   **Narrative:** *"Beautiful code is not a vanity metric; it creates a direct emotional bond with the user."*
+Every case study is reachable via the **command menu (⌘K / Ctrl+K)** and each
+monument's HUD. Metrics shown in the 3D scene come from the live GitHub API when
+a token is configured; **no stats are invented** — unknown values render as
+neutral placeholders.
 
 ---
 
 ## 📂 Directory Structure
+
 ```
 portfolio/
-├── public/                 # Static assets, sitemaps, and manifest.json
+├── public/                 # Static assets, manifest.json, robots.txt
 └── src/
-    ├── app/                # Next.js page layouts, styles, and API routes
-    │   ├── api/github      # GraphQL Edge cache endpoint
-    │   ├── globals.css     # Global reset and typography styles
-    │   ├── layout.tsx      # Head metadata, OG cards, and JSON-LD profile script
-    │   └── not-found.tsx   # Handcrafted Client 404 Telemetry console
+    ├── app/
+    │   ├── api/github/     # GraphQL endpoint w/ 1h cache + neutral fallback
+    │   ├── globals.css     # Reset, utilities, motion-reduction, focus styles
+    │   ├── layout.tsx      # Metadata, fonts (next/font), JSON-LD profile
+    │   ├── opengraph-image.tsx  # Dynamically generated 1200×630 social card
+    │   ├── page.tsx        # StaticHero + HUD + scroll chapters
+    │   └── not-found.tsx   # Handcrafted 404 telemetry console
     ├── components/
-    │   ├── canvas/         # WebGL components (Scene, Atmosphere, Materials)
-    │   │   └── Stage/      # 3D Monuments and Satellite Systems
-    │   └── dom/            # Narrative overlays, Navigation HUD, and AccessibilityHelper
-    ├── hooks/              # Audio synthesis controllers and scroll progress hooks
-    └── state/              # Zustand global store variables
+    │   ├── canvas/         # WebGL: Scene, Camera choreography, Atmosphere
+    │   │   └── Stage/      # 3D monuments + repository satellites
+    │   └── dom/            # Narrative overlay, Navigation, CmdMenu (⌘K),
+    │                       # CaseStudyDrawer, HQLedger, AccessibilityHelper
+    ├── hooks/              # useGitHubData (deduped fetch), useAmbientAudio
+    ├── state/              # Zustand store (scrollProgress is the single source of truth)
+    └── styles/             # variables.css — design tokens
 ```
 
 ---
@@ -74,51 +100,86 @@ portfolio/
 ## 🚀 Installation & Running
 
 ### Prerequisites
-*   Node.js (v18.x or higher)
-*   npm or pnpm
+*   Node.js **18.18+** (Next.js 16 requirement; tested on Node 22)
+*   npm
 
-### Local Development Setup
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/Madhu-0205/portfolio.git
-    cd portfolio
-    ```
+### Local Development
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+```bash
+# 1. Clone
+git clone https://github.com/Madhu-0205/portfolio.git
+cd portfolio
 
-3.  **Run dev server:**
-    ```bash
-    npm run dev
-    ```
-    Open [http://localhost:3000](http://localhost:3000) to view in the browser.
+# 2. Install
+npm install
+
+# 3. Develop (http://localhost:3000)
+npm run dev
+
+# 4. Production
+npm run build
+npm start
+```
+
+### Scripts
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Development server (Turbopack) |
+| `npm run build` | Production build (also runs TypeScript checks) |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint (Next.js core-web-vitals + TypeScript rules) |
 
 ### Environment Configuration
-To enable live GitHub telemetry streaming on the satellites, create a `.env.local` file at the root:
+
+Optional — enables live GitHub telemetry on the repository satellites.
+Create `.env.local` at the root:
+
 ```env
+# GitHub Personal Access Token (classic, no scopes needed for public repos)
 GITHUB_TOKEN=your_personal_access_token
 GITHUB_USERNAME=Madhu-0205
 ```
-*If no token is provided, the system gracefully falls back to structured local JSON data, preventing runtime breaks.*
+
+**Without a token the site still works**: `/api/github` returns neutral profile
+data (no fabricated stars/forks/commits) and satellites render placeholder HUDs
+until real data is available. `UNKNOWN ≠ ZERO` is a deliberate product rule —
+missing data is never displayed as `0`.
+
+> ⚠️ Keep `GITHUB_TOKEN` server-side only. It is read exclusively in
+> `src/app/api/github/route.ts` and never shipped to the browser.
 
 ---
 
-## ⚡ Optimizations & Accessibility
-*   **Performance:** Frame loop pacing uses Three.js delta calculations, maintaining consistent animation speeds across standard $60\text{Hz}$ and high-refresh $120\text{Hz}$ displays.
-*   **Accessibility:** Integrates a visually hidden keyboard navigation menu linked to landmarks. Focusing on a link activates a visual **Telemetry HUD** showing stats and snaps the camera to the focused monument.
-*   **Reduced Motion:** Detects `prefers-reduced-motion` at initialization and dampens WebGL rotations, orbit speeds, and oscillator frequencies to $5\%$ of normal values.
+## ⚡ Performance & Accessibility
+
+*   **First view:** server-rendered hero — identity is visible with zero JS and
+    zero scrolling; the canvas initializes asynchronously after it.
+*   **No runtime CDN dependencies:** fonts are self-hosted via `next/font`; the
+    environment lighting uses `<Lightformer>` elements instead of a remote HDR.
+*   **Deduped network:** GitHub data is fetched once per session (lazy, after
+    first scroll) and shared by every consumer via the Zustand store.
+*   **Frame pacing:** animation speeds derive from Three.js delta time, so motion
+    is consistent at 60 Hz and 120 Hz.
+*   **Keyboard access:** a visually-hidden navigation menu lists every chapter;
+    focusing an item snaps the camera and opens a telemetry HUD.
+*   **Focus visibility:** global `:focus-visible` outlines; selection colors.
+*   **Reduced motion:** CSS `prefers-reduced-motion` kills animations globally;
+    in-canvas, `matchMedia` checks dampen rotation and particle speeds to ~5%.
+*   **Command menu:** ⌘K / Ctrl+K opens a searchable palette (navigation, case
+    studies, logbook, audio) with full arrow-key + Escape handling.
 
 ---
 
 ## 📝 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👤 Author Information
-*   **Author:** Madhu Valurouthu
+## 👤 Author
+
+*   **Madhu Valurouthu** — Creative Developer · AI Product Builder · Data Science Student
 *   **GitHub:** [@Madhu-0205](https://github.com/Madhu-0205)
 *   **LinkedIn:** [Madhu Valurouthu](https://linkedin.com/in/madhu-valurouthu)
 *   **Email:** [madhu.valurouthu@gmail.com](mailto:madhu.valurouthu@gmail.com)

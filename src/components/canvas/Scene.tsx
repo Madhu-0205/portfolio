@@ -2,7 +2,7 @@
 
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, Preload } from "@react-three/drei";
+import { Environment, Lightformer, Preload } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette, Noise } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import CameraChoreography from "./Camera";
@@ -27,9 +27,15 @@ export default function Scene() {
         {/* Dynamic Light and Fog Controller */}
         <Atmosphere />
         
-        {/* Apple-style soft HDR reflections */}
+        {/* Self-hosted studio lighting — no runtime CDN dependency (Environment preset
+            fetched an HDR from raw.githubusercontent.com; a CDN outage meant a black canvas). */}
         <Suspense fallback={null}>
-          <Environment preset="night" />
+          <Environment resolution={256}>
+            <Lightformer intensity={1.2} position={[0, 6, 8]} scale={[12, 6, 1]} color="#f5f4f0" />
+            <Lightformer intensity={0.55} position={[-8, 2, -4]} scale={[6, 8, 1]} color="#8fd8e8" />
+            <Lightformer intensity={0.35} position={[8, 2, -4]} scale={[6, 8, 1]} color="#ffd9c4" />
+            <Lightformer intensity={0.4} form="ring" position={[0, 10, 0]} scale={10} color="#ffffff" />
+          </Environment>
         </Suspense>
 
         {/* Dynamic Scene Content */}

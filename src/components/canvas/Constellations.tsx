@@ -42,14 +42,17 @@ function SingleConstellation({
   
   const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
 
-  if (scrollProgress < 0.09) return null;
-
   // Convert points relative to center
   const stars = useMemo(() => {
     return pointsData.map((pt) => new THREE.Vector3(centerX + pt[0], centerY + pt[1], centerZ + pt[2]));
   }, [pointsData, centerX, centerY, centerZ]);
 
+  // Visibility gate (hooks stay unconditional; early return happens after useFrame)
+  const isVisible = scrollProgress >= 0.09;
+
   useFrame((state) => {
+    if (!isVisible) return;
+
     const time = state.clock.getElapsedTime();
 
     // 1. Slow rotation float
@@ -84,10 +87,11 @@ function SingleConstellation({
         }
       });
     }
-  });
-
-  return (
-    <group ref={groupRef}>
+  });  return (
+    <group
+      ref={groupRef}
+      visible={isVisible}
+    >
       {/* 1. Glowing constellation stars */}
       {stars.map((pos, i) => (
         <mesh key={i} position={pos}>

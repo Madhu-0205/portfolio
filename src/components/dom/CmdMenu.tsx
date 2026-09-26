@@ -23,9 +23,9 @@ export default function CmdMenu() {
     {
       id: "stage-0",
       title: "Navigate to Home",
-      subtitle: "Jump to the starting cinematic boot sequence",
+      subtitle: "Return to the top of the gallery",
       icon: <Move size={16} />,
-      action: () => scrollToSection("chapter-boot"),
+      action: () => window.scrollTo({ top: 0, behavior: "smooth" }),
     },
     {
       id: "stage-1",

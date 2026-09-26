@@ -2,7 +2,7 @@
 
 /* eslint-disable react-hooks/refs */
 
-import React, { useRef, useState, useMemo } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Line, Text, Billboard } from "@react-three/drei";
 import * as THREE from "three";
@@ -50,6 +50,12 @@ export default function RepositorySatellite({
   const [hovered, setHovered] = useState(false);
   const awakenRef = useRef(0);
 
+  // Capture "now" once on mount without cascading re-renders (Date.now is impure during render)
+  const nowMsRef = useRef<number | null>(null);
+  useEffect(() => {
+    nowMsRef.current = Date.now();
+  }, []);
+
   // Determine if live data is still loading
   const isLoading = data === null;
 
@@ -66,19 +72,18 @@ export default function RepositorySatellite({
 
   // Derive "Energy Level" from updatedAt
   const energyLevel = useMemo(() => {
-    const dateStr = stats.updatedAt || defaultStats.updatedAt || new Date().toISOString();
+    if (!nowMsRef.current) return null;
+    const dateStr = stats.updatedAt || defaultStats.updatedAt;
+    if (!dateStr) return null;
     try {
       const lastUpdate = new Date(dateStr).getTime();
-      // Target current time provided in metadata
-      const now = new Date("2026-07-13T10:24:57+05:30").getTime();
-      const diffMs = now - lastUpdate;
+      const diffMs = nowMsRef.current - lastUpdate;
       const diffDays = diffMs / (1000 * 60 * 60 * 24);
 
       // Decays from 100% (today) to 10% (1 year ago)
-      const energy = Math.max(10, Math.min(100, Math.round(100 - (diffDays / 365) * 90)));
-      return energy;
+      return Math.max(10, Math.min(100, Math.round(100 - (diffDays / 365) * 90)));
     } catch {
-      return 50;
+      return null;
     }
   }, [stats.updatedAt, defaultStats.updatedAt]);
 
@@ -89,8 +94,9 @@ export default function RepositorySatellite({
     return Math.min(0.38, Math.max(0.14, (stats.size / 50000) * 0.22 + 0.12));
   }, [stats.size]);
 
-  // Stars -> emissive brightness
+  // Stars -> emissive brightness (0 when unknown so no false glow)
   const glowIntensity = useMemo(() => {
+    if (!stats.stars) return 0.4;
     return Math.min(8.0, (stats.stars / 100) * 4.0 + 1.2);
   }, [stats.stars]);
 
@@ -106,11 +112,11 @@ export default function RepositorySatellite({
   }, [stats.language]);
 
   // Commit frequency & Energy level -> particle speed and urgency
+  const commitWeight = Math.min(2.0, (stats.commits / 150) * 0.5);
   const speedFactor = useMemo(() => {
-    const commitWeight = Math.min(2.0, (stats.commits / 150) * 0.5);
-    const energyWeight = energyLevel / 100;
+    const energyWeight = (energyLevel ?? 50) / 100;
     return Math.min(4.5, Math.max(0.2, (commitWeight + energyWeight) * 1.5));
-  }, [stats.commits, energyLevel]);
+  }, [commitWeight, energyLevel]);
 
   // Initialize commit particles
   const particleCount = 5;
@@ -138,9 +144,10 @@ export default function RepositorySatellite({
     awakenRef.current = THREE.MathUtils.lerp(awakenRef.current, targetAwaken, delta * (prefersReducedMotion ? 12 : 4));
     const awaken = awakenRef.current;
 
-    // Pulse properties based on energy level
-    const pulseFreq = 0.5 + (energyLevel / 100) * 2.5;
-    const pulseAmp = 0.015 + (energyLevel / 100) * 0.045;
+    // Pulse properties based on energy level (neutral when energy unknown)
+    const energy = energyLevel ?? 50;
+    const pulseFreq = 0.5 + (energy / 100) * 2.5;
+    const pulseAmp = 0.015 + (energy / 100) * 0.045;
     const pulse = 1.0 + Math.sin(animTime * pulseFreq) * pulseAmp * (0.5 + awaken * 0.5);
 
     // 2. Float and rotate primary orb
@@ -377,38 +384,44 @@ export default function RepositorySatellite({
                 anchorX="left"
                 anchorY="top"
               >
-                {`SPECTRAL_CLASS  : [ ${stats.language.toUpperCase()} ]`}
+                {stats.language ? `SPECTRAL_CLASS  : [ ${stats.language.toUpperCase()} ]` : "SPECTRAL_CLASS  : [ — ]"}
               </Text>
 
-              <Text
-                position={[0.05, 0.11, 0]}
-                fontSize={0.046}
-                color="#86868b"
-                anchorX="left"
-                anchorY="top"
-              >
-                {`GRAVITY_MASS   : [ ${stats.size} KB ]`}
-              </Text>
+              {stats.size > 0 && (
+                <Text
+                  position={[0.05, 0.11, 0]}
+                  fontSize={0.046}
+                  color="#86868b"
+                  anchorX="left"
+                  anchorY="top"
+                >
+                  {`GRAVITY_MASS   : [ ${(stats.size / 1024).toFixed(1)} MB ]`}
+                </Text>
+              )}
 
-              <Text
-                position={[0.05, 0.0, 0]}
-                fontSize={0.046}
-                color="#86868b"
-                anchorX="left"
-                anchorY="top"
-              >
-                {`MOMENTUM_COMM  : [ ${stats.commits} PTS ]`}
-              </Text>
+              {stats.commits > 0 && (
+                <Text
+                  position={[0.05, 0.0, 0]}
+                  fontSize={0.046}
+                  color="#86868b"
+                  anchorX="left"
+                  anchorY="top"
+                >
+                  {`MOMENTUM_COMM  : [ ${stats.commits} COMMITS ]`}
+                </Text>
+              )}
 
-              <Text
-                position={[0.05, -0.11, 0]}
-                fontSize={0.046}
-                color="#86868b"
-                anchorX="left"
-                anchorY="top"
-              >
-                {`LUMINESCENCE   : [ ${stats.stars} LM ]`}
-              </Text>
+              {stats.stars > 0 && (
+                <Text
+                  position={[0.05, -0.11, 0]}
+                  fontSize={0.046}
+                  color="#86868b"
+                  anchorX="left"
+                  anchorY="top"
+                >
+                  {`LUMINESCENCE   : [ ${stats.stars} STARS ]`}
+                </Text>
+              )}
 
               <Text
                 position={[0.05, -0.22, 0]}
@@ -417,20 +430,22 @@ export default function RepositorySatellite({
                 anchorX="left"
                 anchorY="top"
               >
-                {`ENERGY_FLUX    : [ ${energyLevel}% ]`}
+                {energyLevel !== null ? `ENERGY_FLUX    : [ ${energyLevel}% ]` : "ENERGY_FLUX    : [ — ]"}
               </Text>
-              
+
               {/* Topics */}
-              <Text
-                position={[0.05, -0.33, 0]}
-                fontSize={0.038}
-                color="#86868b"
-                anchorX="left"
-                anchorY="top"
-                maxWidth={1.72}
-              >
-                {`TOPICS         : [ ${stats.topics ? stats.topics.join(", ") : ""} ]`}
-              </Text>
+              {stats.topics && stats.topics.length > 0 && (
+                <Text
+                  position={[0.05, -0.33, 0]}
+                  fontSize={0.038}
+                  color="#86868b"
+                  anchorX="left"
+                  anchorY="top"
+                  maxWidth={1.72}
+                >
+                  {`TOPICS         : [ ${stats.topics.join(", ")} ]`}
+                </Text>
+              )}
 
               {/* Links */}
               <Text
@@ -441,7 +456,7 @@ export default function RepositorySatellite({
                 anchorY="top"
                 maxWidth={1.72}
               >
-                {`LINK           : ${stats.homepageUrl && stats.homepageUrl !== "coming-soon" && stats.homepageUrl !== "research-prototype" ? stats.homepageUrl : (stats.url || "github.com/Madhu-0205")}`}
+                {`LINK           : ${stats.homepageUrl || stats.url || "github.com/Madhu-0205"}`}
               </Text>
             </group>
           </Billboard>

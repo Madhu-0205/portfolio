@@ -180,3 +180,34 @@ p.body-text {
     opacity: 1;
   }
 }
+
+/* ── Focus visibility (keyboard users) ─────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+/* Corner telemetry labels: hide where they would collide with the nav pill or crowd small screens.
+   !important is required because the labels carry an inline display:flex. */
+@media (max-width: 1200px) {
+  .telemetry-corner {
+    display: none !important;
+  }
+}
+
+/* Navigation: on small screens hide the chapter links (command menu still provides navigation);
+   keep brand + actions reachable without overflow. */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none !important;
+  }
+  .nav-divider {
+    display: none !important;
+  }
+}

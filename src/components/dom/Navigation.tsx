@@ -11,7 +11,6 @@ export default function Navigation() {
   const setCommandMenuOpen = usePortfolioStore((state) => state.setCommandMenuOpen);
   const hqLedgerOpen = usePortfolioStore((state) => state.hqLedgerOpen);
   const setHqLedgerOpen = usePortfolioStore((state) => state.setHqLedgerOpen);
-  const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
 
   const sections = ["JobNest", "CampusConnect", "Railway AI", "MADHU//OS"];
 
@@ -23,8 +22,6 @@ export default function Navigation() {
     }
   };
 
-  const visible = scrollProgress >= 0.09;
-
   return (
     <nav className="glass-card interactive" style={{
       position: "fixed",
@@ -33,12 +30,12 @@ export default function Navigation() {
       transform: "translateX(-50%)",
       display: "flex",
       alignItems: "center",
-      gap: "24px",
-      padding: "10px 24px",
+      gap: "18px",
+      padding: "10px 20px",
       zIndex: "var(--z-overlay-ui)",
-      opacity: visible ? 1 : 0,
-      pointerEvents: visible ? "auto" : "none",
-      transition: "opacity 1.2s ease-in-out, transform 0.3s ease",
+      opacity: 1,
+      transition: "transform 0.3s ease",
+      maxWidth: "calc(100vw - 32px)",
     }}>
       {/* Brand logo/dot */}
       <div style={{
@@ -60,16 +57,16 @@ export default function Navigation() {
         }}>MADHU//OS</span>
       </div>
 
-      <div style={{
+      <div className="nav-divider" style={{
         width: "1px",
         height: "16px",
         backgroundColor: "var(--glass-border)",
       }} />
 
       {/* Nav Links */}
-      <div style={{
+      <div className="nav-links" style={{
         display: "flex",
-        gap: "16px",
+        gap: "14px",
       }}>
         {sections.map((label, index) => {
           const isActive = activeStage === index;
@@ -90,6 +87,7 @@ export default function Navigation() {
                 display: "flex",
                 alignItems: "center",
                 gap: "4px",
+                whiteSpace: "nowrap",
               }}
             >
               <span style={{ fontSize: "0.55rem", opacity: 0.4 }}>0{index + 1}</span>
@@ -99,7 +97,7 @@ export default function Navigation() {
         })}
       </div>
 
-      <div style={{
+      <div className="nav-divider" style={{
         width: "1px",
         height: "16px",
         backgroundColor: "var(--glass-border)",
@@ -111,10 +109,11 @@ export default function Navigation() {
         alignItems: "center",
         gap: "12px",
       }}>
-        {/* Resume shortcut download */}
+        {/* GitHub profile shortcut (resume.pdf placeholder removed until asset exists) */}
         <a
-          href="https://github.com/Madhu-0205/portfolio/raw/main/resume.pdf"
+          href="https://github.com/Madhu-0205"
           target="_blank"
+          rel="noopener noreferrer"
           style={{
             color: "var(--text-secondary)",
             cursor: "pointer",
@@ -130,11 +129,11 @@ export default function Navigation() {
             backgroundColor: "rgba(255, 255, 255, 0.02)",
             transition: "all 0.2s ease",
           }}
-          title="Download Founder Resume"
+          title="Open GitHub Profile"
           className="interactive"
         >
           <FileText size={12} />
-          <span>RESUME</span>
+          <span>GITHUB</span>
         </a>
 
         {/* HQ Ledger Console shortcut */}

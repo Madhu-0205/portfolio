@@ -256,17 +256,17 @@ export default function Contact3D() {
 
       {/* MADHU//OS Repository satellite system */}
       <RepositorySatellite
-        repoName="madhu-os"
+        repoName="portfolio"
         defaultStats={{
-          stars: 256,
-          forks: 32,
-          size: 11800,
+          stars: 0,
+          forks: 0,
+          size: 0,
           language: "TypeScript",
-          commits: 165,
-          description: "PROBLEM SOLVED: Generic portfolios failing to convey engineering depth and visual craft. | STATUS: Deployed production. | TECH: Next.js, React Three Fiber, Three.js, GSAP, Zustand.",
+          commits: 0,
+          description: "This site: an immersive WebGL engineering logbook built with Next.js, React Three Fiber, GSAP, and Zustand.",
           topics: ["threejs", "react-three-fiber", "gsap", "webgl"],
           url: "https://github.com/Madhu-0205/portfolio",
-          homepageUrl: "https://github.com/Madhu-0205/portfolio"
+          homepageUrl: undefined
         }}
         position={[-1.6, 0.8, -1.0]}
         targetCenter={[0, 0.6, 0]}

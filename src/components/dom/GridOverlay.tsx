@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { usePortfolioStore } from "@/state/usePortfolioStore";
 
 export default function GridOverlay() {
   const [coords, setCoords] = useState({ x: 0.0, y: 0.0 });
-  const scrollProgress = usePortfolioStore((state) => state.scrollProgress);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -19,8 +17,6 @@ export default function GridOverlay() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const visible = scrollProgress >= 0.09;
-
   return (
     <div style={{
       position: "fixed",
@@ -30,8 +26,6 @@ export default function GridOverlay() {
       height: "100%",
       pointerEvents: "none", // Let interaction pass through
       zIndex: "var(--z-overlay-ui)",
-      opacity: visible ? 1 : 0,
-      transition: "opacity 1.2s ease-in-out",
     }}>
       {/* Background Dot-Matrix Overlay */}
       <div className="dot-grid" style={{
@@ -64,8 +58,8 @@ export default function GridOverlay() {
       }} />
 
       {/* Dynamic Telemetry Accents */}
-      {/* Top Left: System Status */}
-      <div style={{
+      {/* Top Left: System Status — hidden on narrow screens where the nav pill occupies the top edge */}
+      <div className="telemetry-corner" style={{
         position: "absolute",
         top: "48px",
         left: "48px",
@@ -88,7 +82,7 @@ export default function GridOverlay() {
       </div>
 
       {/* Top Right: Render pipeline */}
-      <div style={{
+      <div className="telemetry-corner" style={{
         position: "absolute",
         top: "48px",
         right: "48px",
@@ -101,7 +95,7 @@ export default function GridOverlay() {
       </div>
 
       {/* Bottom Left: Mouse coordinates */}
-      <div style={{
+      <div className="telemetry-corner" style={{
         position: "absolute",
         bottom: "48px",
         left: "48px",
@@ -114,7 +108,7 @@ export default function GridOverlay() {
       </div>
 
       {/* Bottom Right: Frame metrics */}
-      <div style={{
+      <div className="telemetry-corner" style={{
         position: "absolute",
         bottom: "48px",
         right: "48px",

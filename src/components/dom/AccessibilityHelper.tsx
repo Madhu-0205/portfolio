@@ -3,13 +3,49 @@
 import React, { useMemo, useState, useCallback } from "react";
 import { useGitHubData } from "@/hooks/useGitHubData";
 
+interface RepoStats {
+  stars: number;
+  forks: number;
+  size: number;
+  language: string;
+  commits: number;
+  updatedAt: string;
+}
+
+// Neutral placeholder while live GitHub data loads (no invented metrics)
+const NEUTRAL_STATS: RepoStats = {
+  stars: 0,
+  forks: 0,
+  size: 0,
+  language: "—",
+  commits: 0,
+  updatedAt: "",
+};
+
+// Derive energy level from a repo's last update (null when unknown).
+// Module-scope so it is only ever invoked from event handlers, never render.
+const getEnergy = (updatedAt: string): number | null => {
+  if (!updatedAt) return null;
+  try {
+    const lastUpdate = new Date(updatedAt).getTime();
+    const diffMs = Date.now() - lastUpdate;
+    const diffDays = diffMs / (1000 * 60 * 60 * 24);
+    return Math.max(10, Math.min(100, Math.round(100 - (diffDays / 365) * 90)));
+  } catch {
+    return null;
+  }
+};
+
 export default function AccessibilityHelper() {
   const githubData = useGitHubData();
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+  const [focusedEnergy, setFocusedEnergy] = useState<number | null>(null);
 
-  const handleFocus = (index: number, scrollPercent: number) => {
+  const handleFocus = (index: number, scrollPercent: number, updatedAt: string) => {
     setFocusedIndex(index);
-    
+    // Compute activity energy at focus time (event handlers may call Date.now)
+    setFocusedEnergy(getEnergy(updatedAt));
+
     // Check if user prefers reduced motion
     const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const totalScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -21,29 +57,20 @@ export default function AccessibilityHelper() {
     });
   };
 
-interface RepoStats {
-  stars: number;
-  forks: number;
-  size: number;
-  language: string;
-  commits: number;
-  updatedAt: string;
-}
-
-  // Helper to extract repo data or use fallbacks
-  const getRepoStats = useCallback((repoName: string, defaultStats: RepoStats): RepoStats => {
-    if (!githubData) return defaultStats;
+  // Helper to extract repo data or use neutral placeholders
+  const getRepoStats = useCallback((repoName: string): RepoStats => {
+    if (!githubData) return NEUTRAL_STATS;
     const repo = (githubData as Record<string, unknown>[]).find(
       (r) => typeof r.name === "string" && r.name.toLowerCase() === repoName.toLowerCase()
     );
-    return repo ? (repo as unknown as RepoStats) : defaultStats;
+    return repo ? (repo as unknown as RepoStats) : NEUTRAL_STATS;
   }, [githubData]);
 
   const repos = useMemo(() => {
-    const campusConnect = getRepoStats("campusconnect", { stars: 38, forks: 7, size: 14200, language: "TypeScript", commits: 142, updatedAt: "2026-07-11T12:00:00Z" });
-    const railwayAi = getRepoStats("railway-ai", { stars: 84, forks: 12, size: 28900, language: "Python", commits: 268, updatedAt: "2026-07-12T08:30:00Z" });
-    const jobNest = getRepoStats("jobnest", { stars: 42, forks: 8, size: 18400, language: "Python", commits: 112, updatedAt: "2026-07-12T16:45:00Z" });
-    const madhuOs = getRepoStats("madhu-os", { stars: 256, forks: 32, size: 11800, language: "TypeScript", commits: 165, updatedAt: "2026-07-12T19:20:00Z" });
+    const jobNest = getRepoStats("jobnest");
+    const campusConnect = getRepoStats("campusconnect");
+    const railwayAi = getRepoStats("railway-ai");
+    const portfolio = getRepoStats("portfolio");
 
     return [
       {
@@ -71,31 +98,18 @@ interface RepoStats {
         id: "madhu-os",
         title: "Chapter 6: How I Build",
         description: "Case Study: MADHU//OS. WHY: Traditional portfolios fail to tell the builder's story. PROBLEM: Resume cards hide engineering passion. SOLUTION: Immersive 3D gallery. ARCHITECTURE: WebGL canvas, smooth GSAP camera paths, and ambient Web Audio synths. TECHNOLOGY: Next.js, React Three Fiber, Three.js, GSAP, Zustand.",
-        stats: madhuOs,
+        stats: portfolio,
         scroll: 0.80
       },
       {
         id: "manifesto",
         title: "Chapters 7 & 8: The Future & Collaboration",
         description: "The horizon where floating crystal milestones and contact coordinates unfold.",
-        stats: { language: "Ecosystems", size: 0, commits: 0, stars: 999, forks: 0, updatedAt: new Date().toISOString() },
+        stats: { language: "Ecosystems", size: 0, commits: 0, stars: 0, forks: 0, updatedAt: "" },
         scroll: 1.00
       }
     ];
   }, [getRepoStats]);
-
-  // Derive energy level helper
-  const getEnergy = (updatedAt: string) => {
-    try {
-      const lastUpdate = new Date(updatedAt).getTime();
-      const now = new Date("2026-07-13T10:24:57+05:30").getTime();
-      const diffMs = now - lastUpdate;
-      const diffDays = diffMs / (1000 * 60 * 60 * 24);
-      return Math.max(10, Math.min(100, Math.round(100 - (diffDays / 365) * 90)));
-    } catch {
-      return 50;
-    }
-  };
 
   return (
     <>
@@ -121,12 +135,12 @@ interface RepoStats {
               <li key={repo.id}>
                 <a 
                   href={`#chapter-${repo.id === "jobnest" ? "light" : repo.id === "campusconnect" ? "vision" : repo.id === "railway-ai" ? "world" : repo.id === "madhu-os" ? "journey" : "manifesto"}`}
-                  onFocus={() => handleFocus(idx, repo.scroll)}
+                  onFocus={() => handleFocus(idx, repo.scroll, repo.stats.updatedAt)}
                   onBlur={() => setFocusedIndex(null)}
                 >
                   {repo.id === "manifesto" 
                     ? `${repo.title}. ${repo.description} Open horizon. Press Enter to view.`
-                    : `${repo.title}. ${repo.description} Primary language is ${repo.stats.language}, Stars: ${repo.stats.stars}, Forks: ${repo.stats.forks}, Commits: ${repo.stats.commits}.`
+                    : `${repo.title}. ${repo.description}${repo.stats.updatedAt ? ` Last updated ${new Date(repo.stats.updatedAt).toLocaleDateString("en-US", { year: "numeric", month: "long" })}.` : ""}`
                   }
                 </a>
               </li>
@@ -211,23 +225,29 @@ interface RepoStats {
             <div style={{ fontSize: "0.65rem", color: "#00ffff" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
                 <span>SPECTRAL_CLASS:</span>
-                <span>[{repos[focusedIndex].stats.language.toUpperCase()}]</span>
+                <span>[{repos[focusedIndex].stats.language}]</span>
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                <span>GRAVITY_MASS:</span>
-                <span>[{repos[focusedIndex].stats.size} KB]</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                <span>MOMENTUM_COMM:</span>
-                <span>[{repos[focusedIndex].stats.commits} PTS]</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                <span>LUMINESCENCE:</span>
-                <span>[{repos[focusedIndex].stats.stars} LM]</span>
-              </div>
+              {repos[focusedIndex].stats.size > 0 && (
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
+                  <span>GRAVITY_MASS:</span>
+                  <span>[{(repos[focusedIndex].stats.size / 1024).toFixed(1)} MB]</span>
+                </div>
+              )}
+              {repos[focusedIndex].stats.commits > 0 && (
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
+                  <span>MOMENTUM_COMM:</span>
+                  <span>[{repos[focusedIndex].stats.commits} COMMITS]</span>
+                </div>
+              )}
+              {repos[focusedIndex].stats.stars > 0 && (
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
+                  <span>LUMINESCENCE:</span>
+                  <span>[{repos[focusedIndex].stats.stars} STARS]</span>
+                </div>
+              )}
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
                 <span>ENERGY_FLUX:</span>
-                <span>[{getEnergy(repos[focusedIndex].stats.updatedAt)}%]</span>
+                <span>[{focusedEnergy !== null ? `${focusedEnergy}%` : "—"}]</span>
               </div>
             </div>
           )}

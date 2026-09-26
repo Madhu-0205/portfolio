@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://github.com/madhu/sitemap.xml
+# Sitemap will be added once a production domain is configured.

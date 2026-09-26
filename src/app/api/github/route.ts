@@ -2,59 +2,41 @@ import { NextResponse } from "next/server";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-// Fallback curated mock data representing Madhu Valurouthu's real portfolio projects
-const MOCK_GITHUB_DATA = [
+// Fallback profile data used only when GITHUB_TOKEN is not configured.
+// No stars/forks/commits are invented here: the UI renders live GitHub data,
+// or neutral non-numeric placeholders until real data is available.
+const FALLBACK_GITHUB_DATA = [
   {
     name: "campusconnect",
-    description: "PROBLEM SOLVED: Fragmented campus listings causing students to miss key opportunities. | STATUS: Active Beta. | TECH: React, Next.js, TS, PostgreSQL, REST APIs.",
-    stars: 38,
-    forks: 7,
-    size: 14200, // diskUsage in KB
+    description: "Unified collegiate opportunity graph connecting students to hackathons, gigs, and peer projects. TECH: React, Next.js, TypeScript, PostgreSQL.",
     language: "TypeScript",
-    updatedAt: "2026-07-11T12:00:00Z",
-    commits: 142,
     topics: ["react", "postgresql", "collaboration", "networking"],
     url: "https://github.com/Madhu-0205/campusconnect",
     homepageUrl: "https://www.campusconnectco.in"
   },
   {
     name: "railway-ai",
-    description: "PROBLEM SOLVED: High-density rail signal deadlocks causing cascading delays. | STATUS: Smart India Hackathon 2025 Runner-Up. | TECH: Python, FastAPI, A* Search Heuristics, React.",
-    stars: 84,
-    forks: 12,
-    size: 28900,
+    description: "Decision-support optimizer resolving simulated rail signal deadlocks with A* search. Smart India Hackathon 2025 Grand Finale Runner-Up. TECH: Python, FastAPI, A* Heuristics, React.",
     language: "Python",
-    updatedAt: "2026-07-12T08:30:00Z",
-    commits: 268,
     topics: ["a-star-search", "traffic-simulation", "fastapi", "sih-2025"],
     url: "https://github.com/Madhu-0205/railway-ai",
-    homepageUrl: "coming-soon"
+    homepageUrl: null
   },
   {
     name: "jobnest",
-    description: "PROBLEM SOLVED: Local businesses failing to reach campus students for short-term work. | STATUS: Prototype testing complete, pivot base. | TECH: Python, PostgreSQL, PostGIS, React, Leaflet.",
-    stars: 42,
-    forks: 8,
-    size: 18400,
+    description: "Hyperlocal gig-matching index using PostGIS proximity queries. Prototype validated with student peers; foundation for CampusConnect. TECH: Python, PostgreSQL, PostGIS, React, Leaflet.",
     language: "Python",
-    updatedAt: "2026-07-12T16:45:00Z",
-    commits: 112,
     topics: ["python", "postgresql", "postgis", "gig-economy", "react"],
     url: "https://github.com/Madhu-0205/jobnest",
-    homepageUrl: "coming-soon"
+    homepageUrl: null
   },
   {
-    name: "madhu-os",
-    description: "PROBLEM SOLVED: Generic portfolios failing to convey engineering depth and visual craft. | STATUS: Deployed production. | TECH: Next.js, React Three Fiber, Three.js, GSAP, Zustand.",
-    stars: 256,
-    forks: 32,
-    size: 11800,
+    name: "portfolio",
+    description: "This site: an immersive WebGL engineering logbook built with Next.js, React Three Fiber, GSAP, and Zustand.",
     language: "TypeScript",
-    updatedAt: "2026-07-12T19:20:00Z",
-    commits: 165,
     topics: ["threejs", "react-three-fiber", "gsap", "webgl"],
     url: "https://github.com/Madhu-0205/portfolio",
-    homepageUrl: "https://github.com/Madhu-0205/portfolio"
+    homepageUrl: null
   },
 ];
 
@@ -63,8 +45,8 @@ export async function GET() {
   const username = process.env.GITHUB_USERNAME || "Madhu-0205";
 
   if (!token) {
-    // Return mock data if token is not available
-    return NextResponse.json(MOCK_GITHUB_DATA, {
+    // Return neutral profile data (no invented metrics) when no token is available
+    return NextResponse.json(FALLBACK_GITHUB_DATA, {
       headers: {
         "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
       },
@@ -148,8 +130,8 @@ export async function GET() {
 
     return NextResponse.json(repos);
   } catch (error) {
-    console.error("Failed to fetch live GitHub data, serving static fallbacks:", error);
-    return NextResponse.json(MOCK_GITHUB_DATA, {
+    console.error("Failed to fetch live GitHub data, serving neutral fallbacks:", error);
+    return NextResponse.json(FALLBACK_GITHUB_DATA, {
       headers: {
         "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
       },

@@ -316,15 +316,15 @@ export default function Works3D() {
       <RepositorySatellite
         repoName="railway-ai"
         defaultStats={{
-          stars: 84,
-          forks: 12,
-          size: 28900,
+          stars: 0,
+          forks: 0,
+          size: 0,
           language: "Python",
-          commits: 268,
-          description: "PROBLEM SOLVED: High-density rail signal deadlocks causing cascading delays. | STATUS: Smart India Hackathon 2025 Runner-Up. | TECH: Python, FastAPI, A* Search Heuristics, React.",
+          commits: 0,
+          description: "Decision-support optimizer resolving simulated rail signal deadlocks with A* search. Smart India Hackathon 2025 Grand Finale Runner-Up.",
           topics: ["a-star-search", "traffic-simulation", "fastapi", "sih-2025"],
           url: "https://github.com/Madhu-0205/railway-ai",
-          homepageUrl: "research-prototype"
+          homepageUrl: undefined
         }}
         position={[-1.4, 0.8, 0.8]}
         targetCenter={[0, 0.75, 0]}

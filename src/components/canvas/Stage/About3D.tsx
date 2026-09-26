@@ -260,9 +260,9 @@ export default function About3D() {
         ref.quaternion.copy(state.camera.quaternion);
 
         // Adjust text opacity
-        const textMesh = ref.children[0];
+        const textMesh = ref.children[0] as import("three").Mesh & { fillOpacity?: number } | undefined;
         if (textMesh) {
-          (textMesh as any).fillOpacity = opacityVal;
+          textMesh.fillOpacity = opacityVal;
         }
       }
     });
@@ -394,7 +394,6 @@ export default function About3D() {
           <Text
             fontSize={0.095}
             color={platform.color}
-            font="var(--font-family-mono)"
             anchorX="center"
             anchorY="middle"
           >
@@ -430,15 +429,15 @@ export default function About3D() {
       <RepositorySatellite
         repoName="jobnest"
         defaultStats={{
-          stars: 42,
-          forks: 8,
-          size: 18400,
+          stars: 0,
+          forks: 0,
+          size: 0,
           language: "Python",
-          commits: 112,
-          description: "PROBLEM SOLVED: Local businesses failing to reach campus students for short-term work. | STATUS: Prototype testing complete, pivot base. | TECH: Python, PostgreSQL, PostGIS, React, Leaflet.",
+          commits: 0,
+          description: "Hyperlocal gig-matching index using PostGIS proximity queries. Prototype validated with student peers.",
           topics: ["python", "postgresql", "postgis", "gig-economy", "react"],
           url: "https://github.com/Madhu-0205/jobnest",
-          homepageUrl: "coming-soon"
+          homepageUrl: undefined
         }}
         position={[2.2, 0.8, 1.2]}
         targetCenter={[0, 0.2, 0]}

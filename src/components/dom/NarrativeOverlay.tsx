@@ -27,6 +27,15 @@ export default function NarrativeOverlay() {
     { text: "Products should earn trust.", range: [0.927, 0.930, 0.933] as [number, number, number] },
   ], []);
 
+  const narrativeStyle = {
+    fontFamily: "var(--font-family-serif)",
+    fontStyle: "italic" as const,
+    fontSize: "var(--text-narrative)",
+    fontWeight: 300,
+    lineHeight: 1.4,
+    color: "var(--text-primary)",
+  };
+
   return (
     <div style={{
       position: "fixed",
@@ -41,87 +50,8 @@ export default function NarrativeOverlay() {
       alignItems: "center",
       padding: "var(--space-md)",
     }}>
-      {/* ────────────────── ACT 1: EVERY GREAT PRODUCT BEGINS WITH A QUESTION (0.00 - 0.12) ────────────────── */}
-      {/* Part 1 */}
-      <div style={{
-        position: "absolute",
-        fontFamily: "var(--font-family-serif)",
-        fontStyle: "italic",
-        fontSize: "clamp(1.6rem, 5.5vw, 3.2rem)",
-        fontWeight: 300,
-        color: "var(--text-primary)",
-        letterSpacing: "0.01em",
-        textAlign: "center",
-        maxWidth: "900px",
-        padding: "0 24px",
-        opacity: getOpacity(scrollProgress, 0.0, 0.015, 0.03),
-      }}>
-        “Every great product begins with a question.”
-      </div>
-
-      {/* Part 2 */}
-      <div style={{
-        position: "absolute",
-        fontFamily: "var(--font-family-serif)",
-        fontStyle: "italic",
-        fontSize: "clamp(1.6rem, 5.5vw, 3.2rem)",
-        fontWeight: 300,
-        color: "var(--text-primary)",
-        letterSpacing: "0.01em",
-        textAlign: "center",
-        maxWidth: "900px",
-        padding: "0 24px",
-        opacity: getOpacity(scrollProgress, 0.03, 0.045, 0.06),
-      }}>
-        “What if this could be better?”
-      </div>
-
-      {/* Part 3 */}
-      <div style={{
-        position: "absolute",
-        fontFamily: "var(--font-family-serif)",
-        fontStyle: "italic",
-        fontSize: "clamp(1.6rem, 5.5vw, 3.2rem)",
-        fontWeight: 300,
-        color: "var(--text-primary)",
-        letterSpacing: "0.01em",
-        textAlign: "center",
-        maxWidth: "900px",
-        padding: "0 24px",
-        opacity: getOpacity(scrollProgress, 0.06, 0.075, 0.09),
-      }}>
-        “I've been asking that question since I started building.”
-      </div>
-
-      {/* Part 4: Identity Reveal */}
-      <div style={{
-        position: "absolute",
-        textAlign: "center",
-        opacity: getOpacity(scrollProgress, 0.09, 0.11, 0.13),
-      }}>
-        <h1 style={{
-          fontFamily: "var(--font-family-display)",
-          fontSize: "clamp(2.4rem, 8vw, 4.8rem)",
-          fontWeight: 700,
-          textTransform: "uppercase",
-          lineHeight: 1.0,
-          letterSpacing: "-0.03em",
-          color: "var(--text-primary)",
-          margin: 0
-        }}>
-          Madhu Valurouthu
-        </h1>
-        <p style={{
-          fontFamily: "var(--font-family-mono)",
-          fontSize: "clamp(0.9rem, 2.5vw, 1.2rem)",
-          color: "var(--text-secondary)",
-          marginTop: "16px",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase"
-        }}>
-          AI Engineer // Product Builder // Future Founder
-        </p>
-      </div>
+      {/* ────────────────── ACT 1 (0.00 - 0.13) is owned by the server-rendered static hero in page.tsx.
+          The overlay stays empty during the boot window so the hero is never duplicated. ────────────────── */}
 
       {/* ────────────────── ACT 2: THE CURIOUS STUDENT (0.13 - 0.18) ────────────────── */}
       <div style={{
@@ -132,15 +62,8 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.13, 0.155, 0.18),
       }}>
         <div className="mono-tag" style={{ marginBottom: "16px", letterSpacing: "0.15em" }}>ACT 02 // THE CURIOUS STUDENT</div>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “I didn't start with frameworks or architecture. I started with curiosity. Sitting in lecture halls, I wanted to understand how digital ideas become products. I chose to build instead of simply learning—discovering coding not as a classroom exercise, but as a medium to create.”
+        <h2 style={narrativeStyle}>
+          “I didn’t start with frameworks or architecture. I started with curiosity — wanting to understand how digital ideas become real products. Somewhere between lecture halls and late-night builds, coding stopped being a subject and became a medium.”
         </h2>
       </div>
 
@@ -154,14 +77,7 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.18, 0.205, 0.23),
       }}>
         <div className="mono-tag" style={{ marginBottom: "16px" }}>ACT 03 // JOBNEST // THE WRONG ASSUMPTION</div>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
+        <h2 style={narrativeStyle}>
           “JobNest was my first idea. A hyperlocal opportunity map connecting students to nearby gigs. I believed students only needed jobs.”
         </h2>
       </div>
@@ -174,15 +90,8 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.23, 0.26, 0.29),
       }}>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “But while building, I realized the wrong assumption. Opportunities were scattered across LinkedIn, WhatsApp, Telegram, and portals. Students didn't just need jobs—they needed an entire integrated ecosystem.”
+        <h2 style={narrativeStyle}>
+          “But while building, I found the wrong assumption. Opportunities were scattered across LinkedIn, WhatsApp, Telegram, and portals. Students didn’t just need jobs — they needed an integrated ecosystem.”
         </h2>
       </div>
 
@@ -194,15 +103,8 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.29, 0.32, 0.35),
       }}>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “Sometimes the best products begin when you're willing to rethink the first idea.”
+        <h2 style={narrativeStyle}>
+          “Sometimes the best products begin when you’re willing to rethink the first idea.”
         </h2>
       </div>
 
@@ -216,15 +118,8 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.35, 0.38, 0.41),
       }}>
         <div className="mono-tag" style={{ marginBottom: "16px" }}>ACT 04 // CAMPUSCONNECT // UNIFYING DISCOVERY</div>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “Why does CampusConnect exist? Students don't lack talent. They lack visibility. They miss internships, hackathons, founder communities, and mentorship because resources are fragmented across a dozen silent silos.”
+        <h2 style={narrativeStyle}>
+          “Why does CampusConnect exist? Students don’t lack talent. They lack visibility. They miss internships, hackathons, founder communities, and mentorship because resources are fragmented across a dozen silent silos.”
         </h2>
       </div>
 
@@ -236,19 +131,12 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.41, 0.44, 0.47),
       }}>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “I built CampusConnect to merge these channels into a single graph ecosystem. A digital home where student opportunities discover you instead of searching endlessly.”
+        <h2 style={narrativeStyle}>
+          “I built CampusConnect to merge these channels into a single graph ecosystem — a digital home where student opportunities discover you instead of the other way around.”
         </h2>
       </div>
 
-      {/* Chapter 3: Proof of Traction */}
+      {/* Chapter 3: Proof */}
       <div style={{
         position: "absolute",
         maxWidth: "800px",
@@ -256,15 +144,8 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.47, 0.51, 0.55),
       }}>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “Launched to real users. Verified through live college deployments, resolving the discovery friction that isolates builders.”
+        <h2 style={narrativeStyle}>
+          “Built as a working product and tested with student peers — every iteration shaped by what they actually did, not what I assumed.”
         </h2>
       </div>
 
@@ -278,14 +159,7 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.55, 0.575, 0.60),
       }}>
         <div className="mono-tag" style={{ marginBottom: "16px" }}>ACT 05 // RAILWAY AI // HUMAN-IN-THE-LOOP</div>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
+        <h2 style={narrativeStyle}>
           “At high-density train junctions, grid congestion causes compounding delays. Two trains. One conflict. A grid deadlock.”
         </h2>
       </div>
@@ -298,15 +172,8 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.60, 0.63, 0.66),
       }}>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “What if AI could help controllers make faster decisions without replacing them?”
+        <h2 style={narrativeStyle}>
+          “What if AI could help controllers make faster decisions — without replacing them?”
         </h2>
       </div>
 
@@ -318,15 +185,8 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.66, 0.69, 0.72),
       }}>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “I built the spatial routing logic and conflict matrices using deterministic A* search heuristics. The best AI doesn't replace people. It helps them make better decisions.”
+        <h2 style={narrativeStyle}>
+          “I built the spatial routing logic and conflict matrices using deterministic A* search heuristics. The best AI doesn’t replace people. It helps them make better decisions.”
         </h2>
       </div>
 
@@ -340,15 +200,8 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.72, 0.76, 0.80),
       }}>
         <div className="mono-tag" style={{ marginBottom: "16px" }}>ACT 06 // MADHU//OS // THE PORTFOLIO CASE STUDY</div>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
-          “This portfolio does not exist to impress. It exists to communicate. It is a spatial case study in design wireframes, code commits, performance trade-offs, and building failures.”
+        <h2 style={narrativeStyle}>
+          “This portfolio does not exist to impress. It exists to communicate. It is a spatial case study in design decisions, code commits, performance trade-offs, and building failures.”
         </h2>
       </div>
 
@@ -360,14 +213,7 @@ export default function NarrativeOverlay() {
         padding: "0 24px",
         opacity: getOpacity(scrollProgress, 0.80, 0.84, 0.88),
       }}>
-        <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
-          fontSize: "clamp(1.4rem, 4.5vw, 2.4rem)",
-          fontWeight: 300,
-          lineHeight: 1.4,
-          color: "var(--text-primary)"
-        }}>
+        <h2 style={narrativeStyle}>
           “By treating the portfolio as a product, you see exactly how I think, write, and deploy. Every pixel, shader, and frame was crafted to tell an honest builder story.”
         </h2>
       </div>
@@ -387,12 +233,9 @@ export default function NarrativeOverlay() {
         >
           <div className="mono-tag" style={{ marginBottom: "16px" }}>ACT 07 // CORE PRINCIPLES // HOW I BUILD</div>
           <h2 style={{
-            fontFamily: "var(--font-family-serif)",
-            fontStyle: "italic",
+            ...narrativeStyle,
             fontSize: "clamp(1.8rem, 5.5vw, 3.0rem)",
-            fontWeight: 300,
             lineHeight: 1.3,
-            color: "var(--text-primary)"
           }}>
             “{p.text}”
           </h2>
@@ -426,14 +269,14 @@ export default function NarrativeOverlay() {
           textTransform: "uppercase"
         }}>
           <span>CampusConnect</span>
-          <span style={{ color: "var(--accent-cyan)", opacity: 0.6 }}>→</span>
+          <span style={{ color: "var(--accent)", opacity: 0.6 }}>→</span>
           <span>AI Products</span>
-          <span style={{ color: "var(--accent-cyan)", opacity: 0.6 }}>→</span>
+          <span style={{ color: "var(--accent)", opacity: 0.6 }}>→</span>
           <span>Automation</span>
-          <span style={{ color: "var(--accent-cyan)", opacity: 0.6 }}>→</span>
+          <span style={{ color: "var(--accent)", opacity: 0.6 }}>→</span>
           <span>Startup</span>
-          <span style={{ color: "var(--accent-cyan)", opacity: 0.6 }}>→</span>
-          <span style={{ color: "var(--accent-cyan)" }}>Global Impact</span>
+          <span style={{ color: "var(--accent)", opacity: 0.6 }}>→</span>
+          <span style={{ color: "var(--accent)" }}>Global Impact</span>
         </div>
       </div>
 
@@ -446,14 +289,11 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.952, 0.962, 0.970),
       }}>
         <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
+          ...narrativeStyle,
           fontSize: "clamp(1.8rem, 6vw, 3.2rem)",
-          fontWeight: 300,
           lineHeight: 1.3,
-          color: "var(--text-primary)"
         }}>
-          “I'm just getting started.”
+          “I’m just getting started.”
         </h2>
       </div>
 
@@ -467,12 +307,9 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.970, 0.974, 0.978),
       }}>
         <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
+          ...narrativeStyle,
           fontSize: "clamp(1.6rem, 5vw, 2.8rem)",
-          fontWeight: 300,
           lineHeight: 1.3,
-          color: "var(--text-primary)"
         }}>
           “Every project in this portfolio began with a problem worth solving.”
         </h2>
@@ -487,14 +324,11 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.978, 0.982, 0.986),
       }}>
         <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
+          ...narrativeStyle,
           fontSize: "clamp(1.6rem, 5vw, 2.8rem)",
-          fontWeight: 300,
           lineHeight: 1.3,
-          color: "var(--text-primary)"
         }}>
-          “I'm still looking for the next one.”
+          “I’m still looking for the next one.”
         </h2>
       </div>
 
@@ -507,34 +341,29 @@ export default function NarrativeOverlay() {
         opacity: getOpacity(scrollProgress, 0.986, 0.990, 0.993),
       }}>
         <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
+          ...narrativeStyle,
           fontSize: "clamp(1.6rem, 5vw, 2.8rem)",
-          fontWeight: 300,
           lineHeight: 1.3,
-          color: "var(--text-primary)"
         }}>
-          “If you're building something meaningful...”
+          “If you’re building something meaningful...”
         </h2>
       </div>
 
-      {/* Sentence 4 */}
+      {/* Sentence 4 — fade in and HOLD: the closing line must stay visible at progress 1.0,
+          otherwise the story ends on a blank screen (the symmetric curve fades out exactly at the end). */}
       <div style={{
         position: "absolute",
         maxWidth: "800px",
         textAlign: "center",
         padding: "0 24px",
-        opacity: getOpacity(scrollProgress, 0.993, 0.997, 1.0),
+        opacity: scrollProgress < 0.993 ? 0 : Math.min(1, (scrollProgress - 0.993) / 0.004),
       }}>
         <h2 style={{
-          fontFamily: "var(--font-family-serif)",
-          fontStyle: "italic",
+          ...narrativeStyle,
           fontSize: "clamp(1.8rem, 5.5vw, 3.2rem)",
-          fontWeight: 300,
           lineHeight: 1.3,
-          color: "var(--text-primary)"
         }}>
-          “Let's build it together.”
+          “Let’s build it together.”
         </h2>
       </div>
     </div>

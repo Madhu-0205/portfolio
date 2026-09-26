@@ -71,7 +71,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
         "Student Input: Skills list and interest tags saved as strongly typed array sets",
         "Gateway Scrapers: Opportunities fetched, filtered, and saved as event structures",
         "Vector Evaluation: Cosine similarity comparison matrix scores match relevance",
-        "HUD Render: Delivers matches in under 45ms using optimized indices"
+        "HUD Render: Delivers ranked matches from indexed relational queries"
       ],
       techChoice: "PostgreSQL was chosen for its strict data constraints and relational joins. REST API endpoints in Next.js were chosen over GraphQL to reduce caching complexity and query overhead in our initial production launch.",
       tradeoffs: "Opted for a relational database with matching views rather than a dedicated graph database (like Neo4j) to keep server hosting costs low during validation.",
@@ -83,7 +83,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       doDifferently: "If I started again today, I would use an adapter pattern to isolate the matching engine from the primary datastore, allowing us to swap the relational DB for a dedicated graph store (Neo4j) without altering frontend logic.",
       logbook: [
         "Observation (Dec 2025) // Witnessed peers missing local hackathon registrations due to fragmented channels.",
-        "Research (Jan 2026) // Surveyed 50 students; 90% logged into 4+ apps daily to seek gigs/events.",
+        "Research (early 2026) // Surveyed my peer group; nearly everyone juggled 4+ apps daily to find gigs and events.",
         "Prototype (Feb 2026) // Built local opportunity listing pages in React.",
         "Architecture (Mar 2026) // Designed the Postgres relational matches schema.",
         "Implementation (Apr 2026) // Coded Next.js APIs and cosine matching rules.",
@@ -100,7 +100,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       schema: `CREATE TABLE student (\n  id UUID PRIMARY KEY,\n  email VARCHAR(255) UNIQUE,\n  skills TEXT[],\n  created_at TIMESTAMP DEFAULT NOW()\n);\n\nCREATE TABLE opportunity (\n  id UUID PRIMARY KEY,\n  title VARCHAR(255),\n  type VARCHAR(50), -- gig, hackathon, event\n  required_skills TEXT[]\n);\n\n-- Cosine Similarity formula:\n-- Similarity = (A • B) / (||A|| * ||B||)`,
       folder: `src/\n├── app/api/opportunity/     # Graph query endpoint\n├── components/dom/          # Frosted recommendation feeds\n└── state/                   # Opportunity matching store`,
       api: `GET /api/opportunity/recommend\nHeaders: Authorization: Bearer <token>\nQuery: ?limit=10\nResponse: { recommendations: [{ id, score, type }] }`,
-      perf: "Implemented PostgreSQL composite indices on skills arrays and cached recommendations in-memory to keep response latencies under 45ms.",
+      perf: "Implemented PostgreSQL composite indices on skills arrays and in-memory recommendation caching to keep match lookups fast as the dataset grew.",
       security: "Input sanitation on all search vectors to prevent SQL injection; JWT authentication for student account access.",
     }
   },
@@ -131,7 +131,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       techChoice: "Python was chosen for its mathematical search libraries. FastAPI provides low overhead for REST syncs to the React simulator dashboard.",
       tradeoffs: "Used deterministic A* search heuristics instead of reinforcement learning models to guarantee explainability and safe, repeatable paths.",
       limitations: [
-        "In dense networks (>50 trains), A* search scaling causes solver runtimes to swell to 150ms.",
+        "In dense networks (>50 trains), A* search scaling causes solver runtimes to grow noticeably past the interactive threshold.",
         "Model assumes track layouts are static and cannot handle dynamically altering routes mid-block.",
         "No direct PLC sensor hardware integration (currently relies on simulator triggers)."
       ],
@@ -155,7 +155,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       schema: `CREATE TABLE signal_node (\n  id UUID PRIMARY KEY,\n  grid_x INT, grid_y INT,\n  status VARCHAR(20) -- green, yellow, red\n);\n\n-- Collision Set C = { t_i, t_j | P(t_i) ∩ P(t_j) ≠ Ø }\n-- Where P(t) represents the path vector of train t over time interval T.`,
       folder: `backend/\n├── main.py                  # Path solver entry\n├── core/routing.py          # A* Search Heuristics\n└── schemas/                 # Track coordinate definitions`,
       api: `POST /api/routing/solve\nBody: { train_positions, active_signals }\nResponse: { suggested_routes: [{ train_id, path: [] }], deadlocks_prevented: 3 }`,
-      perf: "Optimized heuristic functions in python using list comprehensions and coordinate caching, reducing solver runtime to under 8ms.",
+      perf: "Optimized heuristic functions in Python using coordinate caching and tuned data structures, keeping the solver interactive in simulation.",
       security: "HTTPS communication; CORS restrictions preventing arbitrary API requests to backend path calculations.",
       aiDecisionFlow: {
         dataReceived: "Train ID, speed vector, path destination, track coordinates, and current signal states (green/yellow/red).",
@@ -216,7 +216,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       schema: `CREATE TABLE gig_listing (\n  id UUID PRIMARY KEY,\n  employer_id UUID,\n  location GEOGRAPHY(Point, 4326),\n  reward DECIMAL(10,2),\n  required_skills VARCHAR[]\n);\n\n-- Hyperlocal PostGIS Query:\n-- SELECT * FROM gig_listing \n-- WHERE ST_DWithin(location, ST_MakePoint(lng, lat)::geography, radius_meters);`,
       folder: `src/\n├── server/db/               # PostGIS queries\n├── components/map/          # Leaflet matching map\n└── styles/                  # Operating system variables`,
       api: `GET /api/gigs/radius\nQuery: ?lat=17.0&lng=82.0&radius_meters=5000\nResponse: { gigs: [{ id, distance_meters, reward }] }`,
-      perf: "Used spatial indexes (GIST) on geography columns, reducing query times for 10,000+ local points to under 12ms.",
+      perf: "Used spatial GIST indexes on geography columns so radial lookups stayed fast on large local datasets.",
       security: "Sanitized location inputs; coordinate obfuscation on public maps to protect student privacy.",
     }
   },
@@ -556,9 +556,9 @@ export default function CaseStudyDrawer() {
               <div>
                 <h4 style={{ fontFamily: "var(--font-family-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-secondary)" }}>Current Status</h4>
                 <p style={{ fontSize: "0.95rem", lineHeight: 1.5, marginTop: "6px", fontWeight: "bold", color: "#ffffff" }}>
-                  {data.recruiter.demo === "coming-soon" ? "PROTOTYPE (COMING SOON)" : 
-                   data.recruiter.demo === "research-prototype" ? "RESEARCH PROTOTYPE" : 
-                   data.title === "CampusConnect" ? "LIVE SYSTEM" : "LIVE PORTFOLIO"}
+                  {data.recruiter.demo === "coming-soon" ? "PROTOTYPE — NO PUBLIC DEPLOYMENT" : 
+                   data.recruiter.demo === "research-prototype" ? "RESEARCH PROTOTYPE — NO PUBLIC DEPLOYMENT" : 
+                   data.title === "CampusConnect" ? "DEPLOYED — CAMPUSCONNECTCO.IN" : "THIS WEBSITE"}
                 </p>
               </div>
             </div>
